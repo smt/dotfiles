@@ -1,5 +1,10 @@
 require 'rake'
 
+desc "Grab the latest submodules and rebuild things."
+task :update do
+  `git submodule update --init --recursive`
+end
+
 desc "Hook our dotfiles into system-standard positions."
 task :install do
   linkables = Dir.glob('*/**{.symlink}')

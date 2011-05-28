@@ -1,0 +1,6 @@
+dotfiles_path = $HOME/.dotfiles
+vimdir_path = $dotfiles_path/vim/vim.symlink
+vimrc_path = $vimdir_path/vimrc
+submodule = 1
+starter_url =
+https://github.com/smt/dotfiles/raw/master/vim/vim.symlink/vimrc.symlink

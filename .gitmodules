@@ -5,6 +5,3 @@
 	path = vim/vim.symlink
 	url = git@github.com:smt/dotvim.git
 	ignore = untracked
-[submodule "vim/vim-update-bundles"]
-	path = vim/vim-update-bundles
-	url = git://github.com/bronson/vim-update-bundles.git

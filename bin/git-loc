@@ -1,0 +1,113 @@
+#!/usr/bin/env python
+
+from rfc822 import parsedate
+from time import mktime
+from datetime import datetime
+from os import popen
+from sys import argv,stderr,stdout
+
+needsvg=len(argv)>1 and argv[1]=='--svg'
+fc=0
+locs=0
+adds=None
+cmt=None
+
+h=[]
+
+def pop():
+	if adds is not None:
+		pstr="%s %8u %5s %5s   %s"%(d,locs,'+'+str(adds),'-'+str(dels),cmt.strip())
+		if needsvg: print >>stderr,pstr
+		else: print pstr
+		h.append((d,locs,adds,dels,cmt))
+
+for x in popen('git log --reverse -p'):
+	if x.startswith('Date'):
+		fc=1
+		d=datetime(*parsedate(x[5:])[:7])
+		t=mktime(parsedate(x[5:]))
+		pop()
+		adds=0
+		dels=0
+
+	if fc==2:
+		cmt=x[:-1]
+		fc=0
+	if fc==1:
+		if len(x)==1: fc=2
+	if x.startswith('+') and not x.startswith('+++'):
+		adds+=1
+		locs+=1
+	if x.startswith('-') and not x.startswith('---'):
+		dels+=1
+		locs-=1
+
+pop()
+
+def makesvg():
+	def quoteone(x):
+		if x in 'abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789': return x
+		return "&#x%02x;"%(ord(x),)
+
+	def quote(s):
+		return ''.join([quoteone(x) for x in s])
+
+	mlocs=max([locs for d,locs,adds,dels,cmt in h])
+	yscale=800.0/mlocs
+
+	svg=stdout
+	svg.write("""<?xml version="1.0" standalone="no"?>"""
+		  """<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">"""
+		  """<svg preserveAspectRatio="none" width="100%%" height="100%%" viewBox="0 0 %u %u" version="1.1" xmlns="http://www.w3.org/2000/svg">"""%(25*len(h),mlocs*yscale))
+
+	svg.write("""<style>"""
+		  """rect.o{opacity:0}"""
+		  """rect.o:hover{opacity:0.2}"""
+		  """.a{fill:none;stroke:black;stroke-width:2}"""
+		  """</style>""")
+
+	def rect(x,y,w,h,c,a=''):
+		svg.write("""<rect x="%u" y="%u" width="%u" height="%u" style="%s" %s/>"""
+				%(x,y,w,h,c,a))
+
+
+	ps=[]
+	bl=[]
+	tx=[]
+	x=25
+	for d,locs,adds,dels,cmt in h:
+		y=(mlocs-locs)*yscale
+		bl.append((x-1,y,3,dels*yscale,"fill:rgb(0,0,255)"))
+		bl.append((x-1,y-adds*yscale,3,adds*yscale,"fill:rgb(0,255,0)"))
+
+		bl.append((x-12,0,25,mlocs*yscale,'',
+			"""title="%s %8u %5s %5s   %s" """%(d,locs,'+'+str(adds),'-'+str(dels),quote(cmt.strip()))
+			+"""class="o" """))
+
+		ps.append("%u,%u"%(x,y))
+		x+=25
+
+	svg.write("""\n""")
+	svg.write("""<polyline points="0,%u %u,%u" class="a"/>"""%(mlocs*yscale,x,mlocs*yscale,))
+	svg.write("""<polyline points="25,0 25,%u" class="a"/>"""%(mlocs*yscale+25,))
+
+	it=pow(10,len(str(mlocs))-2)
+	for i in range(it,mlocs,it):
+		svg.write("""<polyline points="0,%u %u,%u" class="a" style="stroke:rgb(200,200,200)"/>"""%(mlocs*yscale-i*yscale,x,mlocs*yscale-i*yscale,))
+		svg.write("""\n""")
+
+	for b in bl:
+		rect(*b)
+		svg.write("""\n""")
+
+	svg.write("""<polyline points="%s" class="a" style="stroke:red"/>"""%(' '.join(ps),))
+
+
+		
+
+	svg.write("""</svg>\n""")
+
+if needsvg: makesvg()
+
+
+

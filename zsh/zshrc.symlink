@@ -21,7 +21,7 @@ export ZSH_THEME="wezm"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(brew compleat dirpersist gem git git-flow github node npm osx ruby rvm svn)
+plugins=(ant autojump brew bundler compleat gem git git-flow lol osx perl pow rails rails3 ruby rvm svn textmate)
 
 source $ZSH/oh-my-zsh.sh
 

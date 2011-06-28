@@ -1,5 +1,11 @@
 require 'rake'
 
+desc "Update vim bundles"
+task :vimup do
+  puts "Updating vim bundles..."
+  `ruby ./vim/vup/vim-update-bundles`
+end
+
 desc "Hook our dotfiles into system-standard positions."
 task :install do
   linkables = Dir.glob('*/**/*{.symlink}')

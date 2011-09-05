@@ -4,14 +4,13 @@ desc "Hook our dotfiles into system-standard positions."
 task :install do
   linkables = Dir.glob('*/**/*{.symlink}')
 
+  skip_all = false
   overwrite_all = false
   backup_all = false
-  skip_all = false
 
   linkables.each do |linkable|
     overwrite = false
     backup = false
-    skip = false
 
     file = linkable.split('/').last.split('.symlink')
     target = "#{ENV["HOME"]}/.#{file}"
@@ -22,7 +21,6 @@ task :install do
         case STDIN.gets.chomp
         when 'o' then overwrite = true
         when 'b' then backup = true
-        when 's' then skip = true
         when 'O' then overwrite_all = true
         when 'B' then backup_all = true
         when 'S' then skip_all = true
@@ -31,7 +29,7 @@ task :install do
       FileUtils.rm_rf(target) if overwrite || overwrite_all
       `mv "$HOME/.#{file}" "$HOME/.#{file}.backup"` if backup || backup_all
     end
-    `ln -s "$PWD/#{linkable}" "#{target}"` unless skip || skip_all
+    `ln -s "$PWD/#{linkable}" "#{target}"`
   end
 end
 task :default => 'install'

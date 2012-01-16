@@ -1,1 +1,2 @@
-$('#container').append('<strong>', { text: 'smtudor is awesome' });
+var dinky = $('<strong>', { text: 'smtudor is awesome'});
+$('#container').append(dinky);

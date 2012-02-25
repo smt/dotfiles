@@ -84,10 +84,13 @@ source $ZSH/oh-my-zsh.sh
 export DOTS=$HOME/.dotfiles
 
 # your project folder that we can `c [tab]` to
-export PROJECTS=$HOME/Projects
+export PROJECTS=$HOME/src
 
 # source every .zsh file in this rep
 for config_file ($DOTS/(zsh|system|git|ruby|todo.txt)/*.zsh) source $config_file
+
+# Add jsctags to NODE_PATH
+export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH
 
 # use .localrc for SUPER SECRET CRAP that you don't
 # want in your public, versioned repo.

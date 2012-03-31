@@ -1,13 +1,11 @@
 ---
-:update_sources: true
-:sources:
-- http://rubygems.org/
-- http://gemcutter.org/
-- http://gems.github.com/
-:verbose: true
-:backtrace: false
-:benchmark: false
-:bulk_threshold: 1000
+update_sources: true
+sources:
+  - http://rubygems.org/
+verbose: true
+backtrace: false
+benchmark: false
+bulk_threshold: 1000
 install: --no-rdoc --no-ri
 update: --no-rdoc --no-ri
 

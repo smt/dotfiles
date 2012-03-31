@@ -1,4 +1,7 @@
 #!/bin/sh
+#
+# https://github.com/holman/dotfiles/blob/master/bin/backup
+
 IFS=$'\n'
 
 # Copies a few key files to a mounted partition.
@@ -9,9 +12,10 @@ IFS=$'\n'
 # doesn't easily do). I create an encrypted sparsebundle on a tiny USB
 # drive and do it to it.
 
+imagename="tudorize"
 
-# Your sparsebundle. I named mine "fuckplanets" because really, fuck planets.
-sparsebundle="/Volumes/fuckplanets/backup.sparsebundle"
+# Your sparsebundle.
+sparsebundle="/Volumes/$imagename/backup.sparsebundle"
 
 # Your destination. My sparsebundle mounts to "backup".
 backup_location="/Volumes/backup"
@@ -36,3 +40,4 @@ for directory in ${directories[@]}
 done
 
 hdiutil detach $backup_location
+diskutil eject $imagename

@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# https://github.com/holman/dotfiles/blob/master/bin/git-promote
+#
 # Promotes a local topic branch to a remote tracking branch of the same name,
 # by pushing and then setting up the git config
 #

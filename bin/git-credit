@@ -1,5 +1,6 @@
 #!/bin/sh
 #
+# https://github.com/holman/dotfiles/blob/master/bin/git-credit
 # A very slightly quicker way to credit an author on the latest commit.
 #
 # $1 - The full name of the author.

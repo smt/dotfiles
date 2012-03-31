@@ -34,3 +34,4 @@ test "$(basename $0)" = "git-reup" && {
 echo "Log:"
 git log --color --pretty=oneline --abbrev-commit HEAD@{1}.. |
 sed 's/^/  /'
+

@@ -1,0 +1,9 @@
+#!/bin/sh
+# usage: trunc FILE...
+#
+# https://github.com/rtomayko/dotfiles/blob/rtomayko/bin/trunc
+#
+# truncate files
+for f in "$@" ; do
+  cat < /dev/null > "$f"
+done

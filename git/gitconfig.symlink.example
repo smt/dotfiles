@@ -8,8 +8,8 @@
 # install this to the correct location by running the project's main `rake`
 # task.
 [user]
-    name  = Stephen Tudor
-    email = smt@sunblu.sh
+    name  = First Last
+    email = email@example.com
 [alias]
 	st = status
 	a = add
@@ -55,4 +55,4 @@
 [mergetool]
     keepBackup = false
 [github]
-    user = smt
+    user = github_user

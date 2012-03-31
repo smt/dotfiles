@@ -1,0 +1,12 @@
+#!/bin/sh
+# Usage: addr [<if>]
+#
+# https://github.com/rtomayko/dotfiles/blob/rtomayko/bin/addr
+#
+# Show IPv4 address for interface <if> or all interfaces with
+# no <if> given.
+
+ifconfig -a        |
+grep 'inet '       |
+grep broadcast     |
+awk '{ print $2 }'

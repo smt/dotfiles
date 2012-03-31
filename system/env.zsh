@@ -1,8 +1,8 @@
-# use Vim for things
-export EDITOR='mvim'
+# projects folder
+export PROJECTS="$HOME/_"
+
+# editor program
+export EDITOR='subl'
 
 #osx color terminal
 export CLICOLOR=1
-
-#hardcode hostname for unison
-export UNISONLOCALHOSTNAME="tichu.local"

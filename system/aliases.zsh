@@ -11,11 +11,10 @@ fi
 
 # Dirs
 alias o="open ."
-alias p="cd ~/Projects"
-alias e="nocorrect mvim"
+alias p="cd ~/_/projects"
 
 # Management
-alias dots="cd $DOTS && mvim; -"
+alias dots="cd $DOTS && e; -"
 alias redot="cd $DOTS && gpp && rake install; -"
 
 # Shell

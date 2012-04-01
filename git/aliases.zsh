@@ -1,3 +1,5 @@
+alias g="git"
+
 # The rest of my fun git aliases
 alias gar="git-addremove"
 alias gl='git pull --prune'

@@ -76,7 +76,7 @@ export ZSH_THEME="kolo"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(autojump brew bundler gem git git-flow lol osx node npm nyan pow powder rake ruby rvm svn)
+plugins=(autojump brew bundler gem git git-flow lol osx node npm nyan pow powder rake ruby rbenv svn)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -86,7 +86,7 @@ source $ZSH/oh-my-zsh.sh
 export DOTS=$HOME/.dotfiles
 
 # source every .zsh file in this rep
-for config_file ($DOTS/(zsh|system|git|ruby|todo.txt)/*.zsh) source $config_file
+for config_file ($DOTS/(zsh|system|git|ruby|nginx|osx|postgresql|sublime2|vim|todo.txt)/*.zsh) source $config_file
 
 # use .localrc for SUPER SECRET CRAP that you don't
 # want in your public, versioned repo.

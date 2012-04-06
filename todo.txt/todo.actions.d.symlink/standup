@@ -1,0 +1,93 @@
+#!/usr/bin/env ruby
+
+require 'date'
+IMPEDIMENT_TAG = "@impediment"
+
+
+if ARGV[0] == "usage"
+  puts "  Standup Report:"
+  puts "    standup"
+  puts "      Generates a report of tasks completed \"Yesterday\", and tasks left to do"
+  puts "  "
+
+else
+
+  today = Date.today
+  todays_completed = []
+  impediments = []
+
+
+  #read DONE file
+  done = File.read(ENV['DONE_FILE'])
+  done = done.split($/)
+  done.reverse!
+
+
+  # ==============================
+  #    generate YESTERDAY's List
+  # ==============================
+
+  #define 'yesterday' as the last date on the done file that is not 'today'
+  i = 0
+  begin
+      data = /x\s(?<date>\d{4}-\d{2}-\d{2})\s(?<task>.*)/.match(done[i]);
+      yesterday  = Date.strptime(data[:date], '%Y-%m-%d')
+      i += 1
+  end until today != yesterday
+
+  puts "\n========================================"
+  puts " Yesterday: #{yesterday}"
+  puts "========================================"
+
+  #dump out the list
+  done.each { |item|
+      data =  /x\s(?<date>\d{4}-\d{2}-\d{2})\s(?<task>.*)/.match(item)
+      task_date = Date.strptime(data[:date], '%Y-%m-%d')
+      #puts task_date
+      if task_date == yesterday 
+	  puts "+ #{data[:task]}"
+      elsif task_date == today
+	  todays_completed.push(data[:task])       
+      end
+  }
+
+
+  #read TODO file
+  todo = File.read(ENV['TODO_FILE'])
+  todo = todo.split($/)
+  # ==============================
+  #    generate TODAY's List
+  # ==============================
+
+  puts "\n========================================"
+  puts " Today: #{Date.today}"
+  puts "========================================"
+
+  #dumpe TODAY's COMPELTED
+  todays_completed.each { |task|
+      puts "+ #{task}"
+  }
+
+  #dump  TODAY's List
+  todo.each { |task| 
+      if task.include?(IMPEDIMENT_TAG)
+	  impediments.push(task)
+      else
+	  puts "- #{task}"
+      end
+  }
+  #generate IMPEDIMENT's List
+  if impediments.length > 0
+      puts "\n========================================"
+      puts " Impediments: #{Date.today}"
+      puts "========================================"
+
+      impediments.each { |task|
+	  puts"i #{task}"
+      }
+  end
+
+  puts "\n"
+
+end
+

@@ -1,10 +1,6 @@
 [submodule "zsh/oh-my-zsh.symlink"]
 	path = zsh/oh-my-zsh.symlink
 	url = git@github.com:smt/oh-my-zsh.git
-[submodule "vim/vim.symlink"]
-	path = vim/vim.symlink
-	url = git@github.com:smt/dotvim.git
-	ignore = untracked
 [submodule "todo.txt/cli"]
 	path = todo.txt/cli
 	url = git@github.com:smt/todo.txt-cli.git

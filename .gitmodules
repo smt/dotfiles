@@ -7,3 +7,99 @@
 [submodule "ruby/rbenv.symlink"]
 	path = ruby/rbenv.symlink
 	url = git://github.com/sstephenson/rbenv.git
+[submodule "vim/vim.symlink/bundle/abolish"]
+	path = vim/vim.symlink/bundle/abolish
+	url = git://github.com/tpope/vim-abolish.git
+[submodule "vim/vim.symlink/bundle/ack"]
+	path = vim/vim.symlink/bundle/ack
+	url = git://github.com/mileszs/ack.vim.git
+[submodule "vim/vim.symlink/bundle/addon-mw-utils"]
+	path = vim/vim.symlink/bundle/addon-mw-utils
+	url = git://github.com/MarcWeber/vim-addon-mw-utils.git
+[submodule "vim/vim.symlink/bundle/bufkill"]
+	path = vim/vim.symlink/bundle/bufkill
+	url = git://github.com/vim-scripts/bufkill.vim.git
+[submodule "vim/vim.symlink/bundle/colorschemes"]
+	path = vim/vim.symlink/bundle/colorschemes
+	url = git://github.com/flazz/vim-colorschemes.git
+[submodule "vim/vim.symlink/bundle/commentary"]
+	path = vim/vim.symlink/bundle/commentary
+	url = git://github.com/tpope/vim-commentary.git
+[submodule "vim/vim.symlink/bundle/solarized"]
+	path = vim/vim.symlink/bundle/solarized
+	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule "vim/vim.symlink/bundle/ctrlp"]
+	path = vim/vim.symlink/bundle/ctrlp
+	url = git://github.com/kien/ctrlp.vim.git
+[submodule "vim/vim.symlink/bundle/delimitmate"]
+	path = vim/vim.symlink/bundle/delimitmate
+	url = git://github.com/Raimondi/delimitMate.git
+[submodule "vim/vim.symlink/bundle/endwise"]
+	path = vim/vim.symlink/bundle/endwise
+	url = git://github.com/tpope/vim-endwise.git
+[submodule "vim/vim.symlink/bundle/gist"]
+	path = vim/vim.symlink/bundle/gist
+	url = git://github.com/mattn/gist-vim.git
+[submodule "vim/vim.symlink/bundle/gundo"]
+	path = vim/vim.symlink/bundle/gundo
+	url = git://github.com/sjl/gundo.vim.git
+[submodule "vim/vim.symlink/bundle/javascript"]
+	path = vim/vim.symlink/bundle/javascript
+	url = git://github.com/pangloss/vim-javascript.git
+[submodule "vim/vim.symlink/bundle/less"]
+	path = vim/vim.symlink/bundle/less
+	url = git://github.com/groenewege/vim-less.git
+[submodule "vim/vim.symlink/bundle/liquid"]
+	path = vim/vim.symlink/bundle/liquid
+	url = git://github.com/tpope/vim-liquid.git
+[submodule "vim/vim.symlink/bundle/nerdtree"]
+	path = vim/vim.symlink/bundle/nerdtree
+	url = git://github.com/scrooloose/nerdtree.git
+[submodule "vim/vim.symlink/bundle/pandoc"]
+	path = vim/vim.symlink/bundle/pandoc
+	url = git://github.com/vim-pandoc/vim-pandoc.git
+[submodule "vim/vim.symlink/bundle/pathogen"]
+	path = vim/vim.symlink/bundle/pathogen
+	url = git://github.com/tpope/vim-pathogen.git
+[submodule "vim/vim.symlink/bundle/ragtag"]
+	path = vim/vim.symlink/bundle/ragtag
+	url = git://github.com/tpope/vim-ragtag.git
+[submodule "vim/vim.symlink/bundle/repeat"]
+	path = vim/vim.symlink/bundle/repeat
+	url = git://github.com/tpope/vim-repeat.git
+[submodule "vim/vim.symlink/bundle/snipmate"]
+	path = vim/vim.symlink/bundle/snipmate
+	url = git://github.com/garbas/vim-snipmate.git
+[submodule "vim/vim.symlink/bundle/snipmate-snippets"]
+	path = vim/vim.symlink/bundle/snipmate-snippets
+	url = git@github.com:smt/snipmate-snippets.git
+[submodule "vim/vim.symlink/bundle/sparkup"]
+	path = vim/vim.symlink/bundle/sparkup
+	url = git://github.com/kogakure/vim-sparkup.git
+[submodule "vim/vim.symlink/bundle/surround"]
+	path = vim/vim.symlink/bundle/surround
+	url = git://github.com/tpope/vim-surround.git
+[submodule "vim/vim.symlink/bundle/syntastic"]
+	path = vim/vim.symlink/bundle/syntastic
+	url = git://github.com/scrooloose/syntastic.git
+[submodule "vim/vim.symlink/bundle/tabular"]
+	path = vim/vim.symlink/bundle/tabular
+	url = git://github.com/godlygeek/tabular.git
+[submodule "vim/vim.symlink/bundle/tagbar"]
+	path = vim/vim.symlink/bundle/tagbar
+	url = git://github.com/majutsushi/tagbar.git
+[submodule "vim/vim.symlink/bundle/unimpaired"]
+	path = vim/vim.symlink/bundle/unimpaired
+	url = git://github.com/tpope/vim-unimpaired.git
+[submodule "vim/vim.symlink/bundle/yankring"]
+	path = vim/vim.symlink/bundle/yankring
+	url = git://github.com/chrismetcalf/vim-yankring.git
+[submodule "vim/vim.symlink/bundle/neocomplcache"]
+	path = vim/vim.symlink/bundle/neocomplcache
+	url = git://github.com/Shougo/neocomplcache.git
+[submodule "vim/vim.symlink/bundle/tlib"]
+	path = vim/vim.symlink/bundle/tlib
+	url = git://github.com/tomtom/tlib_vim.git
+[submodule "vim/vim.symlink/bundle/powerline"]
+	path = vim/vim.symlink/bundle/powerline
+	url = git://github.com/Lokaltog/vim-powerline.git

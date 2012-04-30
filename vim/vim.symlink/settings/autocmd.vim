@@ -46,6 +46,7 @@ if has("autocmd")
     au BufNewFile,BufRead *.{json,htc} setlocal ft=javascript   " Syntax highlighting for JSON files
 
     "" Python
+    highlight OverLength ctermbg=red ctermfg=white guibg=#592929
     au FileType python setlocal ts=4 sts=4 sw=4 et              " make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
     au FileType python match OverLength /\%79v.\+/
 

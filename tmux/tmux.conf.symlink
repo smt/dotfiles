@@ -1,8 +1,8 @@
+# Based on https://github.com/lukaszkorecki/DotFiles/blob/master/tmux.conf
+
 set -g prefix C-a
 
 bind-key C-a last-window
-# bind C-a send-prefix
-# bind-key a send-prefix
 
 # fix wait time for escape (helps with tmux and vim)
 set -s escape-time 0

@@ -5,11 +5,16 @@
 " Editing .vimrc
 nmap <Leader>v :e $MYVIMRC<CR>
 
+" Source .vimrc
+nmap <Leader>S :so $MYVIMRC<CR>
+
 " Quicker Ex commands
-nnoremap ; :
+" (commented to preserve default behavior: repetition of `f` searches)
+"nnoremap ; :
 
 " Quicker shell commands
-nmap ! :!
+" (commented to preserve default behavior: !{motion}{filter})
+"nmap ! :!
 
 " Go to last edit location more easily
 nnoremap <Leader>. '.

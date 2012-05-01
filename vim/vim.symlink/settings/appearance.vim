@@ -51,7 +51,7 @@ set ignorecase                  " Case-insensitive searching
 set smartcase                   " ...but case-sensitive if expression contains a capital letter
 set wrapscan                    " Set the search scan to wrap around the file
 
-set background=light
+set background=dark
 colorscheme solarized           " Default terminal color scheme
 " colorscheme badwolf
 

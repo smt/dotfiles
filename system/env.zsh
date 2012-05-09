@@ -2,7 +2,7 @@
 export PROJECTS="$HOME/_"
 
 # editor program
-export EDITOR='mvim'
+export EDITOR='vim'
 
 #osx color terminal
 export CLICOLOR=1

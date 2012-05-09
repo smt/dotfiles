@@ -35,15 +35,23 @@ set -g set-titles on
 bind-key w display-panes
 
 bind R source-file ~/.tmux.conf
-# swap panes
 
+# swap panes
 bind-key -r J swap-pane -D
 bind-key -r K swap-pane -U
 
 
-# copying and pasting
-bind-key [ copy-mode
-bind-key ] paste-buffer -s \015
+# Vim-style copy/paste
+unbind [
+bind Escape copy-mode
+unbind p
+bind p paste-buffer
+bind -t vi-copy 'v' begin-selection
+bind -t vi-copy 'y' copy-selection
+
+# Mac OS X clipboard commands
+bind C-c run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
+bind C-v run "tmux set-buffer $(reattach-to-user-namespace pbpaste); tmux paste-buffer"
 
 # list all paste buffers (default key is '#')
 bind-key b list-buffers
@@ -58,7 +66,6 @@ bind-key x delete-buffer
 # Screen-like key bindings
 
 # new window
-bind-key C-c new-window
 bind-key c new-window
 
 # quit

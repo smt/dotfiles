@@ -16,7 +16,6 @@ export ZSH=$DOTS/zsh/oh-my-zsh
 #export ZSH_THEME="sorin"
 export ZSH_THEME="kolo"
 #export ZSH_THEME="crunch"
-#export ZSH_THEME="dogenpunk"
 #export ZSH_THEME="Soliah"
 #export ZSH_THEME="jnrowe"
 #export ZSH_THEME="muse"
@@ -29,38 +28,6 @@ export ZSH_THEME="kolo"
 #export ZSH_THEME="mrtazz"
 #export ZSH_THEME="trapd00r"
 #export ZSH_THEME="sporty_256"
-
-#export ZSH_THEME="robbyrussell"
-#export ZSH_THEME="afowler"
-#export ZSH_THEME="alanpeabody"
-#export ZSH_THEME="arrow"
-#export ZSH_THEME="awesomepanda"
-#export ZSH_THEME="candy"
-#export ZSH_THEME="clean"
-#export ZSH_THEME="cloud"
-#export ZSH_THEME="dallas"
-#export ZSH_THEME="dieter"
-#export ZSH_THEME="eastwood"
-#export ZSH_THEME="fishy"
-#export ZSH_THEME="frisk"
-#export ZSH_THEME="flazz"
-#export ZSH_THEME="gallifrey"
-#export ZSH_THEME="garyblessington"
-#export ZSH_THEME="geoffgarside"
-#export ZSH_THEME="humza"
-#export ZSH_THEME="jbergantine"
-#export ZSH_THEME="josh"
-#export ZSH_THEME="jreese"
-#export ZSH_THEME="kardan"
-#export ZSH_THEME="lukerandall"
-#export ZSH_THEME="macovsky"
-#export ZSH_THEME="mgutz"
-#export ZSH_THEME="miloshadzic"
-#export ZSH_THEME="minimal"
-#export ZSH_THEME="nicoulaj"
-#export ZSH_THEME="obraun"
-#export ZSH_THEME="takashiyoshida"
-#export ZSH_THEME="theunraveler"
 #export ZSH_THEME="tjkirch"
 #export ZSH_THEME="wezm"
 #export ZSH_THEME="wezm+"
@@ -86,7 +53,7 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 
 # source every .zsh file in this rep
-for config_file ($DOTS/(zsh|system|git|ruby|nginx|osx|postgresql|sublime2|vim|todo.txt)/*.zsh) source $config_file
+for config_file ($DOTS/(zsh|system|git|ruby|nginx|osx|postgresql|sublime2|tex|todo.txt|vim)/*.zsh) source $config_file
 
 # use .localrc for SUPER SECRET CRAP that you don't
 # want in your public, versioned repo.

@@ -20,10 +20,13 @@
     "predef"        : [  // Extra globals.
         "define",
         "require",
+        "requirejs",
         "describe",
         "it",
         "expect",
-        "beforeEach"
+        "beforeEach",
+        "waits",
+        "runs"
     ],
 
 

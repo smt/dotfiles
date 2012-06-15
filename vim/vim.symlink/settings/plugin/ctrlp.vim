@@ -1,7 +1,6 @@
 " ctrlp             git://github.com/kien/ctrlp.vim.git
 
 "let g:ctrlp_map = '<C-Space>'
-map <C-Space> :CtrlP<CR>
 map <D-t> :CtrlP<CR>
 imap <D-t> <Esc>:CtrlP<CR>
 nmap <Leader>f :ClearCtrlPCache<CR>

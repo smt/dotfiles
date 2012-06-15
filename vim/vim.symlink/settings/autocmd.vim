@@ -26,24 +26,19 @@ if has("autocmd")
 
     " Whitespace based on house-style (arbitrary)
     au FileType html       setlocal ts=4 sts=4 sw=4 noet
-    au FileType xhtml      setlocal ts=4 sts=4 sw=4 et
     au FileType css        setlocal ts=4 sts=4 sw=4 noet
     au FileType ruby       setlocal ts=2 sts=2 sw=2 et
     au FileType sass       setlocal ts=2 sts=2 sw=2 et
+    au FileType scss       setlocal ts=4 sts=4 sw=4 noet
     au FileType less       setlocal ts=4 sts=4 sw=4 noet
     au FileType javascript setlocal ts=4 sts=4 sw=4 noet
     au FileType xml        setlocal ts=4 sts=4 sw=4 et
 
-    "" HTML
-    au FileType html,xhtml setlocal fo+=tl                      " for HTML, generally format text, but if a long line has been created leave it alone when editing:
-    au BufNewFile,BufRead *.{jsp,jspf} setlocal ft=jsp.html     " set .jsp files to edit like HTML
-
-    "" CSS
-    au BufNewFile,BufRead *.scss setlocal ft=scss.css           " Get CSS snippets in SCSS files
-    au BufNewFile,BufRead *.less setlocal ft=less.css           " Get CSS snippets in LESS files
-
     "" JavaScript
     au BufNewFile,BufRead *.{json,htc} setlocal ft=javascript   " Syntax highlighting for JSON files
+
+    "" JSP
+    au BufNewFile,BufRead *.jspf setlocal ft=jsp                " Syntax highlighting for JSPF files
 
     "" Python
     highlight OverLength ctermbg=red ctermfg=white guibg=#592929
@@ -65,6 +60,9 @@ if has("autocmd")
     au FileType rst nnoremap <buffer> <localleader>2 yypVr-
     au FileType rst nnoremap <buffer> <localleader>3 yypVr~
     au FileType rst nnoremap <buffer> <localleader>4 yypVr`
+
+    " Generally format text files, but if a long line has been created leave it alone when editing:
+    au FileType markdown,md,mk,mkd,pdk,pandoc,rst,text setlocal fo+=tl
 
     "" Open help files in a vertical split
     au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif

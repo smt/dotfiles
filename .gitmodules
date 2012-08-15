@@ -134,3 +134,6 @@
 [submodule "zsh/oh-my-zsh"]
 	path = zsh/oh-my-zsh
 	url = git@github.com:smt/oh-my-zsh.git
+[submodule "vim/vim.symlink/bundle/editorconfig"]
+	path = vim/vim.symlink/bundle/editorconfig
+	url = git://github.com/editorconfig/editorconfig-vim

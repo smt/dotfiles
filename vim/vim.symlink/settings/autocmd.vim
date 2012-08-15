@@ -25,13 +25,13 @@ if has("autocmd")
     au FileType yaml,haml  setlocal ts=2 sts=2 sw=2 et
 
     " Whitespace based on house-style (arbitrary)
-    au FileType html       setlocal ts=4 sts=4 sw=4 noet
-    au FileType css        setlocal ts=4 sts=4 sw=4 noet
+    au FileType html       setlocal ts=4 sts=4 sw=4 et
+    au FileType css        setlocal ts=4 sts=4 sw=4 et
     au FileType ruby       setlocal ts=2 sts=2 sw=2 et
     au FileType sass       setlocal ts=2 sts=2 sw=2 et
-    au FileType scss       setlocal ts=4 sts=4 sw=4 noet
-    au FileType less       setlocal ts=4 sts=4 sw=4 noet
-    au FileType javascript setlocal ts=4 sts=4 sw=4 noet
+    au FileType scss       setlocal ts=4 sts=4 sw=4 et
+    au FileType less       setlocal ts=4 sts=4 sw=4 et
+    au FileType javascript setlocal ts=4 sts=4 sw=4 et
     au FileType xml        setlocal ts=4 sts=4 sw=4 et
 
     "" JavaScript

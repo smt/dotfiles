@@ -1,7 +1,7 @@
 " syntastic         git://github.com/scrooloose/syntastic.git
 let g:syntastic_mode_map = { 'mode': 'active',
-                           \ 'active_filetypes': ['ruby', 'php', 'javascript', 'less', 'scss', 'sass'],
-                           \ 'passive_filetypes': ['css', 'html'] }
+                           \ 'active_filetypes': ['ruby', 'php', 'javascript'],
+                           \ 'passive_filetypes': ['less', 'sass', 'scss', 'css', 'html'] }
 
 "mark syntax errors with :signs
 let g:syntastic_enable_signs=1

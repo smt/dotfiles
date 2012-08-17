@@ -17,13 +17,13 @@ return {
  },
  ["info"]={
   ["comment"]="this file contains the settings of the last 'mtxrun --script update' run",
-  ["count"]=1,
-  ["date"]="2012-05-23 21:42:44",
-  ["runtime"]=72.877,
+  ["count"]=3,
+  ["date"]="2012-05-25 02:41:57",
+  ["runtime"]=43.093,
   ["version"]=0.1,
  },
  ["paths"]={
-  ["root"]="/Users/smt/.context/tex",
+  ["root"]="/Users/tudor/.dotfiles/tex/context.symlink/tex",
  },
  ["platforms"]={
   ["osx-64"]=true,

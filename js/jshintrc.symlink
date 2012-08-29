@@ -66,6 +66,7 @@
 
 
     // Styling prefrences.
+    "laxcomma"      : true,   // Tolerate leading commas
     "newcap"        : false,  // Require capitalization of all constructor functions e.g. `new F()`.
     "noempty"       : true,   // Prohipit use of empty blocks.
     "nonew"         : true,   // Prohibit use of constructors for side-effects.

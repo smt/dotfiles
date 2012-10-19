@@ -12,7 +12,7 @@ if has("autocmd")
     au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
 
     " Save on lose focus
-    au FocusLost * :wa
+    " au FocusLost * :wa
 
     " Source .vimrc on save
     au BufWritePost .vimrc source $MYVIMRC

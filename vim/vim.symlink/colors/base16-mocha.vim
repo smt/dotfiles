@@ -1,46 +1,55 @@
-" base16
-" Chris Kempson (http://chriskempson.com)
+" Base16 Mocha (https://github.com/chriskempson/base16)
+" Scheme: Chris Kempson (http://chriskempson.com)
 
-" GUI Base16 Colour Definitions
-let s:gui00 = "151515"
-let s:gui01 = "202020"
-let s:gui02 = "303030"
-let s:gui03 = "505050"
-let s:gui04 = "b0b0b0"
-let s:gui05 = "d0d0d0"
-let s:gui06 = "e0e0e0"
-let s:gui07 = "f5f5f5"
-let s:gui08 = "ac4142"
-let s:gui09 = "d28445"
-let s:gui0A = "f4bf75"
-let s:gui0B = "90a959"
-let s:gui0C = "75b5aa"
-let s:gui0D = "6a9fb5"
-let s:gui0E = "aa759f"
-let s:gui0F = "8f5536"
+" GUI Base16 Color Definitions
+let s:gui00 = "3B3228"
+let s:gui01 = "534636"
+let s:gui02 = "645240"
+let s:gui03 = "7e705a"
+let s:gui04 = "b8afad"
+let s:gui05 = "d0c8c6"
+let s:gui06 = "e9e1dd"
+let s:gui07 = "f5eeeb"
+let s:gui08 = "cb6077"
+let s:gui09 = "d28b71"
+let s:gui0A = "f4bc87"
+let s:gui0B = "beb55b"
+let s:gui0C = "7bbda4"
+let s:gui0D = "8ab3b5"
+let s:gui0E = "a89bb9"
+let s:gui0F = "bb9584"
 
-" Terminal Base16 Colour Definitions
+" Terminal Base16 Color Definitions
 let s:cterm00 = "00"
-let s:cterm01 = "18"
-let s:cterm02 = "19"
 let s:cterm03 = "08"
-let s:cterm04 = "20"
 let s:cterm05 = "07"
-let s:cterm06 = "21"
 let s:cterm07 = "15"
 let s:cterm08 = "01"
-let s:cterm09 = "16"
 let s:cterm0A = "03"
 let s:cterm0B = "02"
 let s:cterm0C = "06"
 let s:cterm0D = "04"
 let s:cterm0E = "05"
-let s:cterm0F = "17"
+if exists('base16colorspace') && base16colorspace == "256"
+  let s:cterm01 = "18"
+  let s:cterm02 = "19"
+  let s:cterm04 = "20"
+  let s:cterm06 = "21"
+  let s:cterm09 = "16"
+  let s:cterm0F = "17"
+else
+  let s:cterm01 = "10"
+  let s:cterm02 = "11"
+  let s:cterm04 = "12"
+  let s:cterm06 = "13"
+  let s:cterm09 = "09"
+  let s:cterm0F = "14"
+endif
 
 " Theme Setup
 hi clear
 syntax reset
-let g:colors_name = "base16"
+let g:colors_name = "base16-mocha"
 
 " Highlighting function
 fun! <SID>hi(group, guifg, guibg, ctermfg, ctermbg, attr)
@@ -61,7 +70,7 @@ fun! <SID>hi(group, guifg, guibg, ctermfg, ctermbg, attr)
   endif
 endfun
 
-" Vim Editor Colours
+" Vim Editor Colors
 call <SID>hi("Bold",          "", "", "", "", "bold")
 call <SID>hi("Debug",         s:gui08, "", s:cterm08, "", "")
 call <SID>hi("Directory",     s:gui0D, "", s:cterm0D, "", "")
@@ -105,7 +114,7 @@ if &background == "dark"
     call <SID>hi("TabLine",       s:gui05, s:gui01, s:cterm05, s:cterm01, "reverse")
     call <SID>hi("TabLineFill",   s:gui06, s:gui01, s:cterm06, s:cterm01, "reverse")
     call <SID>hi("TabLineSel",    s:gui06, s:gui01, s:cterm06, s:cterm01, "reverse")
-  end
+  endif
 else
   call <SID>hi("Cursor",        s:gui02, "", s:cterm02, "", "")
   call <SID>hi("NonText",       s:gui05, "", s:cterm05, "", "")
@@ -124,7 +133,7 @@ else
     call <SID>hi("TabLine",       s:gui05, s:gui01, s:cterm05, s:cterm01, "reverse")
     call <SID>hi("TabLineFill",   s:gui06, s:gui01, s:cterm06, s:cterm01, "reverse")
     call <SID>hi("TabLineSel",    s:gui06, s:gui01, s:cterm06, s:cterm01, "reverse")
-  end
+  endif
 endif
 
 " Syntax Highlighting

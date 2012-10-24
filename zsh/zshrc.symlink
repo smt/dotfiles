@@ -51,6 +51,7 @@ plugins=(autojump brew bundler cloudapp extract gem git git-flow gnu-utils lol o
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin
 
 # source every .zsh file in this rep
 for config_file ($DOTS/(zsh|system|git|ruby|nginx|osx|postgresql|sublime2|tex|todo.txt|vim)/*.zsh) source $config_file

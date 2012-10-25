@@ -10,10 +10,10 @@ export ZSH=$DOTS/zsh/oh-my-zsh
 # time that oh-my-zsh is loaded.
 #export ZSH_THEME="smt"
 #export ZSH_THEME="nebirhos"
-#export ZSH_THEME="norm"
+export ZSH_THEME="norm"
 #export ZSH_THEME="juanghurtado"
 #export ZSH_THEME="steeef"
-export ZSH_THEME="sorin"
+#export ZSH_THEME="sorin"
 #export ZSH_THEME="kolo"
 #export ZSH_THEME="crunch"
 #export ZSH_THEME="Soliah"

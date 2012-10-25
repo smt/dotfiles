@@ -1,3 +1,16 @@
+# Search
+--type-set=coffee=.coffee
+--type-set=cucumber=.feature
+--type-set=haml=.haml
 --type-add=jsp=.jspf
 --type-set=less=.less
 --type-set=sass=.sass,.scss
+
+# Don't search
+--ignore-dir=log
+--ignore-dir=tags
+--ignore-dir=tmp
+
+# Other options
+--sort-files
+-a

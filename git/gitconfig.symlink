@@ -1,15 +1,3 @@
-# Sample gitconfig
-#
-# This is a sample gitconfig. Usually we keep a lot of sensitive information
-# here (things like authentication tokens, email addresses, and so on), so this
-# file is ignored in this project's .gitignore.
-#
-# To set this up, rename this file to `gitconfig.symlink` and you'll be able to
-# install this to the correct location by running the project's main `rake`
-# task.
-[user]
-	name = Stephen Tudor
-	email = smtudor@gmail.com
 [alias]
 	st = status
 	a = add
@@ -26,51 +14,76 @@
 	rank-contributors = !git-rank-contributors
 	undo    = !git-undo
 	up      = !$ZSH/bin/git-up
-	wtf     = !git-wtf
+	wtf     = !$ZSH/bin/git-wtf
+
+[apply]
+	whitespace = fix
+
+[branch]
+	autosetupmerge = true
+
+[browser "gitscm"]
+	cmd = sh -c 'open http://git-scm.com/docs/$(basename $1 .html)' --
+
 [color]
 	ui = always
+
 [color "branch"]
 	current = yellow reverse
 	local = yellow
 	remote = green
+
 [color "diff"]
 	meta = yellow bold
 	frag = magenta bold
 	old = red reverse
 	new = green reverse
 	whitespace = white reverse
+
 [color "status"]
 	added = green
 	changed = yellow
 	untracked = cyan
-[apply]
-	whitespace = fix
+
 [core]
 	autocrlf = input
-	whitespace=fix,space-before-tab,tab-in-indent,trailing-space,cr-at-eol
+	whitespace=space-before-tab,trailing-space
 	excludesfile = ~/.gitignore
 	editor = /usr/bin/vim
 	safecrlf = false
-[branch]
-	autosetupmerge = true
-[push]
-	default = simple
-[merge]
-	log = true
-[mergetool]
-	keepBackup = false
+
+[diff]
+	renames = copies
+	mnemonicprefix = true
+
 [github]
 	user = smt
+
+[help]
+	browser = open
+
+[merge]
+	log = true
+
+[push]
+	default = current
+
+[mergetool]
+	keepBackup = false
+
 [url "git@github.com:"]
 	insteadOf = "gh:"
 	pushInsteadOf = "github:"
 	pushInsteadOf = "git://github.com/"
+
 [url "git://github.com/"]
 	insteadOf = "github:"
+
 [url "git@gist.github.com:"]
 	insteadOf = "gst:"
 	pushInsteadOf = "gist:"
 	pushInsteadOf = "git://gist.github.com/"
+
 [url "git://gist.github.com/"]
 	insteadOf = "gist:"
 
@@ -78,3 +91,10 @@
 # http://rentzsch.tumblr.com/post/564806957/public-but-hackable-git-submodules
 [url "git@github.com:smt/"]
   insteadOf = "git://github.com/smt/"
+
+[user]
+	name = Stephen Tudor
+	email = smtudor@gmail.com
+
+[web]
+	browser = gitscm

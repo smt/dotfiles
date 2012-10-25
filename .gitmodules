@@ -140,3 +140,6 @@
 [submodule "vim/vim.symlink/bundle/fugitive"]
 	path = vim/vim.symlink/bundle/fugitive
 	url = git://github.com/tpope/vim-fugitive.git
+[submodule "vim/vim.symlink/bundle/editorconfig"]
+	path = vim/vim.symlink/bundle/editorconfig
+	url = git://github.com/editorconfig/editorconfig-vim

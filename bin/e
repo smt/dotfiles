@@ -18,7 +18,7 @@
 
 if test "$1" == ""
 then
-  $($EDITOR) &
+  exec $EDITOR
 else
-  $($EDITOR $1) &
+  exec $EDITOR "$1"
 fi

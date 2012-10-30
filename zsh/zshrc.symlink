@@ -46,7 +46,7 @@ export ZSH_THEME="norm"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(autojump brew bundler cloudapp extract gem git git-flow gnu-utils lol osx node npm nyan pow powder rake ruby rvm svn thor vagrant)
+plugins=(ant autojump brew bundler cap cloudapp extract gem git github git-flow gnu-utils heroku jira lol osx pip node npm rake ruby rvm sublime svn thor vagrant)
 
 source $ZSH/oh-my-zsh.sh
 

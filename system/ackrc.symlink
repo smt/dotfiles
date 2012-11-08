@@ -10,6 +10,7 @@
 --ignore-dir=log
 --ignore-dir=tags
 --ignore-dir=tmp
+--ignore-dir=.sass-cache
 
 # Other options
 --sort-files

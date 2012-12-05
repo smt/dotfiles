@@ -143,3 +143,6 @@
 [submodule "vim/vim.symlink/bundle/editorconfig"]
 	path = vim/vim.symlink/bundle/editorconfig
 	url = git://github.com/editorconfig/editorconfig-vim
+[submodule "vim/vim.symlink/bundle/dustjs"]
+	path = vim/vim.symlink/bundle/dustjs
+	url = git://github.com/jimmyhchan/dustjs.vim.git

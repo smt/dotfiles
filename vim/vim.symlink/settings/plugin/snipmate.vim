@@ -6,7 +6,7 @@ if !exists('g:snipMate')
   let g:snipMate = {}
   let g:snipMate.scope_aliases = {}
 endif
-let g:snipMate.scope_aliases['html'] = 'html,css,javascript'
+let g:snipMate.scope_aliases['dust'] = 'html'
 let g:snipMate.scope_aliases['javascript'] = 'javascript,javascript-jquery'
 let g:snipMate.scope_aliases['jsp'] = 'jsp,html'
 let g:snipMate.scope_aliases['less'] = 'less,css'

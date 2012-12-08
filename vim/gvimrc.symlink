@@ -1,4 +1,7 @@
 if has("gui_macvim")
+    " Use an alternate colorscheme
+    colorscheme base16-default
+
     " Fullscreen takes up entire screen
     set fuoptions=maxhorz,maxvert
 

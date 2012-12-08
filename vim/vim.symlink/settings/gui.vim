@@ -24,9 +24,6 @@ if has('mouse')
 endif
 
 if has("gui_macvim")
-    " Use an alternate colorscheme
-    colorscheme base16-default
-
     " MacVIM shift+arrow-keys behavior (required in .vimrc)
     let macvim_hig_shift_movement = 1
 

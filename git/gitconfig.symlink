@@ -55,6 +55,11 @@
 [diff]
 	renames = copies
 	mnemonicprefix = true
+	tool = Kaleidoscope
+	prompt = false
+
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 
 [github]
 	user = smt
@@ -64,12 +69,17 @@
 
 [merge]
 	log = true
-
-[push]
-	default = current
+	tool = Kaleidoscope
 
 [mergetool]
 	keepBackup = false
+	prompt = false
+
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+
+[push]
+	default = current
 
 [url "git@github.com:"]
 	insteadOf = "gh:"

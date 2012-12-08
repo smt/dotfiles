@@ -41,21 +41,21 @@ hdr_order from: to: cc: date: subject:  # and in this order
 # Account Settings -----------------------------------
 
 # Default inbox.
-set spoolfile = "+smt-stephentudor.com/INBOX"
+set spoolfile = "+gmail/INBOX"
 
 # Alternate email addresses.
-alternates stephen@stephentudor.com
+alternates smt@stephentudor.com stephen@stephentudor.com stephen@tudorstudio.com
 
 # Mailboxes to show in the sidebar.
-mailboxes +smt-stephentudor.com/INBOX \
-          +smt-stephentudor.com/archive \
-          +smt-stephentudor.com/sent \
-          +smt-stephentudor.com/drafts \
+mailboxes +Gmail/INBOX \
+          +Gmail/archive \
+          +Gmail/sent \
+          +Gmail/drafts \
           +temporary/search \
 
 # Other special folders.
-set mbox      = "+smt-stephentudor.com/archive"
-set postponed = "+smt-stephentudor.com/drafts"
+set mbox      = "+Gmail/archive"
+set postponed = "+Gmail/drafts"
 
 # Index View Options ---------------------------------
 set date_format = "%m/%d"
@@ -134,8 +134,8 @@ set include                          # include message in replies
 set forward_quote                    # include message in forwards
 
 # Sending Mail ---------------------------------------
-set from     = "smt@stephentudor.com"
-set sendmail = "/usr/local/bin/msmtp -a stephentudor"
+set from     = "smtudor@gmail.com"
+set sendmail = "/usr/local/bin/msmtp -a gmail"
 set sendmail_wait = 0
 unset record
 

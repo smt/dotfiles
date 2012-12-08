@@ -1,11 +1,11 @@
-account stephentudor
+account gmail
 host smtp.gmail.com
 port 587
 protocol smtp
 auth on
-from smt@stephentudor.com
-user smt@stephentudor.com
+from smtudor@gmail.com
+user smtudor@gmail.com
 tls on
 tls_trust_file ~/.mutt/Equifax_Secure_CA.cert
 
-account default : stephentudor
+account default : gmail

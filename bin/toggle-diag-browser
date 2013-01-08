@@ -1,0 +1,116 @@
+#!/usr/bin/env ruby
+require 'net/telnet.rb'
+stbIP = ENV['DAWN_STB_IP']
+
+# browserLocation is the location of a web server that the Dawn app is served on. 
+# This value should be the URL that loads the UI on your development machine (not the STB)
+# The Dawn source code has the files needed in the 'stb-configs' folder within the app
+browserLocation = 'http://172.24.20.34/dawn/'
+
+
+stb = Net::Telnet::new("Host" => stbIP)
+begin
+	stb.login({'Name'=>'root', 'LoginPrompt'=> /(Dawn_GW )?login: \z/, 'Password' => YOURPASSWORDHERE})
+
+	stb.cmd('cd /usr/local/Qt/lib') { |c| c }
+
+	currentBrowser = stb.cmd('readlink libQtWebKit.so') { |c| c }
+	normalWebkit = 'libQtWebKit.so.4.10.0'
+	normalBrowser = 'TntBrowserV2.orig'
+	diagWebkit = 'libQtWebKit.so.4.10.0.diag'
+	diagBrowser = 'TntBrowserV2.diag'
+
+	# If webkit is currently using diagnostic mode
+	if (!currentBrowser.include?(diagWebkit))
+
+		# Download the diagnostic browser if it is needed
+		hasDiagWebkit = stb.cmd('[ -f /usr/local/Qt/lib/' + diagWebkit + ' ] && echo "Fou""nd"') { |c| c }
+		if (!hasDiagWebkit.include?('Found'))
+			puts 'Diagnostic webkit not on STB. This will now be downloaded...'
+			stb.cmd('cd /usr/local/Qt/lib') { |c| c }
+			stb.cmd('wget -O /usr/local/Qt/lib/' + diagWebkit + '.temp ' + browserLocation + 'stb-configs/' + diagWebkit) { |c| c }
+			webkitMd5Result = stb.cmd('md5sum ./' + diagWebkit + '.temp') { |c| c }
+			webkitMd5 = '02c6227a415487cbfd16f741b315c69d'
+			if (webkitMd5Result.include?(webkitMd5))
+				# Browser can't be updated if it's running, so stop it first.
+				stb.cmd('cd /mnt/nfs/mwb') { |c| c }
+				stb.cmd('stopBrowser') { |c| c }
+				stb.cmd('cd /usr/local/Qt/lib') { |c| c }
+				stb.cmd('rm ./' + diagWebkit) { |c| c }
+				stb.cmd('mv ./' + diagWebkit + '.temp ./' + diagWebkit) { |c| c }
+				puts 'Downloaded diagnostic webkit successfully.'
+			else
+				puts 'Diagnostic Webkit checksum did not match! Browser will not be changed. Rebooting...'
+				begin
+					stb.cmd('reboot')
+				ensure
+					exit
+				end
+			end
+		end
+
+		# Download the diagnostic browser if it is needed
+		hasDiagBrowser = stb.cmd('[ -f /mnt/nfs/mwb/' + diagBrowser + ' ] && echo "Fou""nd"') { |c| c }
+		if (!hasDiagBrowser.include?('Found'))
+			puts 'Diagnostic TntBrowser not on STB. This will now be downloaded...'
+			stb.cmd('cd /mnt/nfs/mwb') { |c| c }
+			stb.cmd('wget -O /mnt/nfs/mwb/' + diagBrowser + '.temp ' + browserLocation + 'stb-configs/' + diagBrowser) { |c| c }
+			webkitMd5Result = stb.cmd('md5sum ./' + diagBrowser + '.temp') { |c| c }
+			webkitMd5 = 'aa4b4eda0d3164fa58e29ec4c2cceb4e'
+			if (webkitMd5Result.include?(webkitMd5))
+				# Browser can't be updated if it's running, so stop it first.
+				stb.cmd('cd /mnt/nfs/mwb') { |c| c }
+				stb.cmd('stopBrowser') { |c| c }
+				stb.cmd('rm ./' + diagBrowser) { |c| c }
+				stb.cmd('mv ./' + diagBrowser + '.temp ./' + diagBrowser) { |c| c }
+				stb.cmd('chmod 755 ' + diagBrowser) { |c| c }
+				stb.cmd('cp ./TntBrowserV2 ./TntBrowserV2.orig');
+				puts 'Downloaded diagnostic TntBrowser successfully.'
+			else
+				puts 'Diagnostic TntBrowser checksum did not match! Browser will not be changed. Rebooting...'
+				begin
+					stb.cmd('reboot')
+				ensure
+					exit
+				end
+			end
+		end
+
+		# Browser can't be updated if it's running, so stop it first.
+		stb.cmd('cd /mnt/nfs/mwb') { |c| c }
+		stb.cmd('stopBrowser') { |c| c }
+
+		stb.cmd('ln -sf ' + diagBrowser + ' TntBrowserV2') { |c| c }
+		stb.cmd("sed -i 's/TntBrowserV2/TntBrowserV2 -server/' /mnt/nfs/mwb/runBrowser") { |c| c }
+
+		#Toggle paint rectangles on
+		stb.cmd('cd /usr/local/Qt/lib') { |c| c }
+		stb.cmd('ln -sf ' + diagWebkit + ' libQtWebKit.so') { |c| c }
+		stb.cmd('ln -sf ' + diagWebkit + ' libQtWebKit.so.4') { |c| c }
+		stb.cmd('ln -sf ' + diagWebkit + ' libQtWebKit.so.4.10') { |c| c }
+
+		puts 'Enabled browser diagnostics. Will now restart browser.'
+	else
+
+		# Browser can't be updated if it's running, so stop it first.
+		stb.cmd('cd /mnt/nfs/mwb') { |c| c }
+		stb.cmd('stopBrowser') { |c| c }
+
+		stb.cmd("sed -i 's/TntBrowserV2 -server/TntBrowserV2/' /mnt/nfs/mwb/runBrowser") { |c| c }
+		stb.cmd('cp ' + normalBrowser + ' TntBrowserV2');
+
+		# Toggle paint rectangles off
+		stb.cmd('cd /usr/local/Qt/lib') { |c| c }
+		stb.cmd('ln -sf ' + normalWebkit + ' libQtWebKit.so') { |c| c }
+		stb.cmd('ln -sf ' + normalWebkit + ' libQtWebKit.so.4') { |c| c }
+		stb.cmd('ln -sf ' + normalWebkit + ' libQtWebKit.so.4.10') { |c| c }
+		puts 'Disabled browser diagnostics. Will now restart browser.'
+	end
+
+	stb.cmd('cd /mnt/nfs/mwb') { |c| c }
+	stb.cmd('./runBrowser < /dev/null &>/dev/null &')
+	stb.cmd('exit')
+
+ensure
+	stb.close
+end

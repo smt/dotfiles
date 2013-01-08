@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+require 'net/telnet.rb'
+
+host = ENV['DAWN_STB_IP'] # Add your IP here
+
+stb = Net::Telnet::new("Host" => host)
+stb.login({'Name'=>'root', 'LoginPrompt'=> /(Dawn_GW )?login: \z/, 'Password' => ''})
+stb.cmd('reboot')
+stb.close

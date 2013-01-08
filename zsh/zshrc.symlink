@@ -54,7 +54,7 @@ source $ZSH/oh-my-zsh.sh
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
 
 # source every .zsh file in this rep
-for config_file ($DOTS/(zsh|system|git|ruby|nginx|osx|postgresql|sublime2|tex|todo.txt|vim)/*.zsh) source $config_file
+for config_file ($DOTS/(zsh|system|git|ruby|nginx|osx|postgresql|sublime2|tex|vim|work)/*.zsh) source $config_file
 
 # use .localrc for SUPER SECRET CRAP that you don't
 # want in your public, versioned repo.

@@ -49,7 +49,7 @@
 	autocrlf = input
 	whitespace=space-before-tab,trailing-space
 	excludesfile = ~/.gitignore
-	editor = /usr/bin/vim
+	editor = /usr/local/bin/vim
 	safecrlf = false
 
 [diff]

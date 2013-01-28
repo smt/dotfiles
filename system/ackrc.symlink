@@ -8,8 +8,10 @@
 
 # Don't search
 --ignore-dir=log
+--ignore-dir=node_modules
 --ignore-dir=tags
 --ignore-dir=tmp
+--ignore-dir=vendor
 --ignore-dir=.sass-cache
 
 # Other options

@@ -1,9 +1,3 @@
-[submodule "todo.txt/cli"]
-	path = todo.txt/cli
-	url = git@github.com:smt/todo.txt-cli.git
-[submodule "ruby/rbenv.symlink"]
-	path = ruby/rbenv.symlink
-	url = git://github.com/sstephenson/rbenv.git
 [submodule "vim/vim.symlink/bundle/abolish"]
 	path = vim/vim.symlink/bundle/abolish
 	url = git://github.com/tpope/vim-abolish.git
@@ -137,12 +131,20 @@
 [submodule "vim/vim.symlink/bundle/git"]
 	path = vim/vim.symlink/bundle/git
 	url = git://github.com/tpope/vim-git.git
+	ignore = untracked
 [submodule "vim/vim.symlink/bundle/fugitive"]
 	path = vim/vim.symlink/bundle/fugitive
 	url = git://github.com/tpope/vim-fugitive.git
+	ignore = untracked
 [submodule "vim/vim.symlink/bundle/editorconfig"]
 	path = vim/vim.symlink/bundle/editorconfig
 	url = git://github.com/editorconfig/editorconfig-vim
+	ignore = untracked
 [submodule "vim/vim.symlink/bundle/dustjs"]
 	path = vim/vim.symlink/bundle/dustjs
 	url = git://github.com/jimmyhchan/dustjs.vim.git
+	ignore = untracked
+[submodule "vim/vim.symlink/bundle/webapi"]
+	path = vim/vim.symlink/bundle/webapi
+	url = git://github.com/mattn/webapi-vim.git
+	ignore = untracked

@@ -81,7 +81,7 @@ call <SID>hi("Folded",        s:gui03, s:gui01, s:cterm03, s:cterm01, "")
 call <SID>hi("IncSearch",     s:gui0A, "", s:cterm0A, "", "")
 call <SID>hi("Italic",        "", "", "", "", "none")
 call <SID>hi("Macro",         s:gui08, "", s:cterm08, "", "")
-call <SID>hi("MatchParen",    s:gui0A, s:gui01, s:cterm0A, s:cterm01,  "reverse")
+call <SID>hi("MatchParen",    s:gui03, s:gui00, s:cterm03, s:cterm00,  "reverse")
 call <SID>hi("ModeMsg",       s:gui0B, "", s:cterm0B, "", "")
 call <SID>hi("MoreMsg",       s:gui0B, "", s:cterm0B, "", "")
 call <SID>hi("Question",      s:gui0A, "", s:cterm0A, "", "")
@@ -96,7 +96,7 @@ call <SID>hi("WarningMsg",    s:gui08, "", s:cterm08, "", "")
 call <SID>hi("WildMenu",      s:gui08, "", s:cterm08, "", "")
 
 if &background == "dark"
-  call <SID>hi("Cursor",        s:gui05, "", s:cterm05, "", "")
+  call <SID>hi("Cursor",        s:gui00, s:gui05, s:cterm00, s:cterm05, "")
   call <SID>hi("NonText",       s:gui03, "", s:cterm03, "", "")
   call <SID>hi("Normal",        s:gui05, s:gui00, s:cterm05, s:cterm00, "")
   call <SID>hi("LineNr",        s:gui03, s:gui01, s:cterm03, s:cterm01, "")
@@ -104,19 +104,21 @@ if &background == "dark"
   call <SID>hi("StatusLine",    s:gui04, s:gui02, s:cterm04, s:cterm02, "none")
   call <SID>hi("StatusLineNC",  s:gui03, s:gui01, s:cterm03, s:cterm01, "none")
   call <SID>hi("VertSplit",     s:gui02, s:gui02, s:cterm02, s:cterm02, "none")
-
-  if version >= 700
-    call <SID>hi("ColorColumn",  "", s:gui01, "", s:cterm01, "none")
-    call <SID>hi("CursorColumn",  "", s:gui01, "", s:cterm01, "none")
-    call <SID>hi("CursorLine",    "", s:gui01, "", s:cterm01, "none")
-    call <SID>hi("PMenu",         s:gui04, s:gui01, s:cterm04, s:cterm01, "none")
-    call <SID>hi("PMenuSel",      s:gui04, s:gui01, s:cterm04, s:cterm01, "reverse")
-    call <SID>hi("TabLine",       s:gui05, s:gui01, s:cterm05, s:cterm01, "reverse")
-    call <SID>hi("TabLineFill",   s:gui06, s:gui01, s:cterm06, s:cterm01, "reverse")
-    call <SID>hi("TabLineSel",    s:gui06, s:gui01, s:cterm06, s:cterm01, "reverse")
-  endif
+  call <SID>hi("ColorColumn",  "", s:gui01, "", s:cterm01, "none")
+  call <SID>hi("CursorColumn",  "", s:gui01, "", s:cterm01, "none")
+  call <SID>hi("CursorLine",    "", s:gui01, "", s:cterm01, "none")
+  call <SID>hi("CursorLineNr",  s:gui03, s:gui01, s:cterm03, s:cterm01, "")
+  call <SID>hi("PMenu",         s:gui04, s:gui01, s:cterm04, s:cterm01, "none")
+  call <SID>hi("PMenuSel",      s:gui04, s:gui01, s:cterm04, s:cterm01, "reverse")
+  call <SID>hi("TabLine",       s:gui05, s:gui01, s:cterm05, s:cterm01, "reverse")
+  call <SID>hi("TabLineFill",   s:gui06, s:gui01, s:cterm06, s:cterm01, "reverse")
+  call <SID>hi("TabLineSel",    s:gui06, s:gui01, s:cterm06, s:cterm01, "reverse")
+  call <SID>hi("DiffAdd",       s:gui0B, s:gui00, s:cterm0B, s:cterm00, "")
+  call <SID>hi("DiffChange",    s:gui05, s:gui00, s:cterm05, s:cterm00, "")
+  call <SID>hi("DiffDelete",    s:gui08, s:gui00, s:cterm08, s:cterm00, "")
+  call <SID>hi("DiffText",      s:gui0D, s:gui00, s:cterm0D, s:cterm00, "")
 else
-  call <SID>hi("Cursor",        s:gui02, "", s:cterm02, "", "")
+  call <SID>hi("Cursor",        s:gui00, s:gui02, s:cterm00, s:cterm02, "")
   call <SID>hi("NonText",       s:gui05, "", s:cterm05, "", "")
   call <SID>hi("Normal",        s:gui02, s:gui07, s:cterm02, s:cterm05, "")
   call <SID>hi("LineNr",        s:gui04, s:gui06, s:cterm04, s:cterm06, "")
@@ -124,19 +126,21 @@ else
   call <SID>hi("StatusLine",    s:gui04, s:gui06, s:cterm04, s:cterm06, "none")
   call <SID>hi("StatusLineNC",  s:gui04, s:gui06, s:cterm04, s:cterm06, "none")
   call <SID>hi("VertSplit",     s:gui05, s:gui05, s:cterm05, s:cterm05, "none")
-
-  if version >= 700
-    call <SID>hi("CursorColumn",  "", s:gui06, "", s:cterm06, "none")
-    call <SID>hi("CursorLine",    "", s:gui06, "", s:cterm06, "none")
-    call <SID>hi("PMenu",         s:gui05, s:gui03, s:cterm05, s:cterm03, "none")
-    call <SID>hi("PMenuSel",      s:gui05, s:gui03, s:cterm05, s:cterm03, "reverse")
-    call <SID>hi("TabLine",       s:gui05, s:gui01, s:cterm05, s:cterm01, "reverse")
-    call <SID>hi("TabLineFill",   s:gui06, s:gui01, s:cterm06, s:cterm01, "reverse")
-    call <SID>hi("TabLineSel",    s:gui06, s:gui01, s:cterm06, s:cterm01, "reverse")
-  endif
+  call <SID>hi("CursorColumn",  "", s:gui06, "", s:cterm06, "none")
+  call <SID>hi("CursorLine",    "", s:gui06, "", s:cterm06, "none")
+  call <SID>hi("CursorLineNr",  s:gui04, s:gui06, s:cterm04, s:cterm06, "")
+  call <SID>hi("PMenu",         s:gui05, s:gui03, s:cterm05, s:cterm03, "none")
+  call <SID>hi("PMenuSel",      s:gui05, s:gui03, s:cterm05, s:cterm03, "reverse")
+  call <SID>hi("TabLine",       s:gui05, s:gui01, s:cterm05, s:cterm01, "reverse")
+  call <SID>hi("TabLineFill",   s:gui06, s:gui01, s:cterm06, s:cterm01, "reverse")
+  call <SID>hi("TabLineSel",    s:gui06, s:gui01, s:cterm06, s:cterm01, "reverse")
+  call <SID>hi("DiffAdd",       s:gui0B, s:gui0F, s:cterm0B, s:cterm0F, "")
+  call <SID>hi("DiffChange",    s:gui05, s:gui0F, s:cterm05, s:cterm0F, "")
+  call <SID>hi("DiffDelete",    s:gui08, s:gui0F, s:cterm08, s:cterm0F, "")
+  call <SID>hi("DiffText",      s:gui0D, s:gui0F, s:cterm0D, s:cterm0F, "")
 endif
 
-" Syntax Highlighting
+" Standard Syntax Highlighting
 call <SID>hi("Boolean",      s:gui09, "", s:cterm09, "", "")
 call <SID>hi("Character",    s:gui08, "", s:cterm08, "", "")
 call <SID>hi("Comment",      s:gui03, "", s:cterm03, "", "")
@@ -167,17 +171,17 @@ call <SID>hi("Type",         s:gui09, "", s:cterm09, "", "none")
 call <SID>hi("Typedef",      s:gui0A, "", s:cterm0A, "", "")
 
 " Spelling Highlighting
-call <SID>hi("SpellBad",     s:gui00, s:gui08, s:cterm00, s:cterm08, "")
+call <SID>hi("SpellBad",     s:gui05, s:gui00, s:cterm05, s:cterm08, "")
+call <SID>hi("SpellLocal",   s:gui05, s:gui00, s:cterm05, s:cterm0D, "")
 "call <SID>hi("SpellCap",    s:gui00, s:gui08, s:cterm00, s:cterm08, "")
 "call <SID>hi("SpellRare",   s:gui00, s:gui08, s:cterm00, s:cterm08, "")
-"call <SID>hi("SpellLocal",  s:gui00, s:gui08, s:cterm00, s:cterm08, "")
 
-" Diff Highlighting
-call <SID>hi("DiffAdded",    s:gui0B, "", s:cterm0B, "", "reverse")
+" Additional Diff Highlighting
+call <SID>hi("DiffAdded",    s:gui0B, "", s:cterm0B, "", "")
 call <SID>hi("DiffFile",     s:gui08, "", s:cterm08, "", "")
 call <SID>hi("DiffNewFile",  s:gui0B, "", s:cterm0B, "", "")
 call <SID>hi("DiffLine",     s:gui0D, "", s:cterm0D, "", "")
-call <SID>hi("DiffRemoved",  s:gui08, "", s:cterm08, "", "reverse")
+call <SID>hi("DiffRemoved",  s:gui08, "", s:cterm08, "", "")
 
 " Ruby Highlighting
 call <SID>hi("rubyAttribute",               s:gui0D, "", s:cterm0D, "", "")

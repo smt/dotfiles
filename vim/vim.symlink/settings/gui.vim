@@ -12,10 +12,10 @@ set guioptions+=aA              " Autoselect.
 set guioptions+=c               " Use console dialogs
 
 " Font family and font size.
-"set guifont=Mensch\ for\ Powerline:h14
-set guifont=Inconsolata-dz\ for\ Powerline:h14
-"set guifont=Menlo\ for\ Powerline:h14
-"set guifont=Meslo\ LG\ S:h14
+"set guifont=Mensch\ for\ Powerline:h12
+set guifont=Inconsolata-dz\ for\ Powerline:h12
+"set guifont=Menlo\ for\ Powerline:h12
+"set guifont=Meslo\ LG\ S:h12
 
 set antialias                   " MacVim: smooth fonts.
 

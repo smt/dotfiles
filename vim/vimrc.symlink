@@ -99,9 +99,8 @@ set ignorecase                  " Case-insensitive searching
 set smartcase                   " ...but case-sensitive if expression contains a capital letter
 set wrapscan                    " Set the search scan to wrap around the file
 
-set background=dark
+set background=light
 colorscheme solarized           " Default terminal color scheme
-" colorscheme badwolf
 
 syntax enable                   " Turn on syntax highlighting
 set synmaxcol=2048              " Syntax coloring too-long lines is slow

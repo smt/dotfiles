@@ -3,6 +3,7 @@
 " https://github.com/smt/dotfiles/blob/master/vim/vimrc.symlink
 " ----------------------------------------------------------------------------
 
+
 " ----------------------------------------------------------------------------
 " General Settings
 " ----------------------------------------------------------------------------
@@ -27,24 +28,77 @@ set nobackup                    " do not keep backups after close
 set nowritebackup               " do not keep a backup while working
 set noswapfile                  " don't keep swp files either
 
+
 " ----------------------------------------------------------------------------
-" Text Formatting
+" Plugin Settings
 " ----------------------------------------------------------------------------
 
-set autoindent                  " automatic indent new lines
-set smartindent
-set nowrap                      " Turn off line wrapping
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
-set softtabstop=4               " Global soft tab width
-set shiftwidth=4                " Global whitespace shift width
-set tabstop=4                   " Global tab width
-set expandtab                   " Expand tabs to spaces
-set nosmarttab
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
 
-set formatoptions+=n            " Support for numbered/bullet lists
-set textwidth=79                " Wrap at 79 chars by default
-set virtualedit=block           " Allow virtual edit in visual block
-set nojoinspaces                " Do not insert 2 spaces after a '.', '?', or '!'
+" My Bundles here:
+"
+" original repos on github
+Bundle 'tpope/vim-abolish'
+Bundle 'mileszs/ack.vim'
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'flazz/vim-colorschemes'
+Bundle 'tpope/vim-commentary'
+Bundle 'kien/ctrlp.vim'
+Bundle 'Raimondi/delimitMate'
+Bundle 'jimmyhchan/dustjs.vim'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'editorconfig/editorconfig-vim'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-fugitive'
+Bundle 'mattn/gist-vim'
+Bundle 'tpope/vim-git'
+Bundle 'sjl/gundo.vim'
+Bundle 'pangloss/vim-javascript'
+Bundle 'tpope/vim-liquid'
+Bundle 'Shougo/neocomplcache'
+Bundle 'scrooloose/nerdtree'
+Bundle 'vim-pandoc/vim-pandoc'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'tpope/vim-ragtag'
+Bundle 'tpope/vim-repeat'
+Bundle 'garbas/vim-snipmate'
+Bundle 'honza/vim-snippets'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'kogakure/vim-sparkup'
+Bundle 'tpope/vim-surround'
+Bundle 'scrooloose/syntastic'
+Bundle 'godlygeek/tabular'
+Bundle 'majutsushi/tagbar'
+Bundle 'tomtom/tlib_vim'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'chrismetcalf/vim-yankring'
+Bundle 'mattn/zencoding-vim'
+" vim-scripts repos
+Bundle 'bufkill.vim'
+" non github repos
+" Bundle 'git://git.wincent.com/command-t.git'
+
+" Brief help
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install(update) bundles
+" :BundleSearch(!) foo - search(or refresh cache first) for foo
+" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Bundle command are not allowed..
+
+runtime macros/matchit.vim      " Load the matchit plugin
+
+for f in split(glob('~/.vim/settings/plugin/*.vim'), '\n')
+    exe 'source' f
+endfor
+
 
 " ----------------------------------------------------------------------------
 " Appearance
@@ -104,6 +158,27 @@ colorscheme solarized           " Default terminal color scheme
 
 syntax enable                   " Turn on syntax highlighting
 set synmaxcol=2048              " Syntax coloring too-long lines is slow
+
+
+" ----------------------------------------------------------------------------
+" Text Formatting
+" ----------------------------------------------------------------------------
+
+set autoindent                  " automatic indent new lines
+set smartindent
+set nowrap                      " Turn off line wrapping
+
+set softtabstop=4               " Global soft tab width
+set shiftwidth=4                " Global whitespace shift width
+set tabstop=4                   " Global tab width
+set expandtab                   " Expand tabs to spaces
+set nosmarttab
+
+set formatoptions+=n            " Support for numbered/bullet lists
+set textwidth=79                " Wrap at 79 chars by default
+set virtualedit=block           " Allow virtual edit in visual block
+set nojoinspaces                " Do not insert 2 spaces after a '.', '?', or '!'
+
 
 " ----------------------------------------------------------------------------
 " Mappings
@@ -232,6 +307,7 @@ imap <silent> <C-K> <%=   %><Esc>3hi
 " create <%= foo %> erb tags using Ctrl-j in edit mode
 imap <silent> <C-J> <%  %><Esc>2hi
 
+
 " ----------------------------------------------------------------------------
 " Autocommands
 " ----------------------------------------------------------------------------
@@ -302,6 +378,7 @@ if has("autocmd")
     au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
 endif
 
+
 " ----------------------------------------------------------------------------
 " GUI Settings
 " ----------------------------------------------------------------------------
@@ -341,79 +418,6 @@ if has("gui_macvim")
     vmap <D-]> >gv
     vmap <D-[> <gv
 endif
-
-" ----------------------------------------------------------------------------
-" Plugin Settings
-" ----------------------------------------------------------------------------
-
-filetype off
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
-
-" My Bundles here:
-"
-" original repos on github
-Bundle 'tpope/vim-abolish'
-Bundle 'mileszs/ack.vim'
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'flazz/vim-colorschemes'
-Bundle 'tpope/vim-commentary'
-Bundle 'kien/ctrlp.vim'
-Bundle 'Raimondi/delimitMate'
-Bundle 'jimmyhchan/dustjs.vim'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'editorconfig/editorconfig-vim'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-fugitive'
-Bundle 'mattn/gist-vim'
-Bundle 'tpope/vim-git'
-Bundle 'sjl/gundo.vim'
-Bundle 'pangloss/vim-javascript'
-Bundle 'tpope/vim-liquid'
-Bundle 'Shougo/neocomplcache'
-Bundle 'scrooloose/nerdtree'
-Bundle 'vim-pandoc/vim-pandoc'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'tpope/vim-ragtag'
-Bundle 'tpope/vim-repeat'
-Bundle 'garbas/vim-snipmate'
-Bundle 'honza/vim-snippets'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'kogakure/vim-sparkup'
-Bundle 'tpope/vim-surround'
-Bundle 'scrooloose/syntastic'
-Bundle 'godlygeek/tabular'
-Bundle 'majutsushi/tagbar'
-Bundle 'tomtom/tlib_vim'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'chrismetcalf/vim-yankring'
-Bundle 'mattn/zencoding-vim'
-" vim-scripts repos
-Bundle 'bufkill.vim'
-" non github repos
-" Bundle 'git://git.wincent.com/command-t.git'
-
-filetype plugin indent on     " required!
-"
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-"
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
-
-runtime macros/matchit.vim      " Load the matchit plugin
-
-for f in split(glob('~/.vim/settings/plugin/*.vim'), '\n')
-    exe 'source' f
-endfor
 
 
 " ----------------------------------------------------------------------------

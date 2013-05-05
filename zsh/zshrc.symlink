@@ -8,29 +8,11 @@ export ZSH=$DOTS/zsh/oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-#export ZSH_THEME="smt"
-#export ZSH_THEME="nebirhos"
-export ZSH_THEME="norm"
-#export ZSH_THEME="juanghurtado"
-#export ZSH_THEME="steeef"
-#export ZSH_THEME="sorin"
-#export ZSH_THEME="kolo"
-#export ZSH_THEME="crunch"
-#export ZSH_THEME="Soliah"
-#export ZSH_THEME="jnrowe"
-#export ZSH_THEME="muse"
-#export ZSH_THEME="re5et"
-#export ZSH_THEME="lambda"
-#export ZSH_THEME="sunaku"
-#export ZSH_THEME="kennethreitz"
-#export ZSH_THEME="tonotdo"
-#export ZSH_THEME="nanotech"
-#export ZSH_THEME="mrtazz"
-#export ZSH_THEME="trapd00r"
-#export ZSH_THEME="sporty_256"
-#export ZSH_THEME="tjkirch"
-#export ZSH_THEME="wezm"
-#export ZSH_THEME="wezm+"
+export ZSH_THEME="agnoster"
+
+# Set to the name of the default user
+export DEFAULT_USER="studor"
+
 # Customize to your needs...
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 

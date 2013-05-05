@@ -1,6 +1,10 @@
-# Based on https://github.com/lukaszkorecki/DotFiles/blob/master/tmux.conf
-
-set -g prefix C-a
+# remove default prefix of C-b
+unbind C-b
+# set prefix to the Telnet detach
+#set -g prefix C-] # i find this annoying to type
+#set -g prefix C-a
+set -g prefix `
+bind-key ` send-prefix
 
 bind-key C-a last-window
 
@@ -44,8 +48,8 @@ bind-key -r K swap-pane -U
 # Vim-style copy/paste
 unbind [
 bind Escape copy-mode
-unbind p
-bind p paste-buffer
+#unbind p
+#bind p paste-buffer
 bind -t vi-copy 'v' begin-selection
 bind -t vi-copy 'y' copy-selection
 
@@ -57,10 +61,10 @@ bind C-v run "tmux set-buffer $(reattach-to-user-namespace pbpaste); tmux paste-
 bind-key b list-buffers
 
 # choose buffer to paste interactively (default key was '=')
-bind-key p choose-buffer
+#bind-key p choose-buffer
 
 # delete the most recently copied buffer of text (default key was '-')
-bind-key x delete-buffer
+#bind-key x delete-buffer
 
 
 # Screen-like key bindings
@@ -98,33 +102,47 @@ set -g status-keys vi
 # are displayed. time is in milliseconds.
 set -g display-time 2000
 
-# default statusbar colors
 set-option -g status-utf8 on
-set-option -g status-fg colour15
-set-option -g status-bg black
+#set-option -g status-justify centre
 
-setw -g window-status-fg colour15
-setw -g window-status-bg black
-setw -g window-status-attr none
+#### COLOUR (Solarized light)
 
-setw -g window-status-current-fg black
-setw -g window-status-current-bg red
-setw -g window-status-current-attr bold
-setw -g window-status-current-format '► #[fg=white]#I#[default] #W#F '
-setw -g window-status-format '#[fg=yellow]#I#[default] #W#F'
+# default statusbar colors
+set-option -g status-bg white #base2
+set-option -g status-fg yellow #yellow
+set-option -g status-attr default
 
-# pane dividers colors
+# default window title colors
+set-window-option -g window-status-fg brightyellow #base00
+set-window-option -g window-status-bg default
+set-window-option -g window-status-attr dim
+set-window-option -g window-status-format '#[fg=brightyellow]#I#[default] #W#F'
 
-setw -g pane-border-fg red
-setw -g pane-border-bg black
+# active window title colors
+set-window-option -g window-status-current-fg white
+set-window-option -g window-status-current-bg brightred #orange
+set-window-option -g window-status-current-attr bright
+set-window-option -g window-status-current-format ' #[fg=white]#I#[default] #W#F '
 
-setw -g pane-active-border-fg white
-setw -g pane-active-border-bg black
+# pane border
+set-option -g pane-border-fg white #base2
+set-option -g pane-active-border-fg brightcyan #base1
+
+# message text
+set-option -g message-bg white #base2
+set-option -g message-fg brightred #orange
+
+# pane number display
+set-option -g display-panes-active-colour blue #blue
+set-option -g display-panes-colour brightred #orange
+
+# clock
+set-window-option -g clock-mode-colour green #green
 
 # status bar configuration
 
 # SEP=' ▐  '
-set-option -g status-left ' ☭  #[fg=red]#S#[default]#(whoami)@#H#[default]'$SEP
+set-option -g status-left '#[fg=brightred]#S #[default]☭ '
 
 # right
 # task warrior count
@@ -136,9 +154,8 @@ set-option -g status-left ' ☭  #[fg=red]#S#[default]#(whoami)@#H#[default]'$SE
 # email='☒ #[fg=yellow]#(/usr/bin/ruby ~/.private/mail_check.rb)#[default]'
 
 # date and such
-date='⌚ #[fg=blue]#(date "+%d/%m/%Y %H:%M")#[default] '
+date='⌚ #[fg=blue]#(date "+%Y-%m-%d %H:%M")#[default]'
 
-set-option -g status-right $tw$SEP$chat$SEP$email$SEP$date
 set-option -g status-right $date
 
 set-option -g status-right-length 1000

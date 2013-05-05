@@ -1,4 +1,4 @@
-export PATH=".:./bin:/usr/local/bin:/usr/local/sbin:/usr/local/heroku/bin:/usr/local/share/npm/bin:/usr/local/share/python:$DOTS/bin:$HOME/Library/Haskell/bin:$PATH"
+export PATH=".:./bin:/usr/local/sbin:/usr/local/heroku/bin:/usr/local/share/npm/bin:/usr/local/share/python:$DOTS/bin:$HOME/Library/Haskell/bin:$PATH"
 
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 

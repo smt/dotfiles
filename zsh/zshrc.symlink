@@ -31,6 +31,9 @@ export ZSH_THEME="norm"
 #export ZSH_THEME="tjkirch"
 #export ZSH_THEME="wezm"
 #export ZSH_THEME="wezm+"
+# Customize to your needs...
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
 
 # Set to this to use case-sensitive completion
 # export CASE_SENSITIVE="true"
@@ -49,9 +52,6 @@ export ZSH_THEME="norm"
 plugins=(ant autojump brew bundler cap cloudapp extract gem git github git-flow gnu-utils heroku jira lol osx pip node npm rake ruby rvm sublime svn thor vagrant)
 
 source $ZSH/oh-my-zsh.sh
-
-# Customize to your needs...
-export PATH=/usr/bin:/bin:/usr/sbin:/sbin
 
 # source every .zsh file in this rep
 for config_file ($DOTS/(zsh|system|git|ruby|nginx|osx|postgresql|sublime2|tex|vim|work)/*.zsh) source $config_file

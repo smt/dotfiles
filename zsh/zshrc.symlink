@@ -16,6 +16,7 @@ export DEFAULT_USER="studor"
 # Customize to your needs...
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
+PROJECT_PATHS=(~/code/2012 ~/code/2013 ~/code/empathylab ~/code/src ~/code/tudorstudio)
 
 # Set to this to use case-sensitive completion
 # export CASE_SENSITIVE="true"

@@ -31,7 +31,7 @@ export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(ant autojump brew bundler cap cloudapp extract gem git github git-flow gnu-utils heroku jira lol osx pip node npm rake ruby rvm sublime svn thor vagrant)
+plugins=(autojump bower brew bundler cloudapp extract gem git github git-extras git-flow gnu-utils heroku jira lol osx pip pj node npm rake ruby rvm sublime svn thor tmux vagrant)
 
 source $ZSH/oh-my-zsh.sh
 

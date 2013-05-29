@@ -32,7 +32,7 @@ PROJECT_PATHS=(~/code/2012 ~/code/2013 ~/code/empathylab ~/code/src ~/code/tudor
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(autojump bower brew bundler cloudapp extract gem git github git-extras git-flow gnu-utils heroku jira lol osx pip pj node npm rake ruby rvm sublime svn thor tmux vagrant)
+plugins=(autojump bower brew bundler cloudapp extract gem git github git-extras git-flow gnu-utils grunt heroku jira lol osx pip pj node npm rake ruby rvm sublime svn thor tmux vagrant)
 
 source $ZSH/oh-my-zsh.sh
 

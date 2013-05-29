@@ -49,6 +49,7 @@ Bundle 'mileszs/ack.vim'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'tpope/vim-commentary'
+Bundle 'FredKSchott/CoVim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Raimondi/delimitMate'
 Bundle 'jimmyhchan/dustjs.vim'
@@ -77,6 +78,7 @@ Bundle 'godlygeek/tabular'
 Bundle 'majutsushi/tagbar'
 Bundle 'tomtom/tlib_vim'
 Bundle 'tpope/vim-unimpaired'
+Bundle 'mattn/webapi-vim'
 Bundle 'chrismetcalf/vim-yankring'
 Bundle 'mattn/zencoding-vim'
 " vim-scripts repos
@@ -264,19 +266,19 @@ noremap <Leader>mm mmHmt:%s/<C-V><CR>//ge<CR>'tzt'm
 nmap <Leader>l :set list!<CR>
 
 " Strip trailing whitespace
-function! <SID>StripTrailingWhitespaces()
-    " Preparation : save last search, and cursor position
+function! Preserve(command)
+    " Preparation: save last search, and cursor position.
     let _s=@/
     let l = line(".")
     let c = col(".")
     " Do the business:
-    %s/\s\+$//e
+    execute a:command
     " Clean up: restore previous search history, and cursor position
     let @/=_s
-    silent! call cursor(l, c)
+    call cursor(l, c)
 endfunction
 
-nnoremap <silent> <Leader>W :call <SID>StripTrailingWhitespaces()<CR>
+nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
 
 " Make the directory that contains the file in the current buffer.
 " This is useful when you edit a file in a directory that doesn't

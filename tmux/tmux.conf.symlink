@@ -113,20 +113,21 @@ set-option -g status-fg yellow #yellow
 set-option -g status-attr default
 
 # default window title colors
-set-window-option -g window-status-fg brightyellow #base00
-set-window-option -g window-status-bg default
+set-window-option -g window-status-fg white
+set-window-option -g window-status-bg brightgreen
 set-window-option -g window-status-attr dim
-set-window-option -g window-status-format '#[fg=brightyellow]#I#[default] #W#F'
+set-window-option -g window-status-format ' #W '
 
 # active window title colors
 set-window-option -g window-status-current-fg white
 set-window-option -g window-status-current-bg brightred #orange
 set-window-option -g window-status-current-attr bright
-set-window-option -g window-status-current-format ' #[fg=white]#I#[default] #W#F '
+set-window-option -g window-status-current-format ' #W '
 
 # pane border
 set-option -g pane-border-fg white #base2
-set-option -g pane-active-border-fg brightcyan #base1
+set-option -g pane-active-border-fg blue
+#set-option -g pane-active-border-fg brightcyan #base1
 
 # message text
 set-option -g message-bg white #base2
@@ -141,8 +142,16 @@ set-window-option -g clock-mode-colour green #green
 
 # status bar configuration
 
-# SEP=' ▐  '
-set-option -g status-left '#[fg=brightred]#S #[default]☭ '
+#set-option -g status-left '#[fg=brightred]#S #[default]☭ '
+#set-option -g status-left '⣿'
+#set-option -g status-right '⡇ #[bold]❐ #S:#I#[default] ⡇ #[bold]#(whoami) ● #H#[default] '
+#set-option -g status-right '⡇ ❐ #S ⡇ ❖ #(rvm tools identifier) ⡇ #(whoami) ● #H '
+set-option -g status-left '⣿ #[bold]❐ #S#[default] ⡇'
+set-option -g status-right '⡇ #[bold]#(whoami) ● #h#[default] '
+
+set-option -g status-right-length 60
+set-option -g status-left-length 60
+
 
 # right
 # task warrior count
@@ -154,9 +163,9 @@ set-option -g status-left '#[fg=brightred]#S #[default]☭ '
 # email='☒ #[fg=yellow]#(/usr/bin/ruby ~/.private/mail_check.rb)#[default]'
 
 # date and such
-date='⌚ #[fg=blue]#(date "+%Y-%m-%d %H:%M")#[default]'
+#date='⌚ #[fg=blue]#(date "+%Y-%m-%d %H:%M")#[default]'
 
-set-option -g status-right $date
+#set-option -g status-right $date
 
-set-option -g status-right-length 1000
-set-option -g status-left-length 60
+#set-option -g status-right-length 1000
+#set-option -g status-left-length 60

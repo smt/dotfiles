@@ -1,0 +1,12 @@
+# ~/.tmuxinator/elf.yml
+# you can make as many tabs as you wish...
+
+project_name: elf
+project_root: ~/code/empathylab/elf
+tabs:
+  - editor: vim
+  - shell:
+      layout: main-vertical
+      panes:
+        - #empty, will just run plain zsh
+        - git pull

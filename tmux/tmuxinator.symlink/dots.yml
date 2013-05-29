@@ -1,0 +1,10 @@
+# ~/.tmuxinator/dots.yml
+# you can make as many tabs as you wish...
+
+project_name: dotfiles
+project_root: ~/.dotfiles
+tabs:
+  - editor:
+      layout: main-vertical
+      panes:
+        - vim

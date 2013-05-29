@@ -1,0 +1,17 @@
+# ~/.tmuxinator/dawn.yml
+# you can make as many tabs as you wish...
+
+project_name: dawn
+project_root: ~/code/empathylab/dawn
+tabs:
+  - editor:
+      layout: 4a95,238x57,0,0{150x57,0,0,0,87x57,151,0[87x28,151,0,2,87x28,151,29,3]}
+      panes:
+        - vim
+        - top -s 5 -o cpu
+        - #empty, will just run plain zsh
+  - shell:
+      layout: main-vertical
+      panes:
+        - git pull
+        - #empty, will just run plain zsh

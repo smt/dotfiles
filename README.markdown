@@ -7,13 +7,8 @@ dotfiles](https://github.com/holman/dotfiles), but as I'm a fan of
 [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh), that bit is also
 included as a submodule. Several of the scripts in `bin` were lifted from
 [rtomayko](https://github.com/rtomayko/dotfiles) and various other sources
-on the Internet over the years.
-
-The Vim configuration is largely my own creation, although I have borrowed
-heavily from tricks I've seen other people use (we all do that). As others
-before me have said, take what you want, and remove or build on the rest.
-All of the Vim plugins I'm using are submodules, which is a pain in my butt,
-but using [Pathogen](https://github.com/tpope/vim-pathogen) alleviates that.
+on the Internet over the years. The Vim configuration uses
+[Vundle](https://github.com/gmarik/vundle) to manage its plugins.
 
 If you're interested in the philosophy behind why projects like these are
 awesome, you might want to [read holman's post on the

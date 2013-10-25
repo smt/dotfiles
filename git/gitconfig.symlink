@@ -8,6 +8,7 @@
 	r = rebase
 	l = log
 	d = diff
+	uncommit = reset --soft HEAD^
 	count   = !git shortlog -sn
 	loc     = !$ZSH/bin/git-loc
 	promote = !$ZSH/bin/git-promote

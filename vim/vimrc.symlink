@@ -28,6 +28,8 @@ set nobackup                    " do not keep backups after close
 set nowritebackup               " do not keep a backup while working
 set noswapfile                  " don't keep swp files either
 
+set clipboard^=unnamed          " Sync default register and clipboard register
+
 
 " ----------------------------------------------------------------------------
 " Plugin Settings

@@ -70,8 +70,8 @@ Bundle 'tpope/vim-ragtag'
 Bundle 'tpope/vim-repeat'
 Bundle 'garbas/vim-snipmate'
 Bundle 'honza/vim-snippets'
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'kogakure/vim-sparkup'
+" Bundle 'altercation/vim-colors-solarized'
 Bundle 'tpope/vim-surround'
 Bundle 'scrooloose/syntastic'
 Bundle 'godlygeek/tabular'
@@ -155,8 +155,8 @@ set ignorecase                  " Case-insensitive searching
 set smartcase                   " ...but case-sensitive if expression contains a capital letter
 set wrapscan                    " Set the search scan to wrap around the file
 
-set background=light
-colorscheme solarized           " Default terminal color scheme
+set background=dark
+colorscheme badwolf           " Default terminal color scheme
 
 syntax enable                   " Turn on syntax highlighting
 set synmaxcol=2048              " Syntax coloring too-long lines is slow

@@ -109,11 +109,11 @@ set-option -g status-utf8 on
 
 # default statusbar colors
 set-option -g status-bg white #base2
-set-option -g status-fg yellow #yellow
+set-option -g status-fg black #yellow
 set-option -g status-attr default
 
 # default window title colors
-set-window-option -g window-status-fg white
+set-window-option -g window-status-fg black #white
 set-window-option -g window-status-bg brightgreen
 set-window-option -g window-status-attr dim
 set-window-option -g window-status-format ' #W '

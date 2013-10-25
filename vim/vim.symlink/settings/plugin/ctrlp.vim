@@ -1,15 +1,13 @@
 " ctrlp             git://github.com/kien/ctrlp.vim.git
 
-"let g:ctrlp_map = '<C-Space>'
 map <D-t> :CtrlP<CR>
 imap <D-t> <Esc>:CtrlP<CR>
 nmap <Leader>f :ClearCtrlPCache<CR>
 let g:ctrlp_working_path_mode = 0
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 
 " We don't want to use Ctrl-p as the mapping because
 " it interferes with YankRing (paste, then hit ctrl-p)
-let g:ctrlp_map = ',t'
+let g:ctrlp_map = '<Leader>t'
 
 " Additional mapping for buffer search
 nnoremap <Leader>b :CtrlPBuffer<cr>

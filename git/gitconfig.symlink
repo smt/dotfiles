@@ -9,6 +9,8 @@
 	l = log
 	d = diff
 	uncommit = reset --soft HEAD^
+	naf = log --grep=\"NAF-v\" -n 1
+	nafs = log --grep=\"NAF-v\" -n 5
 	count   = !git shortlog -sn
 	loc     = !$ZSH/bin/git-loc
 	promote = !$ZSH/bin/git-promote
@@ -105,7 +107,7 @@
 
 [user]
 	name = Stephen Tudor
-	email = smtudor@gmail.com
+	email = stephen_tudor@epam.com
 
 [web]
 	browser = gitscm

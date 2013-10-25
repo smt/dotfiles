@@ -5,7 +5,7 @@ project_name: chubb
 project_root: ~/code/empathylab/chubb
 socket_name: foo # Not needed.  Remove to use default socket
 #rvm: 1.9.3-p286@chubb
-tabs:
+windows:
   - editor:
       #layout: main-vertical
       layout: 4a95,238x57,0,0{150x57,0,0,0,87x57,151,0[87x28,151,0,2,87x28,151,29,3]}

@@ -3,7 +3,7 @@
 
 project_name: dotfiles
 project_root: ~/.dotfiles
-tabs:
+windows:
   - editor:
       layout: main-vertical
       panes:

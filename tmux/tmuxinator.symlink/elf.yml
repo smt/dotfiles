@@ -3,7 +3,7 @@
 
 project_name: elf
 project_root: ~/code/empathylab/elf
-tabs:
+windows:
   - editor: vim
   - shell:
       layout: main-vertical

@@ -11,7 +11,7 @@
 set nocompatible                " Don't sacrifice anything for Vi compatibility
 
 set history=1000                " Keep some stuff in the history
-set ffs=unix,dos,mac            " Support these files
+set ffs=unix,mac,dos            " Support these files
 set isk+=_,$,@,%,#,-            " None word dividers
 set viminfo='1000,f1,:100,@100,/20
 set modeline                    " Make sure modeline support is enabled
@@ -121,8 +121,8 @@ set number                      " Show line numbers
 
 set wildmenu                    " Enhanced command line completion: like a shell
 set wildmode=list:longest
-set wildignore+=.hg,.git,.svn                    " Version control
-set wildignore+=_build                           " Sphinx build dir
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Version control
+set wildignore+=*/_build                         " Sphinx build dir
 set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
@@ -131,6 +131,7 @@ set wildignore+=*.spl                            " compiled spelling word lists
 set wildignore+=*.sw?                            " Vim swap files
 set wildignore+=*.DS_Store
 set wildignore+=*CACHE
+set wildignore+=*/node_modules/*
 
 set cmdheight=2                 " Command line height
 set backspace=indent,eol,start  " Intuitive backspacing
@@ -266,7 +267,7 @@ vnoremap Q gq
 nmap <Leader>rr :retab!<CR>
 
 " Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>mm mmHmt:%s/<C-V><CR>//ge<CR>'tzt'm
+noremap <Leader>M mmHmt:%s/<C-V><CR>//ge<CR>'tzt'm
 
 " Toggle whitespace characters
 nmap <Leader>l :set list!<CR>
@@ -286,9 +287,8 @@ endfunction
 
 nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
 
-" Make the directory that contains the file in the current buffer.
-" This is useful when you edit a file in a directory that doesn't
-" (yet) exist
+" Make the directory that contains the file in the current buffer. This is
+" useful when you edit a file in a directory that doesn't (yet) exist
 nmap <Leader>md :!mkdir -p %:p:h
 
 " Opens an edit command with the path of the currently edited file filled in
@@ -305,15 +305,13 @@ cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <silent> vv <C-w>v
 nnoremap <silent> ss <C-w>s
 
-" Resize vertical windows by hitting plus and minus
+" Resize window height by hitting plus and minus
 nnoremap <silent> + <C-w>+
 nnoremap <silent> - <C-w>-
 
-" create <%= foo %> erb tags using Ctrl-k in edit mode
-imap <silent> <C-K> <%=   %><Esc>3hi
-
-" create <%= foo %> erb tags using Ctrl-j in edit mode
-imap <silent> <C-J> <%  %><Esc>2hi
+" Resize window width by hitting C-< and C->
+nnoremap <silent> <C-<> <C-w><
+nnoremap <silent> <C->> <C-w>>
 
 
 " ----------------------------------------------------------------------------

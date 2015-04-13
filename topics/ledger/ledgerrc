@@ -1,0 +1,4 @@
+--file ~/Documents/ledger/ledger.dat
+--price-db ~/Documents/ledger/price.db
+--wide
+; ~/.ledgerrc ends here

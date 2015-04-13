@@ -1,0 +1,19 @@
+# Search
+--type-set=coffee=.coffee
+--type-set=cucumber=.feature
+--type-set=haml=.haml
+--type-add=jsp=.jspf
+--type-set=less=.less
+--type-set=sass=.sass,.scss
+
+# Don't search
+--ignore-dir=log
+--ignore-dir=node_modules
+--ignore-dir=tags
+--ignore-dir=tmp
+--ignore-dir=vendor
+--ignore-dir=.sass-cache
+
+# Other options
+--sort-files
+--color-path=1;33

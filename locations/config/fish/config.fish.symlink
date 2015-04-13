@@ -1,0 +1,1 @@
+../../../topics/fish/config.fish

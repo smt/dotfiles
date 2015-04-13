@@ -1,0 +1,183 @@
+#!/usr/bin/env bash
+
+###############################################################################
+#                                                                             #
+# AnsiWeather 1.00 (c) by Frederic Cambus 2014                                #
+# https://github.com/fcambus/ansiweather                                      #
+#                                                                             #
+# Created: 2013/08/29                                                         #
+# Last Updated: 2014/01/24                                                    #
+#                                                                             #
+# AnsiWeather is released under the BSD 3-Clause license.                     #
+# See LICENSE file for details.                                               #
+#                                                                             #
+###############################################################################
+
+
+
+###[ Configuration options ]###################################################
+
+LC_NUMERIC=C
+
+fetch_cmd="curl -s"
+
+
+###[ Check if jq is installed ]###############################################
+
+jqpath="`which jq`"
+if [ "$jqpath" == "" ]
+then 
+	echo -e "\njq binary is not found, please download it from http://stedolan.github.io/jq/ and put it in your PATH"
+	exit 255
+fi 
+
+
+
+###[ Auto-Location Logic ]####################################################
+
+geo_locate_api="http://www.telize.com/geoip" #geo location service
+
+function auto_locate {
+	ret=""
+
+	geo_data=$($fetch_cmd $geo_locate_api)
+
+	city=$(echo $geo_data | jq -r '.city')
+
+	country=$(echo $geo_data | jq -r '.country_code')
+
+	ret=$city,$country
+
+	if [ "$ret" == "," ]
+	then
+		return 1
+	else
+		echo $ret
+	fi
+}
+
+# Location : example "Moscow,RU"
+location=$(auto_locate)
+
+# System of Units : "metric" or "imperial"
+units="metric"
+
+# Display symbols : "true" or "false" (requires an Unicode capable display)
+symbols=true
+
+
+###[ Unicode Symbols for icons ]###############################################
+
+sun="\xe2\x98\x80"
+moon="\xe2\x98\xbd"
+clouds="\xe2\x98\x81"
+rain="\xe2\x98\x94"
+fog="\xe2\x96\x92"
+mist="\xe2\x96\x91"
+haze="\xe2\x96\x91"
+snow="\xe2\x9d\x84"
+thunderstorm="\xe2\x9a\xa1"
+
+###[ Fetch Weather data ]######################################################
+
+# Fix for Iceland
+if [ $location="null,IS" ];
+then
+	location="REYKYAVIK,IS"
+fi
+weather=$(curl -s "http://api.openweathermap.org/data/2.5/weather?q=$location&units=$units")
+
+if [ -z "$weather" ]
+then
+	echo "ERROR : Cannot fetch weather data"
+	exit
+fi
+
+status_code=$(echo $weather | jq -r '.cod')
+
+if [ $status_code != 200 ]
+then
+	echo "ERROR : Cannot fetch weather data for the given location"
+	exit
+fi
+
+
+
+###[ Process Weather data ]####################################################
+
+function epoch_to_date {
+	if date -j -r $1 +"%a %b %d" > /dev/null 2>&1; then
+		# BSD
+		ret=$(date -j -r $1 +"%a %b %d")
+	else
+		# GNU
+		ret=$(date -d @$1 +"%a %b %d")
+	fi
+	echo $ret
+}
+
+now=$(date +%s)
+city=$(echo $weather | jq -r '.name')
+temperature=$(printf '%.0f' $(echo $weather | jq '.main.temp'))
+humidity=$(echo $weather | jq '.main.humidity')
+pressure=$(echo $weather | jq '.main.pressure')
+sky=$(echo $weather | jq -r '.weather[0].main')
+sunrise=$(echo $weather | jq '.sys.sunrise')
+sunset=$(echo $weather | jq '.sys.sunset')
+wind=$(echo $weather | jq '.wind.speed')
+azimuth=$(echo $weather | jq '.wind.deg')
+if [ -z "$sunset" ] || [ -z "$sunrise" ]
+	then
+		period="day"
+	elif [ $now -ge $sunset ] || [ $now -le $sunrise ]
+	then
+		period="night"
+	else
+		period="day"
+fi
+###[ Set the scale ]###########################################################
+
+scale="°C"
+
+###[ Set icons ]###############################################################
+
+function get_icon {
+	case $1 in
+		Clear)
+			if [ $period = "night" ]; then
+				echo "$moon "
+			else
+				echo "$sun  "
+			fi
+			;;
+		Clouds)
+			echo "$clouds  "
+			;;
+		Rain)
+			echo "$rain  "
+			;;
+		Fog)
+			echo "$fog "
+			;;
+		Mist)
+			echo "$mist "
+			;;
+		Haze)
+			echo "$haze "
+			;;
+		Snow)
+			echo "$snow "
+			;;
+		Thunderstorm)
+			echo "$thunderstorm  "
+			;;
+	esac
+}
+
+
+
+###[ Display current Weather ]#################################################
+
+icon="$(get_icon $sky)"
+output="$icon$temperature$scale"
+echo -e "$output"

@@ -1,0 +1,148 @@
+function lag
+    ag --follow --nocolor --pager=less --silent --stats $argv
+end
+
+function nag
+    ag -v $argv
+end
+
+function cb
+    tr -d '\n' | pbcopy
+end
+
+function cl
+    fc -e - | pbcopy
+end
+
+function cpwd
+    pwd | cb
+end
+
+function dots
+    eval $EDITOR $DOTS
+end
+
+function e
+    eval $EDITOR $argv
+end
+
+function imgsz
+    sips -g pixelWidth -g pixelHeight
+end
+
+function l
+    ls -AGl $argv
+end
+
+function lsd
+    ls -Gl | grep "^d" $argv
+end
+
+function lsort
+    echo "========== Newest =========="
+    ls -At1
+    echo "========== Oldest =========="
+end
+
+function o
+    open .
+end
+
+function p
+    cd $PROJECTS
+end
+
+function pubkey
+    cat $HOME/.ssh/id_rsa.pub | cb
+end
+
+function reload
+    . $fish_path
+end
+
+function systemupdate
+    sudo softwareupdate -i -a
+    brew update
+    brew upgrade
+end
+
+# tmux
+
+function t
+    todo.sh $argv
+end
+
+# git
+
+function g
+    git $argv
+end
+
+function ga
+    git add $argv
+end
+
+function gaa
+    git add -A $argv
+end
+
+function gam
+    git commit --amend $argv
+end
+
+function gap
+    git add --p $argv
+end
+
+function gci
+    git commit -m $argv
+end
+
+function gl
+    git pull $argv
+end
+
+function glog
+    git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -- $argv
+end
+
+function gp
+    git push $argv
+end
+
+function gst
+    git status $argv
+end
+
+function gs
+    git status -s $argv
+end
+
+# ip addresses
+
+function flushdns
+    dscacheutil -flushcache
+    sudo killall -HUP mDNSResponder
+end
+
+function extip
+    dig +short myip.opendns.com @resolver1.opendns.com
+end
+
+function ip
+    ipconfig getifaddr $argv
+end
+
+function ips
+    ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/; print $argv'
+end
+
+# http
+
+function sniff
+    sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'
+end
+
+function httpdump
+    sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E "Host\: .*|GET \/.*"
+end

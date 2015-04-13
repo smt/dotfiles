@@ -1,4 +1,5 @@
 *.pyc
+*.local
 topics/fish/completions
 topics/fish/fish_history
 topics/fish/fish_read_history

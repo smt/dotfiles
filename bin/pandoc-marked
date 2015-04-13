@@ -1,2 +1,0 @@
-!/bin/sh
-pandoc -r markdown -w html -sS --toc

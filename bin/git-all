@@ -1,6 +1,0 @@
-#!/bin/sh
-#
-# https://github.com/holman/dotfiles/blob/master/bin/git-all
-# Stage all unstaged.
-
-git add -A

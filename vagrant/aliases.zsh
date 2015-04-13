@@ -1,6 +1,0 @@
-alias vb="vagrant box"
-alias vh="vagrant halt"
-alias vp="vagrant provision"
-alias vs="vagrant status"
-alias vssh="vagrant ssh"
-alias vu="vagrant up"

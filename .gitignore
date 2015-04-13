@@ -1,4 +1,8 @@
-sublime2/User/Package\ Control.sublime-settings
-vim/vimswp.symlink/*
-vim/vim.symlink/bundle/*
-!vim/vim.symlink/bundle/vundle/*
+*.pyc
+topics/fish/completions
+topics/fish/fish_history
+topics/fish/fish_read_history
+topics/fish/fishd*
+topics/fish/fishrc
+topics/mail/mutt/cache
+topics/mail/mutt/temp

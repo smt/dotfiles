@@ -23,9 +23,11 @@ endfunction
 silent function! OSX()
   return has('macunix')
 endfunction
+
 silent function! LINUX()
   return has('unix') && !has('macunix') && !has('win32unix')
 endfunction
+
 silent function! WINDOWS()
   return  (has('win16') || has('win32') || has('win64'))
 endfunction
@@ -61,18 +63,6 @@ function! InitializeDirectories()
   endfor
 endfunction
 
-function! JavaScriptFold() 
-  setlocal foldmethod=syntax
-  setlocal foldlevelstart=1
-  syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
-
-  function! FoldText()
-    return substitute(getline(v:foldstart), '{.*', '{...}', '')
-  endfunction
-
-  setlocal foldtext=FoldText()
-endfunction
-
 function! StripTrailingWhitespace()
   " Preparation: save last search, and cursor position.
   let _s=@/
@@ -83,6 +73,18 @@ function! StripTrailingWhitespace()
   " clean up: restore previous search history, and cursor position
   let @/=_s
   call cursor(l, c)
+endfunction
+
+function! JavaScriptFold()
+  setlocal foldmethod=syntax
+  setlocal foldlevelstart=1
+  syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
+
+  function! FoldText()
+    return substitute(getline(v:foldstart), '{.*', '{...}', '')
+  endfunction
+
+  setlocal foldtext=FoldText()
 endfunction
 
 function! s:RunShellCommand(cmdline)
@@ -142,5 +144,68 @@ function! WordProcessorMode()
   setlocal norelativenumber
   setf writing
 endfunction
+
+function! Buflist()
+  redir => ls
+  silent ls
+  redir END
+  return split(ls, '\n')
+endfunction
+
+function! Bufopen(e)
+  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
+endfunction
+if !WINDOWS()
+  set shell=/bin/sh
+endif
+
+function! s:goyo_enter()
+  silent !tmux set status off
+  set noshowmode
+  set noshowcmd
+  set scrolloff=999
+  let b:quitting = 0
+  let b:quitting_bang = 0
+  autocmd QuitPre <buffer> let b:quitting = 1
+  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+  Limelight
+endfunction
+
+function! s:goyo_leave()
+  silent !tmux set status on
+  set showmode
+  set showcmd
+  set scrolloff=5
+  " Quit Vim if this is the only remaining buffer
+  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+    if b:quitting_bang
+      qa!
+    else
+      qa
+    endif
+  endif
+  Limelight!
+endfunction
+
+if has("user_commands")
+  command! -bang -nargs=* -complete=file E e<bang> <args>
+  command! -bang -nargs=* -complete=file W w<bang> <args>
+  command! -bang -nargs=* -complete=file Wq wq<bang> <args>
+  command! -bang -nargs=* -complete=file WQ wq<bang> <args>
+  command! -bang Wa wa<bang>
+  command! -bang WA wa<bang>
+  command! -bang Q q<bang>
+  command! -bang QA qa<bang>
+  command! -bang Qa qa<bang>
+
+  command! -complete=file -nargs=+ Shell call s:RunShellCommand(<q-args>)
+  command! -nargs=? -range=% Space2Tab call IndentConvert(<line1>,<line2>,0,<q-args>)
+  command! -nargs=? -range=% Tab2Space call IndentConvert(<line1>,<line2>,1,<q-args>)
+  command! -nargs=? -range=% RetabIndent call IndentConvert(<line1>,<line2>,&et,<q-args>)
+  command! -range=% -nargs=0 Space2Tab execute '<line1>,<line2>s#^\( \{'.&ts.'\}\)\+#\=repeat("\t", len(submatch(0))/' . &ts . ')'
+  command! -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
+endif
+
+call InitializeDirectories()
 
 " vim: set sw=2 ts=2 sts=2 et tw=78 nospell:

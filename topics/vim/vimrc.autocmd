@@ -1,0 +1,201 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""" AUTOCMD """"""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+if has('autocmd')
+
+  augroup general_buffer
+    au!
+    au BufReadPost setlocal nobomb
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    au BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+  augroup END
+
+  augroup func_listchars
+    au!
+    au FileType c,cpp                 setlocal list
+    au FileType clj,cljs,lisp         setlocal list
+    au FileType {c,le,sc}ss,stylus    setlocal list
+    au FileType go                    setlocal list
+    au FileType {ht,pht,x}ml,jade     setlocal list
+    au FileType java                  setlocal list
+    au FileType {java,type}script     setlocal list
+    au FileType json                  setlocal list
+    au FileType markdown              setlocal list
+    au FileType php,twig              setlocal list
+    au FileType ruby                  setlocal list
+    au FileType vim                   setlocal list
+    au FileType yaml                  setlocal list
+  augroup END
+
+  augroup func_whitespace
+    au!
+    au FileType c,cpp                 autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+    au FileType clj,cljs,lisp         autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+    au FileType {c,le,sc}ss,stylus    autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+    au FileType go                    autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+    au FileType {ht,pht,x}ml,jade     autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+    au FileType java                  autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+    au FileType {java,type}script     autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+    au FileType json                  autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+    au FileType php,twig              autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+    au FileType python                autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+    au FileType ruby                  autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+    au FileType vim                   autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+    au FileType yaml                  autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+  augroup END
+
+  augroup func_resize
+    au!
+    au VimResized * :wincmd =
+  augroup END
+
+  augroup type_css
+    au!
+    au FileType {c,le,sc}ss,stylus setlocal et ts=2 sts=2 sw=2
+    au FileType {c,le,sc}ss,stylus setlocal foldmethod=marker foldmarker={,}
+    au FileType scss setlocal iskeyword+=-
+  augroup END
+
+  augroup type_html
+    au!
+    au BufRead,BufNewFile *.phtml setlocal filetype=html.php
+    au FileType html setlocal et ts=4 sts=4 sw=4
+    " Auto-tidy selection
+    au FileType html vnoremap <leader>x :!tidy -q -i --show-errors 0 --show-body-only 1 --wrap 0<cr><cr>
+  augroup END
+
+  augroup type_gitcommit
+    au!
+    au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+    au FileType gitcommit call setpos('.', [0, 1, 1, 0])
+  augroup END
+
+  augroup type_go
+    au!
+    au FileType go setlocal et ts=4 sts=4 sw=4
+  augroup END
+
+  augroup type_java
+    au!
+    au FileType java setlocal et ts=4 sts=4 sw=4
+  augroup END
+
+  augroup type_javascript
+    au!
+    au FileType {java,type}script setlocal et ts=2 sts=2 sw=2
+    au FileType {java,type}script call JavaScriptFold()
+    au FileType {java,type}script setlocal foldenable
+    au FileType {java,type}script setlocal nocindent
+    " Toggling True/False
+    au filetype {java,type}script nnoremap <silent> <C-t> mmviw:s/true\\|false/\={'true':'false','false':'true'}[submatch(0)]/<CR>`m:nohlsearch<CR>
+    " Enable insertion of "debugger" statement in JS files
+    au filetype javascript nnoremap <leader>b Odebugger;<esc>
+  augroup END
+
+  augroup type_json
+    au!
+    au FileType json setlocal et ts=2 sts=2 sw=2
+    au FileType json equalprg=python\ -m\ json.tool
+  augroup END
+
+  augroup type_lisp
+    au!
+    au BufRead,BufNewFile *.{clj,cljs,el} setlocal filetype=lisp
+    au FileType lisp setlocal et ts=2 sts=2 sw=2
+  augroup END
+
+  augroup type_make
+    au!
+    au FileType make setlocal noet ts=4 sts=4 sw=4
+  augroup END
+
+  augroup type_markdown
+    au!
+    au BufRead,BufNewFile *.{ft,md} setlocal filetype=markdown
+    au FileType markdown setlocal et ts=4 sts=4 sw=4
+  augroup END
+
+  augroup type_php
+    au!
+    au FileType php setlocal et ts=4 sts=4 sw=4
+  augroup END
+
+  augroup type_python
+    " PEP8 compliance (set 1 tab = 4 chars explicitly, even if set
+    " earlier, as it is important)
+    au FileType python setlocal et ts=4 sts=4 sw=4
+    au FileType python setlocal textwidth=78
+    au FileType python match ErrorMsg '\%>120v.\+'
+    " But disable autowrapping as it is super annoying
+    au FileType python setlocal formatoptions-=t
+  augroup END
+
+  augroup type_rst
+    au FileType rst setlocal et ts=4 sts=4 sw=4
+    au FileType rst setlocal textwidth=78
+    au FileType rst setlocal formatoptions+=nqt
+    au FileType rst match ErrorMsg '\%>74v.\+'
+  augroup END
+
+  augroup type_ruby
+    au!
+    au FileType ruby setlocal et ts=2 sts=2 sw=2
+  augroup END
+
+  augroup type_vim
+    au!
+    au FileType vim setlocal et ts=2 sts=2 sw=2
+    " Bind <F1> to show the keyword under cursor
+    " general help can still be entered manually, with :h
+    au FileType vim noremap <buffer> <F1> <Esc>:help <C-r><C-w><CR>
+    au FileType vim noremap! <buffer> <F1> <Esc>:help <C-r><C-w><CR>
+  augroup END
+
+  augroup type_xml
+    au!
+    au FileType xml setlocal et ts=4 sts=4 sw=4
+  augroup END
+
+  augroup type_yaml
+    au!
+    au BufRead,BufNewFile *.fdoc setlocal filetype=yaml
+    au FileType yaml setlocal et ts=2 sts=2 sw=2
+  augroup END
+
+  augroup pencil
+    au!
+    au FileType markdown,mkd call pencil#init()
+          \ | call lexical#init()
+          \ | call litecorrect#init()
+          \ | setl spell spl=en_us fdl=4 noru nonu nornu
+          \ | setl fdo+=search
+    au Filetype git,gitsendemail,*commit*,*COMMIT*
+          \   call pencil#init({'wrap': 'hard', 'textwidth': 72})
+          \ | call litecorrect#init()
+          \ | setl spell spl=en_us et sw=2 ts=2 noai
+    au Filetype mail         call pencil#init({'wrap': 'hard', 'textwidth': 60})
+          \ | call litecorrect#init()
+          \ | setl spell spl=en_us et sw=2 ts=2 noai nonu nornu
+    au Filetype html,xml     call pencil#init({'wrap': 'soft'})
+          \ | call litecorrect#init()
+          \ | setl spell spl=en_us et sw=2 ts=2
+  augroup END
+
+  augroup bundle_emmet
+    au!
+    au FileType html,css EmmetInstall
+  augroup END
+
+  augroup bundle_goyo
+    au!
+    au User GoyoEnter nested call <SID>goyo_enter()
+    au User GoyoLeave nested call <SID>goyo_leave()
+  augroup END
+
+  augroup bundle_surround
+    " FileType-dependent mapping of "-" (ASCII 45) as a replacement string
+    au FileType php let b:surround_45 = "<?php \r ?>"
+  augroup END
+
+endif

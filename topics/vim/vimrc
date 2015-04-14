@@ -1,477 +1,53 @@
 " Note: Skip initialization for vim-tiny or vim-small.
 if !1 | finish | endif
 
-if exists('g:loaded_sensible') || &compatible
-  finish
-else
-  let g:loaded_sensible = 1
-endif
-
 if has('vim_starting')
   set nocompatible               " Be iMproved
 endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""" PLUGINS """"""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+if filereadable(expand("~/.vimrc.bundles"))
+  source ~/.vimrc.bundles
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""" FUNCTIONS """""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 if filereadable(expand("~/.vimrc.funcs"))
   source ~/.vimrc.funcs
 endif
 
-if !WINDOWS() || &shell =~# 'fish$'
-  set shell=/bin/bash
-endif
-
-if WINDOWS()
-  set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
-endif
-
-if filereadable(expand("~/.vimrc.bundles")) && has('autocmd')
-  source ~/.vimrc.bundles
-endif
-
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""" SETTINGS """""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""" AUTOCMD """"""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" autocmds
-if has('autocmd')
-  au BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
-  au BufReadPost setlocal nobomb
-
-  augroup invisible_chars
-    au!
-    au FileType c,cpp                 setlocal list
-    au FileType clj,cljs,lisp         setlocal list
-    au FileType {c,le,sc}ss,stylus    setlocal list
-    au FileType go                    setlocal list
-    au FileType {ht,x}ml,jade         setlocal list
-    au FileType java                  setlocal list
-    au FileType {java,type}script     setlocal list
-    au FileType json                  setlocal list
-    au FileType markdown              setlocal list
-    au FileType php,twig              setlocal list
-    au FileType ruby                  setlocal list
-    au FileType vim                   setlocal list
-    au FileType yaml                  setlocal list
-  augroup END
-
-  augroup strip_whitespace
-    au!
-    au FileType c,cpp                 au BufWritePre <buffer> call StripTrailingWhitespace()
-    au FileType clj,cljs,lisp         au BufWritePre <buffer> call StripTrailingWhitespace()
-    au FileType {c,le,sc}ss,stylus    au BufWritePre <buffer> call StripTrailingWhitespace()
-    au FileType go                    au BufWritePre <buffer> call StripTrailingWhitespace()
-    au FileType {ht,x}ml,jade         au BufWritePre <buffer> call StripTrailingWhitespace()
-    au FileType java                  au BufWritePre <buffer> call StripTrailingWhitespace()
-    au FileType {java,type}script     au BufWritePre <buffer> call StripTrailingWhitespace()
-    au FileType json                  au BufWritePre <buffer> call StripTrailingWhitespace()
-    au FileType php,twig              au BufWritePre <buffer> call StripTrailingWhitespace()
-    au FileType python                au BufWritePre <buffer> call StripTrailingWhitespace()
-    au FileType ruby                  au BufWritePre <buffer> call StripTrailingWhitespace()
-    au FileType vim                   au BufWritePre <buffer> call StripTrailingWhitespace()
-    au FileType yaml                  au BufWritePre <buffer> call StripTrailingWhitespace()
-  augroup END
-
-  augroup css_files
-    au!
-    au FileType {c,le,sc}ss,stylus setlocal et ts=2 sts=2 sw=2
-    au FileType {c,le,sc}ss,stylus setlocal foldmethod=marker foldmarker={,}
-    au FileType scss setlocal iskeyword+=-
-  augroup END
-
-  augroup html_files
-    au!
-    au BufRead,BufNewFile *.phtml setlocal filetype=html.php
-    au FileType html setlocal et ts=4 sts=4 sw=4
-    " Auto-tidy selection
-    au FileType html vnoremap <leader>x :!tidy -q -i --show-errors 0 --show-body-only 1 --wrap 0<cr><cr>
-  augroup END
-
-  augroup gitcommit_buffers
-    au!
-    au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
-    au FileType gitcommit call setpos('.', [0, 1, 1, 0])
-  augroup END
-
-  augroup go_files
-    au!
-    au FileType go setlocal et ts=4 sts=4 sw=4
-  augroup END
-
-  augroup java_files
-    au!
-    au FileType java setlocal et ts=4 sts=4 sw=4
-  augroup END
-
-  augroup javascript_files
-    au!
-    au FileType {java,type}script setlocal et ts=2 sts=2 sw=2
-    au FileType {java,type}script call JavaScriptFold()
-    au FileType {java,type}script setlocal foldenable
-    au FileType {java,type}script setlocal nocindent
-    " Toggling True/False
-    au filetype {java,type}script nnoremap <silent> <C-t> mmviw:s/true\\|false/\={'true':'false','false':'true'}[submatch(0)]/<CR>`m:nohlsearch<CR>
-    " Enable insertion of "debugger" statement in JS files
-    au filetype javascript nnoremap <leader>b Odebugger;<esc>
-  augroup END
-
-  augroup json_files
-    au!
-    au FileType json setlocal et ts=2 sts=2 sw=2
-    au FileType json equalprg=python\ -m\ json.tool
-  augroup END
-
-  augroup lisp_files
-    au!
-    au BufRead,BufNewFile *.{clj,cljs,el} setlocal filetype=lisp
-    au FileType lisp setlocal et ts=2 sts=2 sw=2
-  augroup END
-
-  augroup makefiles
-    au!
-    au FileType make setlocal noet ts=4 sts=4 sw=4
-  augroup END
-
-  augroup markdown_files
-    au!
-    au BufRead,BufNewFile *.{ft,md} setlocal filetype=markdown
-    au FileType markdown setlocal et ts=4 sts=4 sw=4
-  augroup END
-
-  augroup php_files
-    au!
-    au FileType php setlocal et ts=4 sts=4 sw=4
-  augroup END
-
-  augroup python_files
-    " PEP8 compliance (set 1 tab = 4 chars explicitly, even if set
-    " earlier, as it is important)
-    au FileType python setlocal et ts=4 sts=4 sw=4
-    au FileType python setlocal textwidth=78
-    au FileType python match ErrorMsg '\%>120v.\+'
-    " But disable autowrapping as it is super annoying
-    au FileType python setlocal formatoptions-=t
-  augroup END
-
-  " augroup rst_files
-  "   au FileType rst setlocal et ts=4 sts=4 sw=4
-  "   au FileType rst setlocal textwidth=78
-  "   au FileType rst setlocal formatoptions+=nqt
-  "   au FileType rst match ErrorMsg '\%>74v.\+'
-  " augroup END
-
-  augroup ruby_files
-    au!
-    au FileType ruby setlocal et ts=2 sts=2 sw=2
-  augroup END
-
-  augroup text_files
-    au!
-  augroup END
-
-  augroup vim_files
-    au!
-    au FileType vim setlocal et ts=2 sts=2 sw=2
-    " Bind <F1> to show the keyword under cursor
-    " general help can still be entered manually, with :h
-    au FileType vim noremap <buffer> <F1> <Esc>:help <C-r><C-w><CR>
-    au FileType vim noremap! <buffer> <F1> <Esc>:help <C-r><C-w><CR>
-  augroup END
-
-  augroup xml_files
-    au!
-    au FileType xml setlocal et ts=4 sts=4 sw=4
-  augroup END
-
-  augroup yaml_files
-    au!
-    au BufRead,BufNewFile *.fdoc setlocal filetype=yaml
-    au FileType yaml setlocal et ts=2 sts=2 sw=2
-  augroup END
+if filereadable(expand("~/.vimrc.autocmd"))
+  source ~/.vimrc.autocmd
 endif
 
-" highlight
-highlight clear SignColumn      " SignColumn should match background
-highlight clear LineNr          " Current line number row will have same background color in relative mode
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""" SET """"""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" miscellanious settings
-scriptencoding utf-8
-
-" General Lets
-let mapleader = ','
-let maplocalleader = '_'
-let g:skipview_files = ['\[example pattern\]']
-let b:match_ignorecase = 1
-
-" Indent Guides
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
-let g:indent_guides_enable_on_vim_startup = 1
-
-" sets
-" Use :help 'option' to see the documentation for the given option.
-
-set autoindent                  " Indent at the same level of the previous line
-set autoread
-set background=dark             " Assume a dark background
-set backspace=indent,eol,start  " Backspace for dummies
-set backup                      " Backups are nice ...
-set colorcolumn=80
-set complete-=i
-set cursorline                  " Highlight current line
-set display+=lastline
-set fileencoding=utf-8
-set fileformats+=mac
-set hidden                      " Allow buffer switching without saving
-set hlsearch                    " Highlight search terms
-set ignorecase                  " Case insensitive search
-set incsearch                   " Find as you type search
-set linespace=0                 " No extra spaces between rows
-set list                        " Show whitespace
-set listchars=tab:›\ ,trail:•,extends:#,precedes:#,nbsp:. " Characters to symbolize whitespace
-set magic                       " For regexes turn magic on
-set mouse=a                     " Automatically enable mouse usage
-set mousehide                   " Hide the mouse cursor while typing
-setglobal nobomb
-set nobomb
-set noerrorbells
-set noexpandtab
-set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
-set nospell                     " Spell checking off
-set nowrap                      " Do not wrap long lines
-set nrformats-=octal
-set number                      " Line numbers on
-set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
-set scrolljump=5                " Lines to scroll when cursor leaves screen
-set scrolloff=3                 " Minimum lines to keep above and below cursor
-set sessionoptions-=options
-set shiftwidth=4                " Use indents of 4 spaces
-set shortmess+=aoOtTI           " Abbrev. of messages (avoids 'hit enter')
-set showmatch                   " Show matching brackets/parenthesis
-set showmode                    " Display the current mode
-set sidescrolloff=5
-set smarttab
-set softtabstop=4               " Let backspace delete indent
-set splitbelow                  " Puts new split windows to the bottom of the current
-set splitright                  " Puts new vsplit windows to the right of the current
-set tabstop=4                   " An indentation every four columns
-set ttimeout
-set ttimeoutlen=100
-set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
-set virtualedit=onemore         " Allow for cursor beyond last character
-set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
-set wildmenu
-set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
-set winminheight=0              " Windows can be 0 line high
-if v:version > 703 || v:version == 703 && has("patch541")
-  set formatoptions+=j " Delete comment character when joining commented lines
-endif
-if has('path_extra')
-  setglobal tags-=./tags tags^=./tags;
-endif
-if &history < 1000
-  set history=1000
-endif
-if &tabpagemax < 15
-  set tabpagemax=15
-endif
-if !empty(&viminfo)
-  set viminfo^=!
+if filereadable(expand("~/.vimrc.set"))
+  source ~/.vimrc.set
 endif
 
-" map
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_
-map <C-L> <C-W>l<C-W>_
-map <C-H> <C-W>h<C-W>_
-map <S-H> gT
-map <S-L> gt
-map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
-map [F $
-map [H g0
-map <leader>ew :e %%
-map <leader>es :sp %%
-map <leader>ev :vsp %%
-map <leader>et :tabe %%
-map <Leader>= <C-w>=
-map <leader>W :call WordProcessorMode()<CR>
-map <leader>tt :TagbarToggle<CR>
-map zl zL
-map zh zH
-"map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
-map <F1> <Esc>
-map <up> <C-W>k<C-W>_
-map <down> <C-W>j<C-W>_
-map <left> <C-W>h<C-W>_
-map <right> <C-W>l<C-W>_
-" Use <C-L> to clear the highlighting of :set hlsearch.
-if maparg('<C-L>', 'n') ==# ''
-  nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""" MAP """"""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+if filereadable(expand("~/.vimrc.map"))
+  source ~/.vimrc.map
 endif
 
-" vmap
-vmap <C-Up> xkP`[V`]
-vmap <C-Down> xp`[V`]
-
-" imap
-imap [F $
-imap [H g0
-imap <F1> <Esc>
-
-" noremap
-noremap j gj
-noremap k gk
-
-" inoremap
-inoremap jk <Esc>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-" Conflicts with Pencil:
-"inoremap <C-U> <C-G>u<C-U>
-
-" nnoremap
-nnoremap Y y$
-nnoremap <silent> <leader><space> :FZF<CR>
-nnoremap <silent> <leader>s :Ag!<CR>
-nnoremap <Leader>G :Goyo<CR>
-nnoremap <silent> <leader>gs :Gstatus<CR>
-nnoremap <silent> <leader>gd :Gdiff<CR>
-nnoremap <silent> <leader>gc :Gcommit<CR>
-nnoremap <silent> <leader>gb :Gblame<CR>
-nnoremap <silent> <leader>gl :Glog<CR>
-nnoremap <silent> <leader>gp :Git push<CR>
-nnoremap <silent> <leader>gr :Gread<CR>
-nnoremap <silent> <leader>gw :Gwrite<CR>
-nnoremap <silent> <leader>ge :Gedit<CR>
-nnoremap <silent> <leader>gi :Git add -p %<CR>
-nnoremap <silent> <leader>gg :QuickfixsignsToggle<CR>
-nnoremap <leader>tf :call g:FixTabStops()<CR>
-nnoremap <leader>gu :GundoToggle<CR>
-nnoremap <S-Left> :SidewaysLeft<cr>
-nnoremap <S-Right> :SidewaysRight<cr>
-" nnoremap <C-Up> ddkP
-" nnoremap <C-Down> ddp
-nnoremap gV `[v`]
-nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-nnoremap <space> za
-
-" vnoremap
-vnoremap < <gv
-vnoremap > >gv
-vnoremap . :normal .<CR>
-vnoremap <up> <nop>
-vnoremap <down> <nop>
-vnoremap <right> <nop>
-vnoremap <left> <nop>
-vnoremap <Space> zf
-
-" cnoremap
-cnoremap %% <C-R>=expand('%:h').'/'<cr>
-
-" cmap
-cmap Tabe tabe
-cmap w!! w !sudo tee % >/dev/null
-cmap cwd lcd %:p:h
-cmap cd. lcd %:p:h
-
-" nmap
-nmap <leader>f0 :set foldlevel=0<CR>
-nmap <leader>f1 :set foldlevel=1<CR>
-nmap <leader>f2 :set foldlevel=2<CR>
-nmap <leader>f3 :set foldlevel=3<CR>
-nmap <leader>f4 :set foldlevel=4<CR>
-nmap <leader>f5 :set foldlevel=5<CR>
-nmap <leader>f6 :set foldlevel=6<CR>
-nmap <leader>f7 :set foldlevel=7<CR>
-nmap <leader>f8 :set foldlevel=8<CR>
-nmap <leader>f9 :set foldlevel=9<CR>
-nmap <silent> <leader>/ :nohlsearch<CR>
-nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
-nmap <leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
-
-" conditional settings
-if has('persistent_undo')
-  set undofile                " So is persistent undo ...
-  set undolevels=1000         " Maximum number of changes that can be undone
-  set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
-endif
-
-if has('cmdline_info')
-  set ruler                   " Show the ruler
-  set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
-  set showcmd                 " Show partial commands in status line and selected characters/lines in visual mode
-endif
-
-if has('statusline')
-  set laststatus=2
-  set statusline=%<%f\                     " Filename
-  set statusline+=%w%h%m%r%{PencilMode()}\ " Options
-  set statusline+=%{fugitive#statusline()} " Git Hotness
-  set statusline+=\ [%{&ff}/%Y]            " Filetype
-  set statusline+=\ [%{getcwd()}]          " Current dir
-  set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
-endif
-
-if has("user_commands")
-  command! -bang -nargs=* -complete=file E e<bang> <args>
-  command! -bang -nargs=* -complete=file W w<bang> <args>
-  command! -bang -nargs=* -complete=file Wq wq<bang> <args>
-  command! -bang -nargs=* -complete=file WQ wq<bang> <args>
-  command! -bang Wa wa<bang>
-  command! -bang WA wa<bang>
-  command! -bang Q q<bang>
-  command! -bang QA qa<bang>
-  command! -bang Qa qa<bang>
-endif
-
-if has('gui_running')
-  set guioptions-=T
-  set lines=40
-  set guifont=Meslo\ LG\ S\ for\ Powerline
-  set encoding=utf-8
-  set transparency=0
-  syntax enable
-  set background=dark
-  try
-    colorscheme pencil
-  catch
-  endtry
-else
-  let g:indent_guides_enable_on_vim_startup = 0
-  set t_Co=256
-  syntax enable
-  set background=dark
-  try
-    colorscheme pencil
-  catch
-  endtry
-endif
-
-if has('clipboard')
-  if LINUX()
-    set clipboard=unnamedplus
-  else
-    set clipboard=unnamed
-  endif
-endif
-
-" restore position of last edit
-if has("autocmd")
-    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
-
-" commands
-call InitializeDirectories()
-command! -complete=file -nargs=+ Shell call s:RunShellCommand(<q-args>)
-command! -nargs=? -range=% Space2Tab call IndentConvert(<line1>,<line2>,0,<q-args>)
-command! -nargs=? -range=% Tab2Space call IndentConvert(<line1>,<line2>,1,<q-args>)
-command! -nargs=? -range=% RetabIndent call IndentConvert(<line1>,<line2>,&et,<q-args>)
-command! -range=% -nargs=0 Space2Tab execute '<line1>,<line2>s#^\( \{'.&ts.'\}\)\+#\=repeat("\t", len(submatch(0))/' . &ts . ')'
-command! -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""" LOCAL """""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local

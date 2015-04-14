@@ -64,7 +64,7 @@ mkdir -p $SRC_DIRECTORY
 
 # Clone down ansible
 if [[ ! -d $ANSIBLE_DIRECTORY ]]; then
-    git clone -b devel https://github.com/ansible/ansible.git $ANSIBLE_DIRECTORY
+    git clone -b devel --recursive https://github.com/ansible/ansible.git $ANSIBLE_DIRECTORY
 fi
 
 # Use the forked Ansible

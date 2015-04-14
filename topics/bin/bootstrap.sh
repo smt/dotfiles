@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+set -x
 
 SRC_DIRECTORY="$HOME/src"
 ANSIBLE_DIRECTORY="$SRC_DIRECTORY/ansible"

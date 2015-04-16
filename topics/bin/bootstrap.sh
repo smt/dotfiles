@@ -116,7 +116,7 @@ fi
 
 # Provision the box
 echo "Info   | Configure   | ansible-playbook"
-$ANSIBLE_DIRECTORY/ansible-playbook -e "username=$(whoami)" -v --ask-sudo-pass -i $ANSIBLE_CONFIGURATION_DIRECTORY/inventories/osx $ANSIBLE_CONFIGURATION_DIRECTORY/site.yml --connection=local
+$ANSIBLE_DIRECTORY/bin/ansible-playbook -e "username=$(whoami)" -v --ask-sudo-pass -i $ANSIBLE_CONFIGURATION_DIRECTORY/inventories/osx $ANSIBLE_CONFIGURATION_DIRECTORY/site.yml --connection=local
 
 # Link the casks.
 echo "Info   | Configure   | link-casks"

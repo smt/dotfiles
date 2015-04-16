@@ -31,6 +31,8 @@ fi
 if [[ ! -x /usr/local/bin/brew ]]; then
     echo "Info   | Install   | homebrew"
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    echo "Info   | Install   | caskroom"
+    brew install caskroom/cask/brew-cask
 fi
 
 # Modify the PATH

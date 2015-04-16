@@ -8,6 +8,10 @@ SSH_DIRECTORY="$HOME/.ssh"
 ANSIBLE_DIRECTORY="$SRC_DIRECTORY/ansible"
 ANSIBLE_CONFIGURATION_DIRECTORY="$HOME/.ansible.d"
 
+function pause(){
+    read -p "$*"
+}
+
 if [[ -x /usr/bin/sw_vers ]]; then
     OSX_VERSION=$(sw_vers | grep 'ProductVersion:' | awk '{print $2}' | cut -d . -f 1,2 -)
 else
@@ -20,7 +24,7 @@ xcode-select -p > /dev/null 2>&1
 if [ $? -ne 0 ]; then
     echo "Info   | Install   | xcode"
     xcode-select --install
-    read -rsp $'Press any key to continue...\n' -n1 key
+    pause "Press [Enter] key to continue..."
 fi
 
 # Download and install Homebrew
@@ -84,7 +88,7 @@ select yn in "Yes" "No"; do
               echo "In the browser, paste the public key (now copied to your clipboard) as a new deploy key in the BitBucket repo."
               sleep 3
               open https://bitbucket.org/studor/ansible-base-box/admin/deploy-keys
-              read -rsp $'Press any key to continue...\n' -n1 key
+              pause "Press [Enter] key to continue..."
               echo "Creating a SSH config entry using 'ansible_base_box_deploykey' (you may want to delete this later)."
               cat <<EOF >> $SSH_DIRECTORY/config
 Host bitbucket.org

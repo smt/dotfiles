@@ -66,6 +66,10 @@ if [[ ! -x /usr/local/bin/ansible ]]; then
     brew install ansible
 fi
 
+# Ensure we have the required libs
+pip install --upgrade pip
+pip install pyyaml jinja2
+
 # Make the code directory
 mkdir -p $SRC_DIRECTORY
 

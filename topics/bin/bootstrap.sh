@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+#set -e
 set -x
 
 SRC_DIRECTORY="$HOME/src"
@@ -20,6 +20,7 @@ xcode-select -p > /dev/null 2>&1
 if [ $? -ne 0 ]; then
     echo "Info   | Install   | xcode"
     xcode-select --install
+    read -rsp $'Press any key to continue...\n' -n1 key
 fi
 
 # Download and install Homebrew

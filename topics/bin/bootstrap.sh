@@ -1,8 +1,5 @@
 #!/bin/bash
 
-#set -e
-#set -x
-
 SRC_DIRECTORY="$HOME/src"
 SSH_DIRECTORY="$HOME/.ssh"
 ANSIBLE_DIRECTORY="$SRC_DIRECTORY/ansible"
@@ -84,28 +81,32 @@ fi
 source $ANSIBLE_DIRECTORY/hacking/env-setup > /dev/null
 
 # Create a BitBucket deploy key?
-echo "Would you like to generate a read-only deploy key to access the private base-box repo?"
-select yn in "Yes" "No"; do
-    case $yn in
-        Yes ) echo "Info   | Configure   | deploykey"
-              mkdir -p $SSH_DIRECTORY
-              ssh-keygen -f $SSH_DIRECTORY/ansible_base_box_deploykey -t rsa -N ''
-              cat $SSH_DIRECTORY/ansible_base_box_deploykey.pub | pbcopy
-              echo "In the browser, paste the public key (now copied to your clipboard) as a new deploy key in the BitBucket repo."
-              sleep 3
-              open https://bitbucket.org/studor/ansible-base-box/admin/deploy-keys
-              pause "Press [Enter] key to continue..."
-              echo "Creating a SSH config entry using 'ansible_base_box_deploykey' (you may want to delete this later)."
-              cat <<EOF >> $SSH_DIRECTORY/config
+grep -ri "Host bitbucket.org" $SSH_DIRECTORY > /dev/null 2>&1
+if [ $? -ne 0 ]; then
+    echo "Would you like to generate a read-only deploy key to access the private base-box repo?"
+    select yn in "Yes" "No"; do
+        case $yn in
+            Yes ) echo "Info   | Configure   | deploykey"
+                  mkdir -p $SSH_DIRECTORY
+                  ssh-keygen -f $SSH_DIRECTORY/ansible_base_box_deploykey -t rsa -N ''
+                  cat $SSH_DIRECTORY/ansible_base_box_deploykey.pub | pbcopy
+                  echo "In the browser, paste the public key (now copied to your clipboard) as a new deploy key in the BitBucket repo."
+                  sleep 3
+                  open https://bitbucket.org/studor/ansible-base-box/admin/deploy-keys
+                  sleep 3
+                  pause "Press [Enter] key to continue..."
+                  echo "Creating a SSH config entry using 'ansible_base_box_deploykey' (you may want to delete this later)."
+                  cat <<EOF >> $SSH_DIRECTORY/config
 Host bitbucket.org
 Hostname bitbucket.org
 User git
 IdentityFile %d/.ssh/ansible_base_box_deploykey
 EOF
-              break;;
-        No ) break;;
-    esac
-done
+                  break;;
+            No ) break;;
+        esac
+    done
+fi
 
 # Clone down the Ansible repo
 if [[ ! -d $ANSIBLE_CONFIGURATION_DIRECTORY ]]; then

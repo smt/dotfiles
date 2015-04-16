@@ -16,7 +16,7 @@ else
 fi
 
 # Download and install Command Line Tools
-xcode-select -p 1>/dev/null
+xcode-select -p > /dev/null 2>&1
 if [ $? -ne 0 ]; then
     echo "Info   | Install   | xcode"
     xcode-select --install

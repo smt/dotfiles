@@ -112,7 +112,7 @@ fi
 if [[ ! -d $ANSIBLE_CONFIGURATION_DIRECTORY ]]; then
     echo "Info   | Configure   | ansible.d"
     git clone git@bitbucket.org:studor/ansible-base-box.git $ANSIBLE_CONFIGURATION_DIRECTORY
-    (cd $ANSIBLE_CONFIGURATION_DIRECTORY && git submodule init && git submodule update)
+    (cd $ANSIBLE_CONFIGURATION_DIRECTORY && git submodule update --init)
 fi
 
 # Provision the box

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #set -e
-set -x
+#set -x
 
 SRC_DIRECTORY="$HOME/src"
 SSH_DIRECTORY="$HOME/.ssh"
@@ -23,7 +23,7 @@ fi
 xcode-select -p > /dev/null 2>&1
 if [ $? -ne 0 ]; then
     echo "Info   | Install   | xcode"
-    xcode-select --install
+    xcode-select --install > /dev/null 2>&1
     pause "Press [Enter] key to continue..."
 fi
 

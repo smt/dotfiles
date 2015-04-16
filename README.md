@@ -1,7 +1,7 @@
 # Dotfile config
 
 ## Install
-`$ curl https://raw.githubusercontent.com/smt/dotfiles/master/topics/bin/bootstrap.sh | bash`
+`$ bash <(curl -s https://raw.githubusercontent.com/smt/dotfiles/master/topics/bin/bootstrap.sh)`
 
 ## Structure
 1. Symlinks (under `locations`) indicate where the soon-to-be-created symlinks

@@ -4,6 +4,7 @@ set -e
 set -x
 
 SRC_DIRECTORY="$HOME/src"
+SSH_DIRECTORY="$HOME/.ssh"
 ANSIBLE_DIRECTORY="$SRC_DIRECTORY/ansible"
 ANSIBLE_CONFIGURATION_DIRECTORY="$HOME/.ansible.d"
 
@@ -56,6 +57,7 @@ fi
 
 # Download and install Ansible
 if [[ ! -x /usr/local/bin/ansible ]]; then
+    echo "Info   | Install   | ansible"
     brew install ansible
 fi
 
@@ -70,14 +72,41 @@ fi
 # Use the forked Ansible
 source $ANSIBLE_DIRECTORY/hacking/env-setup > /dev/null
 
+# Create a BitBucket deploy key?
+echo "Would you like to generate a read-only deploy key to access the private base-box repo?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) echo "Info   | Configure   | deploykey"
+              mkdir -p $SSH_DIRECTORY
+              ssh-keygen -f $SSH_DIRECTORY/ansible_base_box_deploykey -t rsa -N ''
+              cat $SSH_DIRECTORY/ansible_base_box_deploykey.pub | pbcopy
+              echo "In the browser, paste the public key (now copied to your clipboard) as a new deploy key in the BitBucket repo."
+              sleep 3
+              open https://bitbucket.org/studor/ansible-base-box/admin/deploy-keys
+              read -rsp $'Press any key to continue...\n' -n1 key
+              echo "Creating a SSH config entry using 'ansible_base_box_deploykey' (you may want to delete this later)."
+              cat <<EOF >> $SSH_DIRECTORY/config
+Host bitbucket.org
+Hostname bitbucket.org
+User git
+IdentityFile %d/.ssh/ansible_base_box_deploykey
+EOF
+              break;;
+        No ) break;;
+    esac
+done
+
 # Clone down the Ansible repo
 if [[ ! -d $ANSIBLE_CONFIGURATION_DIRECTORY ]]; then
+    echo "Info   | Configure   | ansible.d"
     git clone git@bitbucket.org:studor/ansible-base-box.git $ANSIBLE_CONFIGURATION_DIRECTORY
     (cd $ANSIBLE_CONFIGURATION_DIRECTORY && git submodule init && git submodule update)
 fi
 
 # Provision the box
+echo "Info   | Configure   | ansible-playbook"
 ansible-playbook -e "username=$(whoami)" -v --ask-sudo-pass -i $ANSIBLE_CONFIGURATION_DIRECTORY/inventories/osx $ANSIBLE_CONFIGURATION_DIRECTORY/site.yml --connection=local
 
 # Link the casks.
+echo "Info   | Configure   | link-casks"
 ~/.bin/link-casks

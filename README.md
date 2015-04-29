@@ -3,7 +3,7 @@
 ## Install
 
 ```bash
-bash <(curl -s https://d.pr/w8kA)
+bash <(curl -sL https://d.pr/w8kA)
 ```
 
 The shortened URL redirects to the [raw](https://raw.githubusercontent.com/smt/dotfiles/master/topics/bin/bootstrap.sh) version of this project's [bootstrap script](https://github.com/smt/dotfiles/blob/master/topics/bin/bootstrap.sh). Please review before running.

@@ -41,12 +41,6 @@ fi
 # Modify the PATH
 export PATH=/usr/local/bin:$PATH
 
-# Download and install fish
-if [[ ! -x /usr/local/bin/fish ]]; then
-    echo "Info   | Install   | fish"
-    brew install fish
-fi
-
 # Download and install git
 if [[ ! -x /usr/local/bin/git ]]; then
     echo "Info   | Install   | git"

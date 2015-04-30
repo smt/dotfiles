@@ -10,7 +10,11 @@ cd ~/.dotfiles
 rake
 ```
 
-Note that the dotfiles assume the existence of certain languages and frameworks, such as Python, Ruby, Node.js. I am also a [fish](http://fishshell.com/) user, so if you're not, lots of things won't work or make sense to you.
+*Please Note:*
+
+As is, the dotfiles assume the existence of certain languages and frameworks, such as Python, Ruby, Node.js, and other things that I myself use on a daily basis.
+
+I am also a [fish](http://fishshell.com/) user, so if you're not, lots of things won't work or make sense to you. All that being said, you should probably consider switching to fish. The dream of the '90s is still alive.
 
 ### Dotfile Structure
 
@@ -61,12 +65,12 @@ That's where [Ansible](http://www.ansible.com) comes in. I had no desire to use 
 
 I'm been inspired the great work of these people. My sincere thanks to:
 
-- James Tomasino, for his continuous tinkering on his awesome [dotfiles](https://github.com/jamestomasino/dotfiles) and [binfiles](https://github.com/jamestomasino/bin).
-- Daniel Jaouen, for re-kindling my **Ansible + OS X** dream with [this blog post](http://il.luminat.us/blog/2014/04/19/how-i-fully-automated-os-x-with-ansible/). My playbooks are still just forks of his.
-- Jeff Geerling, who not only has a very interesting [Mac dev playbook](https://github.com/geerlingguy/mac-dev-playbook) of his own, but also has a very thorough resource on how to get a [Mac OS X Virtualbox VM](https://github.com/geerlingguy/mac-osx-virtualbox-vm) up and running (testing this stuff out on a fresh snapshot is so critical!).
-- Mathias Bynens, for his painstakingly curated collection of [OS X preferences](https://github.com/mathiasbynens/dotfiles/blob/master/.osx).
-- Zach Holman, for the [initial inspiration](https://github.com/holman/dotfiles/) to start my own dotfiles repo.
-- Ryan Tomayko, for various useful [utility scripts](https://github.com/rtomayko/dotfiles/tree/rtomayko/bin).
+- **James Tomasino**, for his continuous tinkering on his awesome [dotfiles](https://github.com/jamestomasino/dotfiles) and [binfiles](https://github.com/jamestomasino/bin).
+- **Daniel Jaouen**, for re-kindling my **Ansible + OS X** dream with [this blog post](http://il.luminat.us/blog/2014/04/19/how-i-fully-automated-os-x-with-ansible/). My playbooks are still just forks of his.
+- **Jeff Geerling**, who not only has a very interesting [Mac dev playbook](https://github.com/geerlingguy/mac-dev-playbook) of his own, but also has a very thorough resource on how to get a [Mac OS X Virtualbox VM](https://github.com/geerlingguy/mac-osx-virtualbox-vm) up and running (testing this stuff out on a fresh snapshot is so critical!).
+- **Mathias Bynens**, for his painstakingly curated collection of [OS X preferences](https://github.com/mathiasbynens/dotfiles/blob/master/.osx).
+- **Zach Holman**, for the [initial inspiration](https://github.com/holman/dotfiles/) to start my own dotfiles repo.
+- **Ryan Tomayko**, for various useful [utility scripts](https://github.com/rtomayko/dotfiles/tree/rtomayko/bin).
 
 ## TODO
 

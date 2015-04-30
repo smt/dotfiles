@@ -10,6 +10,15 @@ cd ~/.dotfiles
 rake
 ```
 
+Note that the dotfiles assume the existence of certain languages and frameworks, such as Python, Ruby, Node.js. I am also a [fish](http://fishshell.com/) user, so if you're not, lots of things won't work or make sense to you.
+
+### Dotfile Structure
+
+1. Symlinks (under `locations`) indicate where the soon-to-be-created symlinks end up (relative to `~`).
+2. The `topics` directory contains the actual dotfiles.
+3. To create directories, use `<dir>.directory.symlink` links (under `locations`).
+4. Try not to symlink directories -- instead, create them (with `<dir>.directory.symlink` links) and then symlink dotfiles into them (this is kind of a pain in the butt).
+
 ## Full Environment Install
 
 ![flashing red emergency vehicle lights](http://static.sites.yp.com/var/m_6/63/63a/10981405/150888-lightbaranimated.gif)
@@ -30,18 +39,6 @@ Yeah, there's a private repo involved, sorry. It primarily consists of an Ansibl
 
 Anyway, Ansible `git clone`s and `brew install`s a bunch of stuff, including this very repo, and then runs the [Rakefile](https://github.com/smt/dotfiles/blob/master/Rakefile) to link up all the dotfiles into the locations where they go.
 
-## Dotfile Structure
-
-1. Symlinks (under `locations`) indicate where the soon-to-be-created symlinks end up (relative to `~`).
-2. The `topics` directory contains the actual dotfiles.
-3. To create directories, use `<dir>.directory.symlink` links (under `locations`).
-4. Try not to symlink directories -- instead, create them (with `<dir>.directory.symlink` links) and then symlink dotfiles into them (this is kind of a pain in the butt).
-
-## TODO
-
-- Created directories should copy over permissions.
-- The Rakefile should never overwrite locals.
-
 ## About the dotfiles, Ansible, etc.
 
 My dotfiles have a long, pox-ridden history of nukings. Lots of them. Let's just call it... "aggressive refactoring."
@@ -56,11 +53,13 @@ So naturally, I decided to waste at least an order of magnitude more time prepar
 
 Chances are, I'll be able to take these learnings and abstract them into a tool my future employer can use for onboarding new developers.
 
+### In which I finally mention Ansible for a sentence or three
+
 That's where [Ansible](http://www.ansible.com) comes in. I had no desire to use Puppet or Chef for this (I'd already given [Boxen](https://github.com/boxen/boxen) a more than fair attempt), and as I've been using Ansible for various automation tasks in my current day job, it seemed like a logical choice. It's really an amazing tool, and in this project I've barely even scratched the surface of what it is capable of.
 
 ## Credit
 
-I've been inspired by a lot of great work. My sincere thanks to:
+I'm been inspired the great work of these people. My sincere thanks to:
 
 - James Tomasino, for his continuous tinkering on his awesome [dotfiles](https://github.com/jamestomasino/dotfiles) and [binfiles](https://github.com/jamestomasino/bin).
 - Daniel Jaouen, for re-kindling my **Ansible + OS X** dream with [this blog post](http://il.luminat.us/blog/2014/04/19/how-i-fully-automated-os-x-with-ansible/). My playbooks are still just forks of his.
@@ -68,3 +67,8 @@ I've been inspired by a lot of great work. My sincere thanks to:
 - Mathias Bynens, for his painstakingly curated collection of [OS X preferences](https://github.com/mathiasbynens/dotfiles/blob/master/.osx).
 - Zach Holman, for the [initial inspiration](https://github.com/holman/dotfiles/) to start my own dotfiles repo.
 - Ryan Tomayko, for various useful [utility scripts](https://github.com/rtomayko/dotfiles/tree/rtomayko/bin).
+
+## TODO
+
+- Created directories should copy over permissions.
+- The Rakefile should never overwrite locals.

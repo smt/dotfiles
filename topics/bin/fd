@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# FZF-related
+
+# fd - cd to selected directory
+
+dir=$(find ${1:-*} -path '*/\.*' -prune \
+  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"

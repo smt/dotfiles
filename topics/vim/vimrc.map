@@ -27,6 +27,8 @@ map <up> <C-W>k<C-W>_
 map <down> <C-W>j<C-W>_
 map <left> <C-W>h<C-W>_
 map <right> <C-W>l<C-W>_
+map  <Esc>[; <C-Semicolon>
+map! <Esc>[; <C-Semicolon>
 
 " vmap
 vmap <C-Up> xkP`[V`]

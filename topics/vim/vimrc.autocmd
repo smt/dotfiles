@@ -173,7 +173,7 @@ if has('autocmd')
     au FileType yaml setlocal et ts=2 sts=2 sw=2
   augroup END
 
-  augroup pencil
+  augroup bundle_pencil
     au!
     au FileType markdown,mkd call pencil#init()
           \ | call lexical#init()
@@ -209,3 +209,5 @@ if has('autocmd')
   augroup END
 
 endif
+
+" vim: set sw=2 ts=2 sts=2 et tw=78 nospell:

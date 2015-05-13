@@ -9,16 +9,16 @@ map <C-L> <C-W>l<C-W>_
 map <C-H> <C-W>h<C-W>_
 map <S-H> gT
 map <S-L> gt
-map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
+map <Leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
 map [F $
 map [H g0
-map <leader>ew :e %%
-map <leader>es :sp %%
-map <leader>ev :vsp %%
-map <leader>et :tabe %%
+map <Leader>ew :e %%
+map <Leader>es :sp %%
+map <Leader>ev :vsp %%
+"map <Leader>et :tabe %%
 map <Leader>= <C-w>=
-map <leader>W :call WordProcessorMode()<CR>
-map <leader>tt :TagbarToggle<CR>
+map <Leader>W :call WordProcessorMode()<CR>
+map <Leader>tt :TagbarToggle<CR>
 map zl zL
 map zh zH
 "map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
@@ -72,19 +72,19 @@ nnoremap <silent> <Leader><CR> :FZFBuffers<CR>
 nnoremap <silent> <Leader>C :FZFColors<CR>
 nnoremap <silent> <Leader>s :Ag!<CR>
 nnoremap <Leader>G :Goyo<CR>
-nnoremap <silent> <leader>gs :Gstatus<CR>
-nnoremap <silent> <leader>gd :Gdiff<CR>
-nnoremap <silent> <leader>gc :Gcommit<CR>
-nnoremap <silent> <leader>gb :Gblame<CR>
-nnoremap <silent> <leader>gl :Glog<CR>
-nnoremap <silent> <leader>gp :Git push<CR>
-nnoremap <silent> <leader>gr :Gread<CR>
-nnoremap <silent> <leader>gw :Gwrite<CR>
-nnoremap <silent> <leader>ge :Gedit<CR>
-nnoremap <silent> <leader>gi :Git add -p %<CR>
-nnoremap <silent> <leader>gg :QuickfixsignsToggle<CR>
-nnoremap <leader>tf :call g:FixTabStops()<CR>
-nnoremap <leader>gu :GundoToggle<CR>
+nnoremap <silent> <Leader>gs :Gstatus<CR>
+nnoremap <silent> <Leader>gd :Gdiff<CR>
+nnoremap <silent> <Leader>gc :Gcommit<CR>
+nnoremap <silent> <Leader>gb :Gblame<CR>
+nnoremap <silent> <Leader>gl :Glog<CR>
+nnoremap <silent> <Leader>gp :Git push<CR>
+nnoremap <silent> <Leader>gr :Gread<CR>
+nnoremap <silent> <Leader>gw :Gwrite<CR>
+nnoremap <silent> <Leader>ge :Gedit<CR>
+nnoremap <silent> <Leader>gi :Git add -p %<CR>
+nnoremap <silent> <Leader>gg :QuickfixsignsToggle<CR>
+nnoremap <Leader>tf :call g:FixTabStops()<CR>
+nnoremap <Leader>gu :GundoToggle<CR>
 nnoremap <S-Left> :SidewaysLeft<cr>
 nnoremap <S-Right> :SidewaysRight<cr>
 " nnoremap <C-Up> ddkP
@@ -109,25 +109,26 @@ cnoremap <silent> <c-l> <c-\>eGetCompletions()<cr>
 "add an extra <cr> at the end of this line to automatically accept the fzf-selected completions.
 
 " cmap
-cmap Tabe tabe
+"cmap Tabe tabe
 cmap w!! w !sudo tee % >/dev/null
 cmap cwd lcd %:p:h
 cmap cd. lcd %:p:h
 
 " nmap
-nmap <leader>f0 :set foldlevel=0<CR>
-nmap <leader>f1 :set foldlevel=1<CR>
-nmap <leader>f2 :set foldlevel=2<CR>
-nmap <leader>f3 :set foldlevel=3<CR>
-nmap <leader>f4 :set foldlevel=4<CR>
-nmap <leader>f5 :set foldlevel=5<CR>
-nmap <leader>f6 :set foldlevel=6<CR>
-nmap <leader>f7 :set foldlevel=7<CR>
-nmap <leader>f8 :set foldlevel=8<CR>
-nmap <leader>f9 :set foldlevel=9<CR>
-nmap <silent> <leader>/ :nohlsearch<CR>
+nmap <Leader>f0 :set foldlevel=0<CR>
+nmap <Leader>f1 :set foldlevel=1<CR>
+nmap <Leader>f2 :set foldlevel=2<CR>
+nmap <Leader>f3 :set foldlevel=3<CR>
+nmap <Leader>f4 :set foldlevel=4<CR>
+nmap <Leader>f5 :set foldlevel=5<CR>
+nmap <Leader>f6 :set foldlevel=6<CR>
+nmap <Leader>f7 :set foldlevel=7<CR>
+nmap <Leader>f8 :set foldlevel=8<CR>
+nmap <Leader>f9 :set foldlevel=9<CR>
+nmap <silent> <Leader>/ :nohlsearch<CR>
 nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
-nmap <leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
+nmap <Leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
+
 " smap
 smap <C-Semicolon> <Plug>(neosnippet_expand_or_jump)
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?

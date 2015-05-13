@@ -34,7 +34,7 @@ if has('autocmd')
     au FileType clj,cljs,lisp         autocmd BufWritePre <buffer> call StripTrailingWhitespace()
     au FileType {c,le,sc}ss,stylus    autocmd BufWritePre <buffer> call StripTrailingWhitespace()
     au FileType go                    autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-    au FileType {ht,pht,x}ml,jade     autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+    au FileType {ht,x}ml,jade         autocmd BufWritePre <buffer> call StripTrailingWhitespace()
     au FileType java                  autocmd BufWritePre <buffer> call StripTrailingWhitespace()
     au FileType {java,type}script     autocmd BufWritePre <buffer> call StripTrailingWhitespace()
     au FileType json                  autocmd BufWritePre <buffer> call StripTrailingWhitespace()
@@ -43,6 +43,15 @@ if has('autocmd')
     au FileType ruby                  autocmd BufWritePre <buffer> call StripTrailingWhitespace()
     au FileType vim                   autocmd BufWritePre <buffer> call StripTrailingWhitespace()
     au FileType yaml                  autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+  augroup END
+
+  augroup func_omnicompletion
+    au!
+    au FileType {c,le,sc}ss,stylus setlocal omnifunc=csscomplete#CompleteCSS
+    au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    au FileType {java,type}script setlocal omnifunc=javascriptcomplete#CompleteJS
+    au FileType python setlocal omnifunc=pythoncomplete#Complete
+    au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
   augroup END
 
   augroup func_resize
@@ -60,6 +69,7 @@ if has('autocmd')
   augroup type_html
     au!
     au BufRead,BufNewFile *.phtml setlocal filetype=html.php
+    au BufRead,BufNewFile *.jsp setlocal filetype=html.jsp
     au FileType html setlocal et ts=4 sts=4 sw=4
     " Auto-tidy selection
     au FileType html vnoremap <leader>x :!tidy -q -i --show-errors 0 --show-body-only 1 --wrap 0<cr><cr>
@@ -90,7 +100,7 @@ if has('autocmd')
     " Toggling True/False
     au filetype {java,type}script nnoremap <silent> <C-t> mmviw:s/true\\|false/\={'true':'false','false':'true'}[submatch(0)]/<CR>`m:nohlsearch<CR>
     " Enable insertion of "debugger" statement in JS files
-    au filetype javascript nnoremap <leader>b Odebugger;<esc>
+    au filetype {java,type}script nnoremap <leader>b Odebugger;<esc>
   augroup END
 
   augroup type_json
@@ -177,14 +187,14 @@ if has('autocmd')
     au Filetype mail         call pencil#init({'wrap': 'hard', 'textwidth': 60})
           \ | call litecorrect#init()
           \ | setl spell spl=en_us et sw=2 ts=2 noai nonu nornu
-    au Filetype html,xml     call pencil#init({'wrap': 'soft'})
+    au Filetype {ht,x}ml     call pencil#init({'wrap': 'soft'})
           \ | call litecorrect#init()
           \ | setl spell spl=en_us et sw=2 ts=2
   augroup END
 
   augroup bundle_emmet
     au!
-    au FileType html,css EmmetInstall
+    au FileType html,{c,le,sc}ss EmmetInstall
   augroup END
 
   augroup bundle_goyo

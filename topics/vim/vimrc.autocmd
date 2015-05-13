@@ -106,7 +106,7 @@ if has('autocmd')
   augroup type_json
     au!
     au FileType json setlocal et ts=2 sts=2 sw=2
-    au FileType json equalprg=python\ -m\ json.tool
+    au FileType json setlocal equalprg=python\ -m\ json.tool
   augroup END
 
   augroup type_lisp

@@ -203,6 +203,12 @@ if has('autocmd')
     au User GoyoLeave nested call <SID>goyo_leave()
   augroup END
 
+  augroup bundle_neosnippet
+    au!
+    au BufNewFile *.snip{pets,} setlocal filetype=neosnippet
+    au FileType neosnippet setlocal noet ts=4 sts=4 sw=4
+  augroup END
+
   augroup bundle_surround
     " FileType-dependent mapping of "-" (ASCII 45) as a replacement string
     au FileType php let b:surround_45 = "<?php \r ?>"

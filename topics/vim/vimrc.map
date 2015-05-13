@@ -36,6 +36,10 @@ vmap <C-Down> xp`[V`]
 imap [F $
 imap [H g0
 imap <F1> <Esc>
+imap <C-Semicolon> <Plug>(neosnippet_expand_or_jump)
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+      \ "\<Plug>(neosnippet_expand_or_jump)"
+      \: pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " noremap
 noremap j gj
@@ -109,5 +113,20 @@ nmap <leader>f9 :set foldlevel=9<CR>
 nmap <silent> <leader>/ :nohlsearch<CR>
 nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 nmap <leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
+" smap
+smap <C-Semicolon> <Plug>(neosnippet_expand_or_jump)
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
+
+" xmap
+xmap <C-Semicolon> <Plug>(neosnippet_expand_target)
+
+" Private functions
+function! s:my_cr_function()
+  "return neocomplete#close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
 
 " vim: set sw=2 ts=2 sts=2 et tw=78 nospell:

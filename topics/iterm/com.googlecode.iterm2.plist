@@ -68234,7 +68234,7 @@
 	<key>NSWindow Frame Preferences</key>
 	<string>269 110 924 485 0 0 1680 1028 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 74 1680 954 0 0 1680 1028 </string>
+	<string>0 10 1680 1018 0 0 1680 1028 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>0 10 1674 1018 0 0 1680 1028 </string>
 	<key>New Bookmarks</key>
@@ -68551,6 +68551,13 @@
 					<integer>11</integer>
 					<key>Text</key>
 					<string>0x7f</string>
+				</dict>
+				<key>0x3b-0x40000</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>[;</string>
 				</dict>
 				<key>0xf700-0x220000</key>
 				<dict>
@@ -69003,7 +69010,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-04-29T21:01:49Z</date>
+	<date>2015-05-12T21:52:11Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Secure Input</key>

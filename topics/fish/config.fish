@@ -17,8 +17,8 @@ set BREW_PREFIX (brew --prefix)
 switch (uname)
     case Darwin
         set -x GOPATH /usr/local/var/go
-        # set LOCAL_PATH /usr/X11/bin
-        # set LOCAL_PATH /usr/texbin $LOCAL_PATH
+        set LOCAL_PATH /usr/texbin
+        # set LOCAL_PATH /usr/X11/bin $LOCAL_PATH
         set LOCAL_PATH /usr/local/opt/ruby/bin $LOCAL_PATH
         set LOCAL_PATH /usr/local/deployd/bin $LOCAL_PATH
         set LOCAL_PATH /usr/local/share/npm/bin $LOCAL_PATH

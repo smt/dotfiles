@@ -28,15 +28,6 @@ let g:airline_powerline_fonts=1
 " Emmet
 let g:user_emmet_install_global = 0
 
-" Syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_python_checkers=['flake8', 'pylint']
-let g:syntastic_html_tidy_exec = 'tidy5'
-
 " neocomplete
 let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
@@ -62,20 +53,28 @@ endif
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 " neosnippet
-let g:neosnippet#disable_runtime_snippets = {
-      \   '_' : 1,
-      \ }
+let g:neosnippet#disable_runtime_snippets = { '_' : 1, }
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets,~/.vim/snippets'
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
 
 " Pandoc
 let g:pandoc#filetypes#handled = ["pandoc", "markdown", "rst", "textile", "extra"]
 let g:pandoc#modules#disabled = ["spell"]
 let g:pandoc#formatting#textwidth = 78
 let g:pandoc#command#custom_open = "MyPandocOpen"
+
+" Syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_python_checkers=['flake8', 'pylint']
+let g:syntastic_html_tidy_exec = 'tidy5'
+
+" Tern
+let g:tern_map_keys = 1
+let g:tern_show_argument_hints = 'on_hold'
 
 " Pencil / Writing Controls
 let g:pencil#wrapModeDefault = 'soft'
@@ -182,6 +181,10 @@ if has('cmdline_info')
   set ruler                     " Show the ruler
   set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
   set showcmd                   " Show partial commands in status line and selected characters/lines in visual mode
+endif
+
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
 endif
 
 if has('statusline')

@@ -80,6 +80,7 @@ Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'jsx'] }
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'mxw/vim-jsx', { 'for': 'jsx' }
 Plug 'moll/vim-node', { 'for': 'javascript' }
+Plug 'marijnh/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'less', 'scss'] }
 Plug 'groenewege/vim-less', { 'for': 'less' }

@@ -21,7 +21,7 @@ if has('autocmd')
     au FileType java                  setlocal list
     au FileType {java,type}script     setlocal list
     au FileType json                  setlocal list
-    au FileType markdown              setlocal list
+    au FileType pandoc                setlocal list
     au FileType php,twig              setlocal list
     au FileType ruby                  setlocal list
     au FileType vim                   setlocal list
@@ -48,7 +48,7 @@ if has('autocmd')
   augroup func_omnicompletion
     au!
     au FileType {c,le,sc}ss,stylus setlocal omnifunc=csscomplete#CompleteCSS
-    au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    au FileType html setlocal omnifunc=htmlcomplete#CompleteTags
     au FileType {java,type}script setlocal omnifunc=javascriptcomplete#CompleteJS
     au FileType python setlocal omnifunc=pythoncomplete#Complete
     au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
@@ -120,10 +120,10 @@ if has('autocmd')
     au FileType make setlocal noet ts=4 sts=4 sw=4
   augroup END
 
-  augroup type_markdown
+  augroup type_pandoc
     au!
-    au BufRead,BufNewFile *.{ft,md} setlocal filetype=markdown
-    au FileType markdown setlocal et ts=4 sts=4 sw=4
+    au BufRead,BufNewFile *.{ft} setlocal filetype=pandoc
+    au FileType pandoc setlocal et ts=4 sts=4 sw=4
   augroup END
 
   augroup type_php
@@ -175,7 +175,7 @@ if has('autocmd')
 
   augroup bundle_pencil
     au!
-    au FileType markdown,mkd call pencil#init()
+    au FileType pandoc call pencil#init()
           \ | call lexical#init()
           \ | call litecorrect#init()
           \ | setl spell spl=en_us fdl=4 noru nonu nornu

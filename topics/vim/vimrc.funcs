@@ -197,6 +197,10 @@ function! GetCompletions()
     endif
 endfunction
 
+function! MyPandocOpen(file)
+  return 'open -a "Marked 2"'. a:file
+endfunction
+
 function! s:goyo_enter()
   silent !tmux set status off
   set noshowmode

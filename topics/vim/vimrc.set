@@ -71,6 +71,12 @@ if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 
+" Pandoc
+let g:pandoc#filetypes#handled = ["pandoc", "markdown", "rst", "textile", "extra"]
+let g:pandoc#modules#disabled = ["spell"]
+let g:pandoc#formatting#textwidth = 78
+let g:pandoc#command#custom_open = "MyPandocOpen"
+
 " Pencil / Writing Controls
 let g:pencil#wrapModeDefault = 'soft'
 let g:pencil#textwidth = 74

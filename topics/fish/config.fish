@@ -248,7 +248,7 @@ end
 function gst
     command git status $argv
 end
-function gs
+function gss
     command git status -s $argv
 end
 # /git -------------------------------------------------------------------- }}}

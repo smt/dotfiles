@@ -431,11 +431,23 @@ end
 function rr
     command rbenv rehash $argv
 end
-
 function bug
     command bundle gem $1 --bin --test $argv
 end
 # /ruby/rails ------------------------------------------------------------- }}}
+
+# snippets ---------------------------------------------------------------- {{{
+function esnip
+    e ~/.snippetrc
+end
+function emultisnip
+    ls ~/.multisnippet | fzf -e -i > $TMPDIR/fzf.result;
+    and e ~/.multisnippet/(cat $TMPDIR/fzf.result)
+end
+function multisnip
+    e ~/.multisnippet/$argv
+end
+# /snippets --------------------------------------------------------------- }}}
 
 # vagrant ----------------------------------------------------------------- {{{
 function v

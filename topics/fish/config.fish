@@ -106,10 +106,10 @@ function reload
     . $fish_path
 end
 function l
-    command ls -lah $argv
+    ls -lah $argv
 end
 function lsd
-    command ls -Gl | grep "^d" $argv
+    ls -Gl | grep "^d" $argv
 end
 function lsort
     echo "========== Newest =========="

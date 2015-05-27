@@ -68225,18 +68225,20 @@
 	<true/>
 	<key>MaxVertically</key>
 	<false/>
+	<key>NSFontPanelAttributes</key>
+	<string>1, 4</string>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
 	<string></string>
 	<key>NSScrollAnimationEnabled</key>
 	<false/>
+	<key>NSWindow Frame NSFontPanel</key>
+	<string>929 110 445 239 0 0 1440 877 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>269 110 924 485 0 0 1680 1028 </string>
+	<string>269 692 924 485 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 10 1680 1018 0 0 1680 1028 </string>
-	<key>NSWindow Frame iTerm Window 1</key>
-	<string>0 10 1674 1018 0 0 1680 1028 </string>
+	<string>0 15 1915 1162 0 0 1920 1200 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -68765,11 +68767,11 @@
 			<key>Name</key>
 			<string>smt</string>
 			<key>Non Ascii Font</key>
-			<string>DejaVuSansMonoForPowerline 12</string>
+			<string>LiterationMonoPowerline 14</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>DejaVuSansMonoForPowerline 13</string>
+			<string>LiterationMonoPowerline 14</string>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
@@ -68935,7 +68937,7 @@
 			<key>Use Italic Font</key>
 			<false/>
 			<key>Vertical Spacing</key>
-			<real>0.99931377172470093</real>
+			<real>1.0525363683700562</real>
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
@@ -68944,6 +68946,10 @@
 			<string></string>
 		</dict>
 	</array>
+	<key>NoSyncTimeOfLastPromo</key>
+	<real>453699841.08375502</real>
+	<key>NoSyncTimeOfLastPromoDownload</key>
+	<real>453699841.08412403</real>
 	<key>OnlyWhenMoreTabs</key>
 	<false/>
 	<key>OpenArrangementAtStartup</key>
@@ -68990,7 +68996,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/studor/.dotfiles/topics/iterm</string>
+	<string>/Users/tudors1/.dotfiles/topics/iterm</string>
 	<key>PromptOnQuit</key>
 	<false/>
 	<key>QuickPasteBytesPerCall</key>
@@ -69010,7 +69016,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-05-12T21:52:11Z</date>
+	<date>2015-05-19T03:43:37Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Secure Input</key>
@@ -69054,7 +69060,7 @@
 	<key>WebKitDefaultFontSize</key>
 	<integer>11</integer>
 	<key>WebKitStandardFont</key>
-	<string>Lucida Grande</string>
+	<string>.Helvetica Neue DeskInterface</string>
 	<key>Window Arrangements</key>
 	<dict>
 		<key>Maximized</key>
@@ -69846,6 +69852,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>2.1</string>
+	<string>2.1.1</string>
 </dict>
 </plist>

@@ -11,4 +11,4 @@ test $# -eq 0 -o "$1" = "--help" && {
 }
 
 # pipe pboard through sed and then back again
-pbpaste | sed "$@" | pbcopy
+pbpaste | sed "$@" | xargs echo -n | pbcopy

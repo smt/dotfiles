@@ -46,6 +46,7 @@ imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 " noremap
 noremap j gj
 noremap k gk
+nnoremap - -
 
 " inoremap
 inoremap jk <Esc>
@@ -128,6 +129,7 @@ nmap <Leader>f9 :set foldlevel=9<CR>
 nmap <silent> <Leader>/ :nohlsearch<CR>
 nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 nmap <Leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
+nmap _ <Plug>VinegarUp
 
 " smap
 smap <C-Semicolon> <Plug>(neosnippet_expand_or_jump)

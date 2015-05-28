@@ -14,6 +14,7 @@ endif
 " General
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'embear/vim-localvimrc'
+Plug 'eiginn/netrw'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'
 Plug 'reedes/vim-wheel'

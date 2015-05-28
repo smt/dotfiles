@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -x
 # Based on https://github.com/gotbletu/shownotes/blob/master/fzf-snippet.md
 
 # location of snippets
@@ -8,14 +8,14 @@ dir=$HOME/.multisnip
 results=''
 
 # merge filename and tags into single line
-for FILE in $(find $dir/ -type f)
+for FILE in $(find $dir/ -type f -o -type l)
 do
 	getname=$(basename $FILE)
 	gettags=$(head -n 1 $FILE)
 
-	results+="$getname \t $gettags"
+	results+="$getname \t $gettags\n"
 done
 
 # copy content into clipboard without tags
-filename=$(echo "$(echo -e ${results%%[[:space:]]} | fzf -e -i )" | cut -d' ' -f 1)
+filename=$(echo "$(echo -en $results | fzf -e -i )" | cut -d' ' -f 1)
 sed 1d $dir/$filename | pbcopy

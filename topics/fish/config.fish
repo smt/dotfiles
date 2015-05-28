@@ -438,14 +438,14 @@ end
 
 # snippets ---------------------------------------------------------------- {{{
 function esnip
-    e ~/.snippetrc
+    e ~/.sniprc
 end
 function emultisnip
-    ls ~/.multisnippet | fzf -e -i > $TMPDIR/fzf.result;
-    and e ~/.multisnippet/(cat $TMPDIR/fzf.result)
+    ls ~/.multisnip | fzf -e -i > $TMPDIR/fzf.result;
+    and e ~/.multisnip/(cat $TMPDIR/fzf.result)
 end
 function multisnip
-    e ~/.multisnippet/$argv
+    e ~/.multisnip/$argv
 end
 # /snippets --------------------------------------------------------------- }}}
 

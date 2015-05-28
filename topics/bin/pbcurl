@@ -1,5 +1,12 @@
 #!/bin/sh
-# Usage: pbcurl <options>
-# Shorthand for: curl -L <options> "$(pbpaste)"
+#/ Usage: pbcurl [<options>]
+#/ Shorthand for: curl -L <options> "$(pbpaste)"
+set -e
+
+# print help/usage with no pattern/args
+test $# -eq 0 -o "$1" = "--help" && {
+    cat $0 | grep '^#/' | cut -c4-
+    exit 0
+}
 
 exec curl -L "$@" $(pbpaste)

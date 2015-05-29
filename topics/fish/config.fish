@@ -48,6 +48,7 @@ source $fish_path/oh-my-fish.fish
 
 # Load nvm-wrapper
 source $HOME/.nvm-wrapper/nvm.fish
+nvm use stable > /dev/null 2>&1
 
 # OS-specific configuration ----------------------------------------------- {{{
 switch (uname)

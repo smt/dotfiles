@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x
+
 # Based on https://github.com/gotbletu/shownotes/blob/master/fzf-snippet.md
 
 # location of snippets

@@ -440,7 +440,7 @@ end
 function esnip
     e ~/.sniprc
 end
-function emultisnip
+function emulti
     ls ~/.multisnip | fzf -e -i > $TMPDIR/fzf.result;
     and e ~/.multisnip/(cat $TMPDIR/fzf.result)
 end

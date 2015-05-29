@@ -323,7 +323,7 @@ end
 # javascript/node.js ------------------------------------------------------ {{{
 # . ~/.nvm/nvm.sh
 function gu
-    command grunt $argv
+    command gulp $argv
 end
 # /javascript/node.js ----------------------------------------------------- }}}
 

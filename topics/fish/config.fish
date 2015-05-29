@@ -1,6 +1,6 @@
 # setup ------------------------------------------------------------------- {{{
 set fish_path $HOME/.oh-my-fish
-set fish_theme bobthefish
+set fish_theme edan
 set fish_plugins export extract localhost osx php proxy pyenv rbenv replace theme
 # /setup ------------------------------------------------------------------ }}}
 

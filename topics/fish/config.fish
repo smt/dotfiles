@@ -101,19 +101,23 @@ set -x PYENV_ROOT $HOME/.pyenv
 set -x RBENV_ROOT $HOME/.rbenv
 set -x ANSIBLE_NOCOWS 1
 set -x LSCOLORS gxfxbEaEBxxEhEhBaDaCaD
+set -x LS_COLORS 'di=36;40:ln=35;40:so=31;1;44:pi=0;1;44:ex=1;31;40:bd=0;1;44:cd=37;1;44:su=37;1;41:sg=0;1;43:tw=0;1;42:ow=0;1;43:'
 
 function reload
-    . $fish_path
+    source $HOME/.config/fish/config.fish
 end
 function l
-    ls -lah $argv
+    gls -oA --time-style="long-iso" --color="auto" $argv
+end
+function ls
+    gls --color="auto" $argv
 end
 function lsd
-    ls -Gl | grep "^d" $argv
+    gls -oA --time-style="long-iso" --color="auto" | grep "^d" $argv
 end
 function lsort
     echo "========== Newest =========="
-    ls -At1
+    gls -At1 --color="auto"
     echo "========== Oldest =========="
 end
 function e

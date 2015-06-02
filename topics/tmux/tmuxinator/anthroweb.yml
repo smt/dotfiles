@@ -25,12 +25,13 @@ windows:
   - editor:
       layout: main-vertical
       panes:
+        - vim
         - gulp
         - #empty
-        - vim
   - server: gulp run-ecomm
   - logs:
-      layout: even-horizontal
+      layout: tiled
       panes:
+        - #empty
         - "tail -f /var/log/apache2/access_log"
         - "tail -f /var/log/apache2/error_log"

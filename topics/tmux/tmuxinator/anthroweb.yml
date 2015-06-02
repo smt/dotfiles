@@ -27,11 +27,10 @@ windows:
       panes:
         - vim
         - gulp
-        - #empty
+        - clear
   - server: gulp run-ecomm
   - logs:
       layout: tiled
       panes:
-        - #empty
         - "tail -f /var/log/apache2/access_log"
         - "tail -f /var/log/apache2/error_log"

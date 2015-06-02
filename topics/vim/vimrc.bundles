@@ -78,6 +78,7 @@ Plug 'burnettk/vim-angular', { 'for': 'javascript' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'jsx'] }
+Plug 'heavenshell/vim-jsdoc', { 'for': ['javascript', 'typescript'] }
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'mxw/vim-jsx', { 'for': 'jsx' }
 Plug 'moll/vim-node', { 'for': 'javascript' }

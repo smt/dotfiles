@@ -1,184 +1,251 @@
 {
-    "ecmaFeatures": {
-        "globalReturn": true,
-        "jsx": true,
-        "modules": true
-    },
-
     "env": {
-        "browser": false,
-        "es6": true,
-        "node": true
+        "browser": true,
+        "node": true,
+        "jasmine": true,
+        "amd": true,
+        "es6": true
     },
 
     "globals": {
-        "document": false,
-        "escape": false,
-        "navigator": false,
-        "unescape": false,
-        "window": false
+        "inject": true,
+        "Firebase": true,
+        "process": true,
+        "React": true,
+        "ReactFireMixin": true,
+        "ReactRouter": true
     },
 
-    "plugins": [
-        "react"
-    ],
+    "ecmaFeatures": {
+        "arrowFunctions": true,
+        "binaryLiterals": true,
+        "blockBindings": true,
+        "classes": true,
+        "defaultParams": true,
+        "destructuring": true,
+        "forOf": true,
+        "generators": true,
+        "modules": true,
+        "objectLiteralComputedProperties": true,
+        "objectLiteralDuplicateProperties": false,
+        "objectLiteralShorthandMethods": true,
+        "objectLiteralShorthandProperties": true,
+        "octalLiterals": false,
+        "regexUFlag": true,
+        "regexYFlag": true,
+        "restParams": true,
+        "spread": true,
+        "superInFunctions": true,
+        "templateStrings": true,
+        "unicodeCodePointEscapes": true,
+        "globalReturn": false,
+        "jsx": true
+    },
 
     "rules": {
-        "block-scoped-var": 0,
-        "brace-style": [2, "1tbs", { "allowSingleLine": true }],
-        "camelcase": 0,
-        "comma-dangle": [2, "never"],
-        "comma-spacing": [2, { "before": false, "after": true }],
-        "comma-style": [2, "last"],
-        "complexity": 0,
-        "consistent-return": 0,
-        "consistent-this": 0,
-        "curly": [2, "multi-line"],
-        "default-case": 0,
-        "dot-notation": 0,
-        "eol-last": 2,
-        "eqeqeq": [2, "allow-null"],
-        "func-names": 0,
-        "func-style": [0, "declaration"],
-        "generator-star": [2, "middle"],
-        "guard-for-in": 0,
-        "handle-callback-err": [2, "^(err|error|anySpecificError)$" ],
-        "indent": [2, 2],
-        "key-spacing": [2, { "beforeColon": false, "afterColon": true }],
-        "max-depth": 0,
-        "max-len": 0,
-        "max-nested-callbacks": 0,
-        "max-params": 0,
-        "max-statements": 0,
-        "new-cap": [2, { "newIsCap": true, "capIsNew": false }],
-        "new-parens": 2,
-        "no-alert": 2,
-        "no-array-constructor": 2,
-        "no-bitwise": 0,
-        "no-caller": 2,
-        "no-catch-shadow": 0,
-        "no-cond-assign": 2,
-        "no-console": 0,
-        "no-constant-condition": 0,
-        "no-control-regex": 2,
-        "no-debugger": 2,
-        "no-delete-var": 2,
-        "no-div-regex": 0,
-        "no-dupe-args": 2,
-        "no-dupe-keys": 2,
-        "no-duplicate-case": 2,
-        "no-else-return": 0,
-        "no-empty": 0,
-        "no-empty-class": 2,
-        "no-empty-label": 2,
-        "no-eq-null": 0,
-        "no-eval": 2,
-        "no-ex-assign": 2,
-        "no-extend-native": 2,
-        "no-extra-bind": 2,
-        "no-extra-boolean-cast": 2,
-        "no-extra-parens": 0,
-        "no-extra-semi": 0,
-        "no-extra-strict": 0,
-        "no-fallthrough": 2,
-        "no-floating-decimal": 2,
-        "no-func-assign": 2,
-        "no-implied-eval": 2,
-        "no-inline-comments": 0,
-        "no-inner-declarations": [2, "functions"],
-        "no-invalid-regexp": 2,
-        "no-irregular-whitespace": 2,
-        "no-iterator": 2,
-        "no-label-var": 2,
-        "no-labels": 2,
-        "no-lone-blocks": 2,
-        "no-lonely-if": 0,
-        "no-loop-func": 0,
-        "no-mixed-requires": [0, false],
-        "no-mixed-spaces-and-tabs": [2, false],
-        "no-multi-spaces": 2,
-        "no-multi-str": 2,
-        "no-multiple-empty-lines": [2, { "max": 1 }],
-        "no-native-reassign": 2,
-        "no-negated-in-lhs": 2,
-        "no-nested-ternary": 0,
-        "no-new": 2,
-        "no-new-func": 2,
-        "no-new-object": 2,
-        "no-new-require": 2,
-        "no-new-wrappers": 2,
-        "no-obj-calls": 2,
-        "no-octal": 2,
-        "no-octal-escape": 2,
-        "no-path-concat": 0,
-        "no-plusplus": 0,
-        "no-process-env": 0,
-        "no-process-exit": 0,
-        "no-proto": 2,
-        "no-redeclare": 2,
-        "no-regex-spaces": 2,
-        "no-reserved-keys": 0,
-        "no-restricted-modules": 0,
-        "no-return-assign": 2,
-        "no-script-url": 2,
-        "no-self-compare": 2,
-        "no-sequences": 2,
-        "no-shadow": 0,
-        "no-shadow-restricted-names": 2,
-        "no-spaced-func": 2,
-        "no-sparse-arrays": 2,
-        "no-sync": 0,
-        "no-ternary": 0,
-        "no-throw-literal": 2,
-        "no-trailing-spaces": 2,
-        "no-undef": 2,
-        "no-undef-init": 2,
-        "no-undefined": 0,
-        "no-underscore-dangle": 0,
-        "no-unreachable": 2,
-        "no-unused-expressions": 0,
-        "no-unused-vars": [2, { "vars": "all", "args": "none" }],
-        "no-use-before-define": 0,
-        "no-var": 0,
-        "no-void": 0,
-        "no-warning-comments": [0, { "terms": ["todo", "fixme", "xxx"], "location": "start" }],
-        "no-with": 2,
-        "no-wrap-func": 2,
-        "one-var": 0,
-        "operator-assignment": [0, "always"],
-        "padded-blocks": [2, "never"],
-        "quote-props": 0,
-        "quotes": [2, "single", "avoid-escape"],
-        "radix": 2,
-        "react/display-name": 1,
-        "react/jsx-uses-react": 1,
-        "react/jsx-uses-vars": 1,
-        "react/no-did-mount-set-state": 1,
-        "react/no-did-update-set-state": 1,
-        "react/no-multi-comp": 1,
-        "react/prop-types": 1,
-        "react/react-in-jsx-scope": 1,
-        "react/self-closing-comp": 1,
-        "react/wrap-multilines": 1,
-        "semi": [2, "always"],
-        "semi-spacing": 0,
-        "sort-vars": 0,
-        "space-after-keywords": [2, "always"],
-        "space-before-blocks": [2, "always"],
-        "space-before-function-parens": [2, {"anonymous": "always", "named": "never"}],
-        "space-in-brackets": 0,
-        "space-in-parens": [2, "never"],
-        "space-infix-ops": 2,
-        "space-return-throw-case": 2,
-        "space-unary-ops": [2, { "words": true, "nonwords": false }],
-        "spaced-line-comment": [2, "always"],
-        "strict": 0,
-        "use-isnan": 2,
-        "valid-jsdoc": 0,
-        "valid-typeof": 2,
-        "vars-on-top": 0,
-        "wrap-iife": [2, "any"],
-        "wrap-regex": 0,
-        "yoda": [2, "never"]
+        // use 0 to disable rule
+        // use 1 to make rule a warning
+        // use 2 to make rule an error
+
+        // possible errors section
+        "comma-dangle": [2, "never"],           // prevent trailing commas
+        "no-cond-assign": [2, "always"],        // prevent conditional assignments i.e. if (a = "foo")
+        "no-console": 0,                        // prevent console statements
+        "no-constant-condition": 2,             // prevent constants in conditionals i.e. if (true)
+        "no-control-regex": 2,                  // prevent ASCII range 0-31 in a regex
+        "no-debugger": 2,                       // prevent debugger statements
+        "no-dupe-args": 2,                      // prevent duplicate functional args
+        "no-dupe-keys": 2,                      // prevent duplicate object keys
+        "no-duplicate-case": 2,                 // prevent duplicate case labels in a switch statement
+        // "no-empty-character-class": 2,          // prevent /a[]/ in a regex
+        "no-empty": 2,                          // prevent empty conditionals i.e. if (foo) {}
+        "no-ex-assign": 2,                      // prevent assign the exception a value in a catch block
+        "no-extra-boolean-cast": 2,             // prevent unnecessary if (!!foo) re-cast
+        "no-extra-parens": 0,                   // prevent a + (b * c)
+        "no-extra-semi": 2,                     // prevent var foo = 1;;
+        "no-func-assign": 2,                    // prevent functional aliases being re-assigned a value
+        "no-inner-declarations": [2, "both"],   // prevent function or variable declarations inside a conditional
+        "no-invalid-regexp": 2,                 // enforce valid regex
+        "no-irregular-whitespace": 2,           // enforce tabs and spaces only
+        "no-negated-in-lhs": 2,                 // prevent !a in b vs. !(a in b)
+        "no-obj-calls": 2,                      // prevent Math() & JSON() calls
+        "no-regex-spaces": 2,                   // prevent multiple spaces in a regex
+        "no-reserved-keys": 2,                  // prevent reserved words used as obj keys
+        "no-sparse-arrays": 2,                  // disallow sparse arrays i.e. [,,]
+        "no-unreachable": 2,                    // prevent statements after a return
+        "use-isnan": 2,                         // force the use of isNaN()
+        "valid-jsdoc": [2, {                    // enforce valid jsdoc style comments
+            "prefer": {
+                "return": "returns"
+            }
+        }],
+        "valid-typeof": ;2,                     // prevent typeof a === undefined vs. typeof a === 'undefined'
+
+
+        // best practice section
+        // "accessor-pairs": 2,                    // enforce getter with setter                
+        "block-scoped-var": 2,                  // prevent variable use outside of block
+        "complexity": false,                    // prevent cyclomatic complexity threshold
+        "consistent-return": 2,                 // enforce an explicit return
+        "curly": 2,                             // require curly brackets for all conditionals
+        "default-case": 2,                      // require default-case for switch statements
+        "dot-location": [2, "property"],        // enforce newline behavior for an object's dot location
+        "dot-notation": 2,                      // require dot-notation for object references
+        "eqeqeq": 2,                            // require === vs. ==
+        "guard-for-in": 2,                      // require use of if statement within for in blocks
+        "no-alert": 2,                          // prevent alert(), confirm() and prompt()
+        "no-caller": 2,                         // prevent argument.caller & argument.callee
+        "no-div-regex": 2,                      // prevent a regex that looks like division i.e. /=2/
+        "no-else-return": 2,                    // prevent an else statement after a return
+        "no-empty-label": 2,                    // prevent goto lookalike statements
+        "no-eq-null": 2,                        // prevent == null
+        "no-eval": 2,                           // prevent eval()
+        "no-extend-native": 2,                  // prevent global pollution
+        "no-extra-bind": 2,                     // prevent unnecessary binding
+        "no-fallthrough": 2,                    // prevent case statements without a break
+        "no-floating-decimal": 2,               // prevent leading and trailing decimals in floats
+        "no-implied-eval": 2,                   // prevent setTimeout and setInterval eval
+        "no-iterator": 2,                       // prevent __iterator__ use
+        "no-labels": 2,                         // prevent labelled statements
+        "no-lone-blocks": 2,                    // prevent use of braces which do nothing
+        "no-loop-func": 2,                      // prevent creation of functions within loops
+        "no-multi-spaces": 2,                   // prevent multiple spaces
+        "no-multi-str": 2,                      // prevent multiline strings
+        "no-native-reassign": 2,                // prevent native objects from being reassigned
+        "no-new": 2,                            // prevent use of new operator outside of comparisons and assignment
+        "no-new-func": 2,                       // prevent new Function
+        "no-new-wrappers": 2,                   // prevent new String, Boolean and Number
+        "no-octal": 2,                          // prevent octal literals
+        "no-octal-escape": 2,                   // prevent octal use in strings
+        "no-param-reassign": 0,                 // prevent parameters reassignment
+        "no-process-env": 0,                    // prevent use of process.env
+        "no-proto": 2,                          // prevent use of __proto__
+        "no-redeclare": 2,                      // prevent variable redeclaration
+        "no-return-assign": 2,                  // prevent assignments on return statements
+        "no-script-url": 2,                     // prevent use of "javascript:" urls
+        "no-self-compare": 2,                   // prevent use of x === x
+        "no-sequences": 2,                      // prevent use of comma operator for multiple in-line expressions
+        "no-throw-literal": 2,                  // enforce throwing of exception or new Error
+        "no-unused-expressions": 2,             // prevent unused values in an expression
+        "no-void": 2,                           // prevent use of void
+        "no-warning-comments": 0,               // prevent use of TODO and FIXME
+        "no-with": 2,                           // prevent use of with
+        "radix": 2,                             // enforce use of second arg for parseInt()
+        "vars-on-top": 2,                       // enforce variable declarations at the top of the scope
+        "wrap-iife": 2,                         // enforce iife parentheses wrapping
+        "yoda": [2, "never"],                   // prevent yoda statements i.e. 'red' === foo
+
+
+        // strict section
+        "strict": 2,                            // enforce use of strict mode
+
+
+        // variables section
+        "no-catch-shadow": 2,                   // prevent duplicate use of alias for catch statements
+        "no-delete-var": 2,                     // prevent variable deletes (allows for object property deletes)
+        "no-label-var": 2,                      // prevent labels that share variable names
+        "no-shadow-restricted-names": 2,        // prevent use of restricted names
+        "no-shadow": 2,                         // prevent identical variables names in outer and inner scopes
+        "no-undef-init": 2,                     // prevent initialization of a variable with undefined
+        "no-undefined": 2,                      // prevent use of undefined
+        "no-unused-vars": [0, {                 // prevent unused variables
+            "vars": "all",
+            "args": "after-used"
+        }],
+        "no-use-before-define": 2,              // prevent use of variable before declaration
+
+
+        // node.js section
+        "handle-callback-err": 2,               // enforce handling of the callback error
+        "no-mixed-requires": 1,                 // prevent mixing of require statements
+        "no-new-require": 2,                    // prevent use of a new statement with a require statement
+        "no-path-concat": 2,                    // prevent string concat with __dirname & __filename
+        "no-process-exit": 2,                   // prevent process.exit()
+        "no-restricted-modules": 0,             // prevent use of specific node modules 
+        "no-sync": 0,                           // prevent use of synchronous methods
+
+
+        // stylistic issues
+        "brace-style": [2, "1tbs"],             // enforce brace-style
+        "camelcase": [2, {                      // enforce camel-cased variable names i.e. fooBar
+            "properties": "always"
+        }],
+        "comma-spacing": [2, {                  // enforce comma spacing
+            "before": false,
+            "after": true
+        }],
+        "comma-style": [2, "last"],             // enforce where the comma is placed
+        "consistent-this": [2, "self"],         // enforce use of self when aliasing this
+        "eol-last": 2,                          // enforce newline at eof
+        "func-names": 2,                        // enforce function names - no anonymous functions
+        "func-style": [2, "declaration"],       // enforce function declarations vs. expressions
+        "indent": [2, 4, {                      // enforce tab width
+            "indentSwitchCase": true
+        }],
+        "key-spacing": [2, {                    // enforce object key spacing around colons
+            "beforeColon": false,
+            "afterColon": true
+        }],
+        // "lines-around-comment": [2, {           // enforce newlines around comments
+        //    "beforeBlockComment": true,
+        //    "beforeLineComment": true
+        // }],
+        "linebreak-style": [2, "unix"],         // prevent mixing of CRLF and LF line breaks
+        "max-nested-callbacks": [2, 3],         // enforce max number of nested callbacks
+        "new-cap": 2,                           // enforce capital letter for constructors
+        "new-parens": 2,                        // prevent no parentheses on a constructor with no params
+        "newline-after-var": 2,                 // enforce newline after variable declaration
+        "no-array-constructor": 2,              // prevent use of new Array
+        "no-continue": 2,                       // prevent use of continue statements
+        "no-inline-comments": 2,                // prevent inline comments
+        "no-lonely-if": 2,                      // prevent if statement within else block
+        "no-mixed-spaces-and-tabs": 2,          // prevent tabs and spaces
+        "no-multiple-empty-lines": 2,           // prevent multiple newlines
+        "no-nested-ternary": 2,                 // prevent nested ternaries - only one allowed
+        "no-new-object": 2,                     // prevent new Object
+        "no-spaced-func": 2,                    // prevent space between function alias and parentheses
+        "no-ternary": 0,                        // prevent use of ternary operators
+        "no-trailing-spaces": 2,                // prevent use of trailing spaces on a line
+        // "no-dangling-underscores": 2,           // prevent use of underscores at the end of variable names
+        "no-unneeded-ternary": 2,               // prevent use of booleans in a conditional expression
+        "no-wrap-func": 2,                      // prevent wrapping of all non-iife functions
+        // "object-curly-spacing": 2,              // enforce spacing inside object braces
+        "one-var": 0,                           // enforce single var statement
+        "operator-assignment": 2,               // enforce operator assignment where possible
+        "operator-linebreak": [2, "after"],     // enforce linebreaks before of after operators
+        "padded-blocks": [2, "never"],          // enforce linebreaks within blocks
+        "quote-props": 0,                       // enforce object literals to put keys in quotes
+        "quotes": [2, "single"],                // enforce use of single quotes
+        "semi-spacing": 0,                      // enforce use of space before and after semi-colons
+        "semi": [2, "always"],                  // enforce use of semi-colons
+        "sort-vars": [2, {                      // enforce variable sorting alphabetically
+            "ignoreCase": true
+        }],
+        "space-after-keywords": [2, "always"],  // enforce space after keyword i.e. if () vs if()
+        "space-before-blocks": [2, "always"],   // enforce space before opening brace i.e. if () {}
+        "space-before-function-paren": [2, "always"],     // enforce function ()
+        "space-in-brackets": [0, {              // enforce spacing within brackets
+            "singleValue": false,
+            "objectsInArrays": false,
+            "arraysInArrays": false,
+            "arraysInObjects": false,
+            "objectsInObjects": false,
+            "propertyName": false
+        }],
+        "space-in-parens": [2, "never"],        // enforce spacing within parentheses
+        "space-infix-ops": 2,                   // enforce spacing around operators i.e. a + b
+        "space-return-throw-case": 2,           // enforce a space after return, throw and case
+        "space-unary-ops": [2, {                // enforce spacing for typeof, delete, etc
+            "words": true,
+            "nonwords": false
+        }],
+        "spaced-line-comment": 2,               // enforce a space at the beginning of a single-line comment
+        "wrap-regex": 0,                        // enforce a regex being wrapped in parentheses
+
+
+        // es6 section
+        "generator-star-spacing": [2, "before"],    // enforce spacing around generator * syntax
+        "no-var": 2,                            // prevent use of var over let and const
+        "object-shorthand": [2, "always"],      // enforce use of object notation shorthand
     }
 }

@@ -199,6 +199,9 @@ end
 # /cloc ------------------------------------------------------------------- }}}
 
 # docker ------------------------------------------------------------------ {{{
+function dm
+    command docker-machine $argv
+end
 function dr
     command docker $argv
 end

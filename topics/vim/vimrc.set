@@ -38,7 +38,15 @@ let g:airline_powerline_fonts=1
 " Emmet
 let g:user_emmet_install_global = 0
 
+" JavaScript Libraries Syntax
+" (use none by default, rely .lvimrc settings to enable lib support)
+let g:used_javascript_libs = ''
 
+" JSDoc
+let g:jsdoc_allow_input_prompt = 1
+let g:jsdoc_allow_shorthand = 1
+let g:jsdoc_return_description = 0
+let g:jsdoc_tag_synonyms = { 'param': 'arg' }
 
 " Pandoc
 let g:pandoc#filetypes#handled = ["pandoc", "markdown", "rst", "textile", "extra"]

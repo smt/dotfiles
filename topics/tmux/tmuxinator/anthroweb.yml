@@ -26,11 +26,12 @@ windows:
       layout: main-vertical
       panes:
         - vim
-        - gulp
+        - "sleep 120; and gulp"
         - clear
-  - server: gulp run-ecomm
+  - server: "gulp run-ecomm"
   - logs:
       layout: tiled
       panes:
         - "tail -f /var/log/apache2/access_log"
         - "tail -f /var/log/apache2/error_log"
+  - misc: clear

@@ -55,6 +55,7 @@ Thumbs.db
 *.un~
 Session.vim
 .netrwhist
+.lvimrc
 
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode
 

@@ -1,0 +1,18 @@
+--exclude=*.min.js
+--exclude=vendors
+
+--langdef=less
+--langmap=less:.less
+--regex-less=/^[ t]*.([A-Za-z0-9_-]+)/1/c,class,classes/
+--regex-less=/^[ t]*#([A-Za-z0-9_-]+)/1/i,id,ids/
+--regex-less=/^[ t]*(([A-Za-z0-9_-]+[ tn,]+)+){/1/t,tag,tags/
+--regex-less=/^[ t]*@medias+([A-Za-z0-9_-]+)/1/m,media,medias/
+
+--langdef=js
+--langmap=js:.js
+--regex-js=/([A-Za-z0-9._$]+)[ t]*[:=][ t]*{/1/,object/
+--regex-js=/([A-Za-z0-9._$()]+)[ t]*[:=][ t]*function[ t]*(/1/,function/
+--regex-js=/function[ t]+([A-Za-z0-9._$]+)[ t]*(([^)]))/1/,function/
+--regex-js=/([A-Za-z0-9._$]+)[ t]*[:=][ t]*[/1/,array/
+--regex-js=/([^= ]+)[ t]*=[ t]*[^"]'[^']*/1/,string/
+--regex-js=/([^= ]+)[ t]*=[ t]*[^']"[^"]*/1/,string/

@@ -38,34 +38,7 @@ let g:airline_powerline_fonts=1
 " Emmet
 let g:user_emmet_install_global = 0
 
-" neocomplete
-let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ }
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
-" neosnippet
-let g:neosnippet#disable_runtime_snippets = { '_' : 1, }
-let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets,~/.vim/snippets'
 
 " Pandoc
 let g:pandoc#filetypes#handled = ["pandoc", "markdown", "rst", "textile", "extra"]
@@ -100,6 +73,25 @@ let g:pencil#softDetectThreshold = 130
 " Local vimrc loading
 let g:localvimrc_sandbox=0
 let g:localvimrc_ask=0
+
+" UltiSnips
+let g:snips_author = 'Stephen Tudor'
+let g:snips_author_email = 'smt@smt.io'
+let g:UltiSnipsSnippetDirectories = ['UltiSnips']
+" better key bindings for UltiSnipsExpandTrigger
+" (http://stackoverflow.com/questions/14896327/ultisnips-and-youcompleteme/22253548#22253548)
+let g:UltiSnipsExpandTrigger = '<Tab>'
+let g:UltiSnipsJumpForwardTrigger = '<Tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
+
+" YouCompleteMe
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+
+" SuperTab
+let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " Limelight
 let g:limelight_default_coefficient = 0.5
@@ -194,7 +186,7 @@ if has('cmdline_info')
 endif
 
 if has('conceal')
-  set conceallevel=2 concealcursor=niv
+  set conceallevel=2 concealcursor=
 endif
 
 if has('statusline')

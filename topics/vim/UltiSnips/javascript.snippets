@@ -1,0 +1,278 @@
+# Use the basename (of the file in which the snippet is invoked) as a sensible
+# default for module names
+global !p
+def module_name(name=None):
+    name = name or 'ModuleName'
+    s1 = re.sub('\.js(x?)$', '', name)
+    return ''.join(x.title() for x in re.sub('([A-Z])', r'_\1', s1).split('_'))
+endglobal
+
+snippet fn "function" i
+function $1($2) {
+    $0
+}
+endsnippet
+
+# https://gist.github.com/lencioni/4f5e799117b0474d9166
+snippet fun "function with dynamic docblock" b
+`!p
+# Currently Ultisnips does not support dynamic tabstops, so we cannot add
+# tabstops to the datatype for these param tags until that feature is added.
+def formatTag(argument):
+    return " * @param {{}} {0}".format(argument)
+
+arguments = t[2].split(',')
+arguments = [argument.strip() for argument in arguments if argument]
+
+if len(arguments):
+    tags = map(formatTag, arguments)
+    snip.rv = "/**"
+    for tag in tags:
+        snip += tag
+    snip += ' */'
+    snip += ''
+else:
+    snip.rv = ''
+`function ${1}(${2}) {
+    ${0:${VISUAL}}
+}
+endsnippet
+
+# https://gist.github.com/lencioni/230b8e61ae6d08898aac
+snippet re "require" b
+var `!p
+def formatVariableName(path):
+    lastPart = path.split('/')[-1]
+    if lastPart == 'underscore':
+        return '_'
+    elif lastPart == 'jquery':
+        return '$'
+    else:
+        return re.sub(r'[_\-]', '', lastPart.title())
+snip.rv = formatVariableName(t[1])
+` = require('${1}');$0
+endsnippet
+
+snippet cb "callback based API"
+$1($2function ($3) {
+    $0
+});
+endsnippet
+
+snippet cbs "callback based API with string argument"
+$1('$2', function ($3) {
+    $0
+});
+endsnippet
+
+snippet cbe "callback based API with error as first callback argument"
+$1($2function (${3:err}, $4) {
+    if ({$3}) {
+        ${5:throw new Error({$3});}
+    }
+
+    $0
+});
+endsnippet
+
+snippet cc "createClass" b
+var ${1:`!p snip.rv = module_name(snip.basename)`} = React.createClass({
+    /**
+    * @return {Object}
+    */
+    render: function() {
+        return (
+            $0
+        );
+    }
+});
+
+module.exports = $1;
+endsnippet
+
+snippet class "ES6 class definition" b
+class ${1:`!p snip.rv = module_name(snip.basename)`}${2: extends ${3:SuperClass}} {
+    ${4:con}$0
+}
+endsnippet
+
+snippet con "ES6 class constructor method" b
+constructor($1) {
+    ${2:super();}$0
+}
+endsnippet
+
+snippet me "module.exports" b
+module.exports = ${1:`!p snip.rv = module_name(snip.basename)`};$0
+endsnippet
+
+# Console Output
+
+snippet ca "console.assert" b
+console.assert(${1:assertion}, ${2:"${3:message}"});
+endsnippet
+
+snippet cclear "console.clear" b
+console.clear();
+endsnippet
+
+snippet cdir "console.dir" b
+console.dir(${1:object});
+endsnippet
+
+snippet cdirx "console.dirxml" b
+console.dirxml(${1:object});
+endsnippet
+
+snippet ce "console.error" b
+console.error(${1:"${2:value}"});
+endsnippet
+
+snippet cgroup "console.group" b
+console.group("${1:label}");
+${VISUAL}$0
+console.groupEnd();
+endsnippet
+
+snippet cgroupc "console.groupCollapsed" b
+console.groupCollapsed("${1:label}");
+${VISUAL}$0
+console.groupEnd();
+endsnippet
+
+snippet ci "console.info" b
+console.info(${1:"${2:value}"});
+endsnippet
+
+snippet cl "console.log" b
+console.log(${1:"${2:value}"});
+endsnippet
+
+snippet cd "console.debug" b
+console.debug(${1:"${2:value}"});
+endsnippet
+
+snippet cprof "console.profile" b
+console.profile("${1:label}");
+${VISUAL}$0
+console.profileEnd();
+endsnippet
+
+snippet ctable "console.table" b
+console.table(${1:"${2:value}"});
+endsnippet
+
+snippet ctime "console.time" b
+console.time("${1:label}");
+${VISUAL}$0
+console.timeEnd("$1");
+endsnippet
+
+snippet ctimestamp "console.timeStamp" b
+console.timeStamp("${1:label}");
+endsnippet
+
+snippet ctrace "console.trace" b
+console.trace();
+endsnippet
+
+snippet cw "console.warn" b
+console.warn(${1:"${2:value}"});
+endsnippet
+
+# JSDoc
+
+snippet /** "A JSDoc comment" b
+/**
+ * ${1:${VISUAL}}$0
+ */
+endsnippet
+
+snippet @au "@author email (First Last)"
+@author ${1:`!v g:snips_author`} [${2:`!v g:snips_author_email`}]
+endsnippet
+
+snippet @li "@license Description"
+@license ${1:MIT}$0
+endsnippet
+
+snippet @ver "@version Semantic version"
+@version ${1:0.1.0}$0
+endsnippet
+
+snippet @fileo "@fileoverview Description" b
+/**
+ * @fileoverview ${1:${VISUAL:A description of the file}}$0
+ */
+endsnippet
+
+snippet @constr "@constructor"
+@constructor
+endsnippet
+
+snippet @f "@function"
+@function
+endsnippet
+
+snippet @m "@method"
+@method
+endsnippet
+
+snippet @over "@override"
+@override
+endsnippet
+
+snippet @p "@param {Type} varname Description"
+@param {${1:Type}} ${2:varname} ${3:Description}
+endsnippet
+
+snippet @pri "@private"
+@private
+endsnippet
+
+snippet @pro "@protected"
+@protected
+endsnippet
+
+snippet @ret "@return {Type} Description"
+@return {${1:Type}} ${2:Description}
+endsnippet
+
+snippet @rets "@returns {Type} Description"
+@returns {${1:Type}} ${2:Description}
+endsnippet
+
+# Work-specific snippets
+
+snippet act "Anthro Angular Controller" b
+'use strict';
+
+module.exports = /*@ngInject*/
+function ${1:`!p snip.rv = module_name(snip.basename)`}(
+    ${2:// arguments}
+) {
+    // Model
+    var m = this.model = {};
+
+    // Actions
+    var a = this.action = {};
+
+    /**
+    * Initialize $1
+    */
+    var init = this.init = function init() {$0};
+
+    init();
+};
+endsnippet
+
+snippet asv "Anthro Angular Service" b
+'use strict';
+
+module.exports = /*@ngInject*/
+function ${1:`!p snip.rv = module_name(snip.basename)`}(
+    ${2:// arguments}
+) {
+    return {$0};
+};
+endsnippet

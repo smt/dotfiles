@@ -38,10 +38,6 @@ vmap <C-Down> xp`[V`]
 imap [F $
 imap [H g0
 imap <F1> <Esc>
-imap <C-Semicolon> <Plug>(neosnippet_expand_or_jump)
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-      \ "\<Plug>(neosnippet_expand_or_jump)"
-      \: pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " noremap
 noremap j gj
@@ -54,15 +50,6 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
-inoremap <expr><C-g> neocomplete#undo_completion()
-inoremap <expr><C-l> neocomplete#complete_common_string()
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y> neocomplete#close_popup()
-inoremap <expr><C-e> neocomplete#cancel_popup()
-inoremap <expr><Space> pumvisible() ? neocomplete#close_popup()."\<Space>" : "\<Space>"
 " Conflicts with Pencil:
 "inoremap <C-U> <C-G>u<C-U>
 
@@ -132,13 +119,8 @@ nmap <Leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
 nmap _ <Plug>VinegarUp
 
 " smap
-smap <C-Semicolon> <Plug>(neosnippet_expand_or_jump)
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
 
 " xmap
-xmap <C-Semicolon> <Plug>(neosnippet_expand_target)
 
 " Commands
 command! -nargs=1 Locate call fzf#run({
@@ -188,12 +170,6 @@ command! -nargs=1 AgFZF call fzf#run({
       \ })
 
 " Private functions
-function! s:my_cr_function()
-  "return neocomplete#close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
-
 function! s:buflist()
   redir => ls
   silent ls

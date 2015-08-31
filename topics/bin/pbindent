@@ -2,6 +2,7 @@
 # Usage: pbindent [-o]
 # Indent pboard text four spaces and update pboard with result. With -o,
 # write result to standard output instead of to the pboard.
+set -e
 
 writer='pbcopy'
 while test $# -gt 0

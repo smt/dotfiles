@@ -1,10 +1,14 @@
 #!/bin/sh
+#/ Usage: orig [FILE] ...
+#/ Copy FILE(s) to FILE.orig
+set -e
 
-if [ $# = 0 ] ; then
-  echo "usage: orig FILE ..."
-  echo "copy FILE(s) to FILE.orig"
-else
-  for f in "$@" ; do
-    cp -p "$f" "$f.orig"
-  done
-fi
+# print help/usage with no pattern/args
+test $# -eq 0 -o "$1" = "--help" && {
+    cat $0 | grep '^#/' | cut -c4-
+    exit 0
+}
+
+for f in "$@" ; do
+  cp -p "$f" "$f.orig"
+done

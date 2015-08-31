@@ -1,19 +1,23 @@
 #!/bin/sh
-# create tar.gz archives and remove original dirs
-# usage: gzball [-q] DIR [DIR] ...
+#/ Usage: gzball [-q] DIR [DIR] ...
+#/ Create tar.gz archives and remove original dirs
+set -e
+
+# print help/usage with no pattern/args
+test $# -eq 0 -o "$1" = "--help" && {
+    cat $0 | grep '^#/' | cut -c4-
+    exit 0
+}
 
 ECHO="echo"
 
-# be totally quite with -q argument
+# be totally quiet with -q argument
 if [ "$1" == "-q" ] ; then
   TAR="tar czf"
   shift
 else
   TAR="tar cvzf"
 fi
-
-# bail on first error
-set -e
 
 for p in "$@" ; do
   $ECHO "$p.tar.gz"             # what we're building

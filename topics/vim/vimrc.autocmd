@@ -78,7 +78,7 @@ if has('autocmd')
   augroup type_gitcommit
     au!
     au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
-    au FileType gitcommit call setpos('.', [0, 1, 1, 0])
+          \ | call setpos('.', [0, 1, 1, 0])
   augroup END
 
   augroup type_go
@@ -94,11 +94,24 @@ if has('autocmd')
   augroup type_javascript
     au!
     au FileType {java,type}script setlocal et ts=2 sts=2 sw=2
-    au FileType {java,type}script call JavaScriptFold()
-    au FileType {java,type}script setlocal foldenable
-    au FileType {java,type}script setlocal nocindent
+          \ | call JavaScriptFold()
+          \ | setlocal foldenable
+          \ | setlocal nocindent
+
+    " vim-javascript conceal settings.
+    au FileType {java,type}script let g:javascript_conceal_function = "λ"
+          \ | let g:javascript_conceal_this = "@"
+          \ | let g:javascript_conceal_return = "<"
+          \ | let g:javascript_conceal_prototype = "#"
+
+    " " Map the conceal characters to their expanded forms.
+    " au FileType {java,type}script inoremap <silent> @ <C-r>=syntax_expand#expand("@", "this")<CR>
+    "       \ | inoremap <silent> # <C-r>=syntax_expand#expand("#", "prototype")<CR>
+    "       \ | inoremap <silent> < <C-r>=syntax_expand#expand_head("<", "return")<CR>
+
     " Toggling True/False
     au filetype {java,type}script nnoremap <silent> <C-t> mmviw:s/true\\|false/\={'true':'false','false':'true'}[submatch(0)]/<CR>`m:nohlsearch<CR>
+
     " Enable insertion of "debugger" statement in JS files
     au filetype {java,type}script nnoremap <leader>b Odebugger;<esc>
   augroup END
@@ -106,7 +119,7 @@ if has('autocmd')
   augroup type_json
     au!
     au FileType json setlocal et ts=2 sts=2 sw=2
-    au FileType json setlocal equalprg=python\ -m\ json.tool
+          \ | setlocal equalprg=python\ -m\ json.tool
   augroup END
 
   augroup type_lisp
@@ -135,17 +148,18 @@ if has('autocmd')
     " PEP8 compliance (set 1 tab = 4 chars explicitly, even if set
     " earlier, as it is important)
     au FileType python setlocal et ts=4 sts=4 sw=4
-    au FileType python setlocal textwidth=78
-    au FileType python match ErrorMsg '\%>120v.\+'
+          \ | setlocal textwidth=78
+          \ | match ErrorMsg '\%>120v.\+'
+
     " But disable autowrapping as it is super annoying
     au FileType python setlocal formatoptions-=t
   augroup END
 
   augroup type_rst
     au FileType rst setlocal et ts=4 sts=4 sw=4
-    au FileType rst setlocal textwidth=78
-    au FileType rst setlocal formatoptions+=nqt
-    au FileType rst match ErrorMsg '\%>74v.\+'
+          \ | setlocal textwidth=78
+          \ | setlocal formatoptions+=nqt
+          \ | match ErrorMsg '\%>74v.\+'
   augroup END
 
   augroup type_ruby
@@ -156,6 +170,7 @@ if has('autocmd')
   augroup type_vim
     au!
     au FileType vim setlocal et ts=2 sts=2 sw=2
+
     " Bind <F1> to show the keyword under cursor
     " general help can still be entered manually, with :h
     au FileType vim noremap <buffer> <F1> <Esc>:help <C-r><C-w><CR>
@@ -178,18 +193,18 @@ if has('autocmd')
     au FileType pandoc call pencil#init()
           \ | call lexical#init()
           \ | call litecorrect#init()
-          \ | setl spell spl=en_us fdl=4 noru nonu nornu
-          \ | setl fdo+=search
+          \ | setlocal spell spl=en_us fdl=4 noru nonu nornu
+          \ | setlocal fdo+=search
     au Filetype git,gitsendemail,*commit*,*COMMIT*
           \   call pencil#init({'wrap': 'hard', 'textwidth': 72})
           \ | call litecorrect#init()
-          \ | setl spell spl=en_us et sw=2 ts=2 noai
+          \ | setlocal spell spl=en_us et sw=2 ts=2 noai
     au Filetype mail         call pencil#init({'wrap': 'hard', 'textwidth': 60})
           \ | call litecorrect#init()
-          \ | setl spell spl=en_us et sw=2 ts=2 noai nonu nornu
+          \ | setlocal spell spl=en_us et sw=2 ts=2 noai nonu nornu
     au Filetype {ht,x}ml     call pencil#init({'wrap': 'soft'})
           \ | call litecorrect#init()
-          \ | setl spell spl=en_us et sw=2 ts=2
+          \ | setlocal spell spl=en_us et sw=2 ts=2
   augroup END
 
   augroup bundle_emmet

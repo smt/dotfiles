@@ -1,9 +1,3 @@
-# setup ------------------------------------------------------------------- {{{
-set fish_path $HOME/.oh-my-fish
-set fish_theme edan
-set fish_plugins export extract localhost osx php proxy pyenv rbenv replace theme
-# /setup ------------------------------------------------------------------ }}}
-
 # PATH -------------------------------------------------------------------- {{{
 set BASE_PATH /bin
 set BASE_PATH /sbin $BASE_PATH
@@ -16,20 +10,19 @@ set BREW_PREFIX (brew --prefix)
 
 switch (uname)
     case Darwin
+        set -x ANSIBLE_HOME $HOME/src/ansible
         set -x GOPATH /usr/local/var/go
         set LOCAL_PATH /usr/texbin
         # set LOCAL_PATH /usr/X11/bin $LOCAL_PATH
-        set LOCAL_PATH /usr/local/opt/ruby/bin $LOCAL_PATH
-        set LOCAL_PATH /usr/local/deployd/bin $LOCAL_PATH
-        set LOCAL_PATH /usr/local/share/npm/bin $LOCAL_PATH
-        set LOCAL_PATH $BREW_PREFIX/Cellar/go/1.4.2/libexec/bin $LOCAL_PATH
-        set LOCAL_PATH $GOPATH/bin $LOCAL_PATH
         set LOCAL_PATH /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/bin $LOCAL_PATH
+        set LOCAL_PATH $BREW_PREFIX/Cellar/go/1.5/libexec/bin $LOCAL_PATH
+        set LOCAL_PATH $GOPATH/bin $LOCAL_PATH
         set LOCAL_PATH $HOME/.fzf/bin $LOCAL_PATH
-        set LOCAL_PATH $HOME/.node/bin $LOCAL_PATH
         set LOCAL_PATH $HOME/.cabal/bin $LOCAL_PATH
         set LOCAL_PATH $HOME/.bin $LOCAL_PATH
         set -x PATH $LOCAL_PATH $BASE_PATH
+        # Initialize z
+        set -x Z_SCRIPT_PATH $BREW_PREFIX/etc/profile.d/z.sh
     case Linux
         set -x GOPATH /var/go
         set LOCAL_PATH $GOPATH/bin
@@ -40,15 +33,24 @@ switch (uname)
 end
 # /PATH ------------------------------------------------------------------- }}}
 
-# Path to your custom folder (default path is $FISH/custom)
-#set fish_custom $HOME/dotfiles/oh-my-fish
+# Path to your oh-my-fish.
+set -g OMF_PATH $HOME/.local/share/omf
+
+# Path to your oh-my-fish configuration.
+set -g OMF_CONFIG $HOME/.config/omf
+
+### Configuration required to load oh-my-fish ###
+# Note: Only add configurations that are required to be set before oh-my-fish is loaded.
+# For common configurations, we advise you to add them to your $OMF_CONFIG/init.fish file or
+# to create a custom plugin instead.
 
 # Load oh-my-fish configuration.
-source $fish_path/oh-my-fish.fish
+source $OMF_PATH/init.fish
 
 # Load nvm-wrapper
+set -x NVM_DIR $HOME/.nvm
 source $HOME/.nvm-wrapper/nvm.fish
-nvm use stable > /dev/null 2>&1
+nvm use --silent > /dev/null 2>&1 &
 
 # OS-specific configuration ----------------------------------------------- {{{
 switch (uname)
@@ -82,12 +84,6 @@ switch (uname)
         # /aws -------------------------------------------------------------------- }}}
     case Linux
         set -x SHELL /usr/bin/fish
-        function pbcopy
-            xclip -selection clipboard $argv
-        end
-        function pbpaste
-            xclip -selection clipboard -o $argv
-        end
         function open
             xdg-open $argv
         end
@@ -96,36 +92,33 @@ end
 # /OS-specific configuration ---------------------------------------------- }}}
 
 # Global Options and Aliases ---------------------------------------------- {{{
-set -x EDITOR vim
 set -x TERM screen-256color-bce
-set -x PYENV_ROOT $HOME/.pyenv
-set -x RBENV_ROOT $HOME/.rbenv
-set -x ANSIBLE_NOCOWS 1
+set -x EDITOR vim
+set -x VISUAL vim
+set -x FZF_TMUX 0
 set -x LSCOLORS gxfxbEaEBxxEhEhBaDaCaD
-set -x LS_COLORS 'di=36;40:ln=35;40:so=31;1;44:pi=0;1;44:ex=1;31;40:bd=0;1;44:cd=37;1;44:su=37;1;41:sg=0;1;43:tw=0;1;42:ow=0;1;43:'
+set -x ANSIBLE_NOCOWS 1
+set -x RBENV_ROOT $HOME/.rbenv
 
 function reload
-    source $HOME/.config/fish/config.fish
+    . $fish_path
 end
 function l
-    gls -oA --time-style="long-iso" --color="auto" $argv
-end
-function ls
-    gls --color="auto" $argv
+    ls -lah $argv
 end
 function lsd
-    gls -oA --time-style="long-iso" --color="auto" | grep "^d" $argv
+    ls -Gl | grep "^d" $argv
 end
 function lsort
     echo "========== Newest =========="
-    gls -At1 --color="auto"
+    ls -At1
     echo "========== Oldest =========="
 end
 function e
     eval $EDITOR $argv
 end
 function imgsz
-    sips -g pixelWidth -g pixelHeight
+    sips -g pixelWidth -g pixelHeight $argv
 end
 function mtr
     command sudo mtr -t $argv
@@ -199,9 +192,6 @@ end
 # /cloc ------------------------------------------------------------------- }}}
 
 # docker ------------------------------------------------------------------ {{{
-function dm
-    command docker-machine $argv
-end
 function dr
     command docker $argv
 end
@@ -222,6 +212,18 @@ function drr
 end
 function drs
     command docker search $argv
+end
+function dm
+    command docker-machine $argv
+end
+function dmstat
+    command docker-machine status $argv
+end
+function dmstart
+    command docker-machine start $argv
+end
+function dmstop
+    command docker-machine stop $argv
 end
 # /docker ----------------------------------------------------------------- }}}
 
@@ -264,65 +266,65 @@ end
 # go ---------------------------------------------------------------------- {{{
 # /go --------------------------------------------------------------------- }}}
 
-# hg ---------------------------------------------------------------------- {{{
-function h
-    command hg $argv
-end
-function hc
-    command hg commit -m $argv
-end
-function hm
-    command hg commit -m 'merge.' $argv
-end
-function hp
-    command hg $argv
-end
-function hpu
-    command hg $argv
-end
-function hqci
-    command hg qci $argv
-end
-function hqf
-    command hg qf $argv
-end
-function hqgl
-    command hg qgl $argv
-end
-function hqi
-    command hg qi $argv
-end
-function hqlog
-    command hg gqlog $argv
-end
-function hqn
-    command hg qn $argv
-end
-function hqpo
-    command hg qpo $argv
-end
-function hqpoa
-    command hg qpoa $argv
-end
-function hqpua
-    command hg qpua $argv
-end
-function hqq
-    command hg qq $argv
-end
-function hqr
-    command hg qr $argv
-end
-function hqrm
-    command hg qrm $argv
-end
-function hqst
-    command hg qst $argv
-end
-function hup
-    command hg up $argv
-end
-# /hg --------------------------------------------------------------------- }}}
+# # hg ---------------------------------------------------------------------- {{{
+# function h
+#     command hg $argv
+# end
+# function hc
+#     command hg commit -m $argv
+# end
+# function hm
+#     command hg commit -m 'merge.' $argv
+# end
+# function hp
+#     command hg $argv
+# end
+# function hpu
+#     command hg $argv
+# end
+# function hqci
+#     command hg qci $argv
+# end
+# function hqf
+#     command hg qf $argv
+# end
+# function hqgl
+#     command hg qgl $argv
+# end
+# function hqi
+#     command hg qi $argv
+# end
+# function hqlog
+#     command hg gqlog $argv
+# end
+# function hqn
+#     command hg qn $argv
+# end
+# function hqpo
+#     command hg qpo $argv
+# end
+# function hqpoa
+#     command hg qpoa $argv
+# end
+# function hqpua
+#     command hg qpua $argv
+# end
+# function hqq
+#     command hg qq $argv
+# end
+# function hqr
+#     command hg qr $argv
+# end
+# function hqrm
+#     command hg qrm $argv
+# end
+# function hqst
+#     command hg qst $argv
+# end
+# function hup
+#     command hg up $argv
+# end
+# # /hg --------------------------------------------------------------------- }}}
 
 # javascript/node.js ------------------------------------------------------ {{{
 # . ~/.nvm/nvm.sh
@@ -457,33 +459,40 @@ function multisnip
 end
 # /snippets --------------------------------------------------------------- }}}
 
-# vagrant ----------------------------------------------------------------- {{{
-function v
-    command vagrant $argv
-end
-function vp
-    command vagrant provision $argv
-end
-function vs
-    command vagrant suspend $argv
-end
-function vup
-    command vagrant up $argv
-end
-function vupa
-    command vagrant up --provider=aws $argv
-end
-# /vagrant ---------------------------------------------------------------- }}}
+# # vagrant ----------------------------------------------------------------- {{{
+# function v
+#     command vagrant $argv
+# end
+# function vp
+#     command vagrant provision $argv
+# end
+# function vs
+#     command vagrant suspend $argv
+# end
+# function vup
+#     command vagrant up $argv
+# end
+# function vupa
+#     command vagrant up --provider=aws $argv
+# end
+# # /vagrant ---------------------------------------------------------------- }}}
 
 # tmux -------------------------------------------------------------------- {{{
+function tmux
+    if test -x (eval which direnv)
+        command direnv exec / tmux $argv
+    else
+        command tmux $argv
+    end
+end
 function t
-    command tmux $argv
+    tmux $argv
 end
 function tms
-    command tmux -S /tmp/shareds new -s shared $argv
+    tmux -S /tmp/shareds new -s shared $argv
 end
 function tma
-    command tmux -S /tmp/shareds attach -t shared $argv
+    tmux -S /tmp/shareds attach -t shared $argv
 end
 # /tmux ------------------------------------------------------------------- }}}
 

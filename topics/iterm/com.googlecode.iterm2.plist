@@ -37976,7 +37976,7 @@
 	<key>NSWindow Frame Preferences</key>
 	<string>406 471 924 485 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>4 0 1676 1027 0 0 1680 1027 </string>
+	<string>4 22 1676 1005 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>0 15 1673 1012 0 0 1680 1027 </string>
 	<key>New Bookmarks</key>
@@ -38507,11 +38507,11 @@
 			<key>Name</key>
 			<string>seoul256</string>
 			<key>Non Ascii Font</key>
-			<string>Hack 14</string>
+			<string>LiterationMonoPowerline-Bold 12</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>Hack 12</string>
+			<string>LiterationMonoPowerline 12</string>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
@@ -39211,11 +39211,11 @@
 			<key>Name</key>
 			<string>seoul256-light</string>
 			<key>Non Ascii Font</key>
-			<string>Hack 14</string>
+			<string>LiterationMonoPowerline-Bold 12</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>Hack 12</string>
+			<string>LiterationMonoPowerline 12</string>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
@@ -39915,11 +39915,11 @@
 			<key>Name</key>
 			<string>gruvbox-dark</string>
 			<key>Non Ascii Font</key>
-			<string>Hack 14</string>
+			<string>LiterationMonoPowerline-Bold 12</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>Hack 12</string>
+			<string>LiterationMonoPowerline 12</string>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
@@ -40619,11 +40619,11 @@
 			<key>Name</key>
 			<string>gruvbox-light</string>
 			<key>Non Ascii Font</key>
-			<string>Hack 14</string>
+			<string>LiterationMonoPowerline-Bold 12</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>Hack 12</string>
+			<string>LiterationMonoPowerline 12</string>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
@@ -40868,7 +40868,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-09-12T03:42:06Z</date>
+	<date>2015-09-15T19:03:39Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Secure Input</key>
@@ -40878,7 +40878,7 @@
 	<key>ShowBookmarkName</key>
 	<true/>
 	<key>ShowPaneTitles</key>
-	<true/>
+	<false/>
 	<key>SmartPlacement</key>
 	<false/>
 	<key>SplitPaneDimmingAmount</key>

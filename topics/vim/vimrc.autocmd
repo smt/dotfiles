@@ -167,6 +167,11 @@ if has('autocmd')
     au FileType ruby setlocal et ts=2 sts=2 sw=2
   augroup END
 
+  augroup type_tmux
+    au!
+    au BufRead,BufNewFile .tmux.conf setlocal filetype=tmux.conf
+  augroup END
+
   augroup type_vim
     au!
     au FileType vim setlocal et ts=2 sts=2 sw=2

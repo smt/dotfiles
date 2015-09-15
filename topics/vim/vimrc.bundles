@@ -28,6 +28,7 @@ Plug 'eiginn/netrw'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'
 Plug 'reedes/vim-wheel'
+Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'junegunn/vim-easy-align'
 
@@ -96,6 +97,7 @@ Plug 'heavenshell/vim-jsdoc', { 'for': ['javascript', 'typescript'] }
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'mxw/vim-jsx', { 'for': 'jsx' }
 Plug 'moll/vim-node', { 'for': 'javascript' }
+Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 Plug 'marijnh/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'less', 'scss'] }
@@ -105,6 +107,7 @@ Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'wavded/vim-stylus', { 'for': 'stylus' }
+Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }
 
 call plug#end()
 

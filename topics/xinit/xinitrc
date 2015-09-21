@@ -28,7 +28,8 @@ set_touchpad_feature 'Tapping Enabled' 1
 set_touchpad_feature 'Natural Scrolling Enabled' 1
 
 # restore the previous desktop
-sh ~/.fehbg
+# sh ~/.fehbg
+hsetroot -fill /home/tude/Downloads/6N0yS5m.jpg -blur 10 -tint "#DDFFDD" &
 
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 

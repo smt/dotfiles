@@ -84,8 +84,8 @@ super + Return
 	urxvt
 
 super + space
-	dmenu_run -b -fn '-misc-liberation mono-medium-r-*-*-14-*'
+	dmenu_run -h 24 -fn 'Literation Mono Powerline:size=10'
 
 # make sxhkd reload its configuration files:
 super + Escape
-	pkill -USR1 -x sxhkd
+	pkill -USR1 -x panel_bar && pkill -USR1 -x cat && pkill -USR1 -x sxhkd

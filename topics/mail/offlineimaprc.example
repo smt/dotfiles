@@ -1,0 +1,21 @@
+[general]
+accounts = ExampleOrg
+
+[Account ExampleOrg]
+localrepository = ExampleLocal
+remoterepository = ExampleRemote
+status_backend = sqlite
+postsynchook = notmuch new
+
+[Repository ExampleRemote]
+type = IMAP
+remotehost = mail.example.com
+remoteuser = you
+# probably a bad idea
+remotepass = ***********
+ssl = yes
+
+[Repository ExampleLocal]
+type = Maildir
+localfolders = ~/Maildir
+restoreatime = no

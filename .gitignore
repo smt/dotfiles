@@ -5,5 +5,8 @@ topics/fish/fish_history
 topics/fish/fish_read_history
 topics/fish/fishd*
 topics/fish/fishrc
+topics/irc/weechat/irc.conf
+topics/irc/weechat/logs
 topics/mail/mutt/cache
 topics/mail/mutt/temp
+topics/mail/offlineimaprc

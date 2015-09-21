@@ -1,0 +1,194 @@
+# nice manpage here
+# http://linux.die.net/man/5/muttrc
+set user_agent=no
+# you can have fun with user agent
+#my_hdr User-Agent:Mutt/1.5.21_3 (FreeBSD/amd64)
+# set for muttrc patch
+set sidebar_width       = 24
+set sidebar_visible     = yes
+color sidebar_new yellow default
+
+# dont mark messages old
+set mark_old = no
+
+# these bind keys for the folder pane
+# ctrl-n, ctrl-p to select next, prev folder
+# ctrl-o to open selected folder
+color   tree        magenta             default
+
+# new set sidebar delim
+set sidebar_delim='★'
+
+### edit try new colors
+color   tree        magenta             default
+
+### MARK ALL READ MACRO
+### ".r"
+macro index .r "T.*\n;WN" "party time, excellent"
+bind index \CP sidebar-prev
+bind index \CN sidebar-next
+bind index \CO sidebar-open
+bind pager \CP sidebar-prev
+bind pager \CN sidebar-next
+bind pager \CO sidebar-open
+
+# jump to next-unread, bind a key here
+bind index \t next-unread
+bind pager   \t          next-unread
+bind index  ,\t      previous-unread
+bind pager  ,\t      previous-unread
+
+# LDAP search
+# http://www.perlmonks.org/?node_id=65152
+set query_command = "~/.mutt/mutt-ldap-lookup.pl '%s'"
+
+# sort by thread
+set sort = threads
+
+# b toggles sidebar visibility
+#macro index b '<enter-command>toggle sidebar_visible<enter>'
+#macro pager b '<enter-command>toggle sidebar_visible<enter>'
+macro index b '<enter-command>toggle sidebar_visible<enter><refresh>'
+macro pager b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
+
+### save my sent messages
+set record=~/Maildir/Sent
+
+#### useful settings from docs
+# activate TLS if available on the server
+#set signature = "~/.signature"
+set ssl_starttls=yes
+
+# always use SSL when connecting to a server
+set ssl_force_tls=yes
+
+# Don't wait to enter mailbox manually
+unset imap_passive
+
+set imap_check_subscribed
+
+# keep a cache of headers for faster loading (1.5.9+?)
+set header_cache=~/.mutt/hcache
+
+# Display download progress every 5K
+set net_inc=5
+
+# force envelope and sender
+set use_from
+set envelope_from
+set hostname="someplace.com"
+set realname="YOUR NAME"
+set from="YOU@someplace.com"
+set spoolfile=~/Maildir/INBOX
+
+# NEEDED for maildir format
+set mbox_type=Maildir
+
+# set your main Maildir inbox here
+# from where offlineimap syncs
+set folder=~/Maildir/
+
+# set your IMAP folders to match whatever your MTA uses
+mailboxes =INBOX \
+=Sent \
+=Drafts \
+=Junk \
+=Trash \
+=IMAPFOLDER1 \
+=NESTEDIMAPFOLDER1 \
+=NESTEDIMAPFOLDER1.IMAPFOLDER1 \
+=NESTEDIMAPFOLDER2.IMAPFOLDER2 \
+=NESTEDIMAPFOLDER3.IMAPFOLDER3 \
+=IMAPFOLDER2 \
+=IMAPFOLDER3
+
+##### UPDATED NOTMUCH SETTINGS #######
+
+    macro index <F8> \
+          "<enter-command>unset wait_key<enter><shell-escape>~/.mutt/mutt-notmuch.pl --prompt search<enter><change-folder-readonly>~/.cache/notmuch/mutt/results<enter>" \
+          "notmuch: search mail"
+    macro index <F9> \
+          "<enter-command>unset wait_key<enter><pipe-message>~/.mutt/mutt-notmuch.pl thread<enter><change-folder-readonly>~/.cache/notmuch/mutt/results<enter><enter-command>set wait_key<enter>" \
+          "notmuch: reconstruct thread"
+    macro index <F6> \
+          "<enter-command>unset wait_key<enter><pipe-message>~/.mutt/mutt-notmuch.pl tag -inbox<enter>" \
+          "notmuch: remove message from inbox"
+
+set move=no
+set certificate_file=/home/YOU/.mutt-certificates
+ignore *
+unignore From To Cc Subject Date Reply-To Organization X-Mailer User-Agent
+
+# Order to display the headers in
+hdr_order From: Date: To: Cc: Subject:
+
+set edit_headers
+
+# Use vim as the editor - this line will wrap
+# Set wordwrap on in vim to automatically wrap lines -
+# no :gq all the time
+set editor="vim +':set textwidth=70' +':set wrap' +\`awk '/^$/ {print i+2; exit} {i++}' %s\` %s"
+
+# set format=flowed
+set text_flowed
+
+# dont mark messages old
+set nomark_old
+
+# Automatically quote message
+set include=yes
+
+# Set quotemark to 1 byte
+set indent_str="> "
+
+set index_format   = "%4C %Z %{%b %d} %-15.15F (%4l) %s"
+set forward_format="Fw: %s"     # subject in forwarded messages
+set date_format="%d/%m/%y %H:%M %Z"
+set quote_regexp="^([A-Za-z ]+>|[]%>:|}-][]>:|}-]*)"
+
+# set my smtp server
+set smtp_url="smtp://your.smtp.server.here"
+
+#set smtp_authenticators=”gssapi:digest-md5:cram-md5”
+set sendmail="/usr/sbin/sendmail"
+
+# HTML email, for those that insist on using it
+# make sure your mailcap entry exists with the following:
+# text/html; lynx -display_charset=utf-8 -dump %s; nametemplate=%s.html; copiousoutput
+# tell mutt about it
+set mailcap_path 	= ~/.mutt/mailcap
+
+# automatically open evil HTML
+auto_view text/html
+
+set mime_forward=yes
+set mime_forward_rest=yes
+color quoted0   blue        default
+color quoted1   green       default
+color quoted2   red         default
+color quoted3   blue        default
+color quoted4   green       default
+color quoted5   red         default
+color quoted6   blue        default
+color signature green       default
+color tilde     cyan  default
+
+### make new messages yellow
+color index brightyellow default ~N # New#
+
+color header white         default .               # Headers are this color,
+color header red    white ^Subject        # except for `Subject:'.
+color header black          red     ^(X-Spam-Status:\ Yes|X-Virus-Report:)
+color header black          red     ^Newsgroups:.*, # cross-posted
+color header black          green   ^Followup-To:   # followup header
+
+## changing color status to default, was brightblue black
+color status    brightblue default
+
+# indicator is the marker thing that moves to highlight messages and shit
+#color innext unread messagedicator green default
+color indicator default red
+color markers   cyan  black
+
+# load gpg configs
+source ~/.muttrc-gpg

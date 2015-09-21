@@ -133,6 +133,12 @@ if has('autocmd')
     au FileType make setlocal noet ts=4 sts=4 sw=4
   augroup END
 
+  augroup type_mutt
+    au!
+    au BufRead,BufNewFile *mutt-* setlocal filetype=mail
+    au FileType mail set tw=72
+  augroup END
+
   augroup type_pandoc
     au!
     au BufRead,BufNewFile *.{ft} setlocal filetype=pandoc

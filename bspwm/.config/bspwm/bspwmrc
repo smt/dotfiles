@@ -1,0 +1,24 @@
+#!/bin/sh
+
+bspc config border_width        1
+bspc config window_gap         10
+
+bspc config split_ratio         0.6180339887
+bspc config borderless_monocle  true
+bspc config gapless_monocle     true
+bspc config focus_by_distance   true
+
+# bspc monitor -d I II III IV V VI VII VIII IX X
+bspc monitor -d web term code chat misc
+
+bspc desktop web -l monocle
+bspc desktop code -1 monocle
+
+bspc rule -a Firefox desktop=web
+bspc rule -a URXvt desktop=term
+bspc rule -a Atom desktop=code
+bspc rule -a weechat desktop=chat
+bspc rule -a ncmpcpp desktop=misc
+
+# $HOME/.config/bspwm/panel/panel &
+$HOME/.config/bspwm/panel/panel &

@@ -1,0 +1,116 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""" PLUGINS """"""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+filetype off
+
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !./install.sh
+  endif
+endfunction
+
+call plug#begin('~/.vim/plugged')
+
+" Load matchit.vim, but only if the user hasn't installed a newer version.
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+  runtime! macros/matchit.vim
+endif
+
+" General
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'embear/vim-localvimrc'
+Plug 'eiginn/netrw'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-repeat'
+Plug 'reedes/vim-wheel'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'junegunn/vim-easy-align'
+
+" Styling
+Plug 'bling/vim-airline'
+Plug 'reedes/vim-colors-pencil'
+Plug 'noahfrederick/vim-hemisu'
+Plug 'junegunn/seoul256.vim'
+Plug 'romainl/Apprentice'
+Plug 'morhetz/gruvbox'
+Plug 'w0ng/vim-hybrid'
+
+" Writing/Authoring Tools
+Plug 'reedes/vim-pencil'
+Plug 'tpope/vim-abolish'
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/vim-journal'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-after'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'reedes/vim-lexical'
+Plug 'reedes/vim-litecorrect'
+Plug 'reedes/vim-textobj-sentence'
+Plug 'reedes/vim-wordy'
+Plug 'reedes/vim-thematic'
+
+" Development Tools
+Plug 'rking/ag.vim'
+Plug 'PeterRincker/vim-argumentative'
+Plug 'tpope/vim-commentary'
+Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-eunuch'
+Plug 'Wolfy87/vim-syntax-expand'
+Plug 'tpope/vim-fugitive'
+Plug 'mattn/gist-vim'
+Plug 'sjl/gundo.vim'
+Plug 'tpope/vim-haystack'
+Plug 'cohama/lexima.vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-projectionist'
+Plug 'tomtom/quickfixsigns_vim'
+Plug 'tpope/vim-ragtag'
+Plug 'tpope/vim-rsi'
+Plug 'mhinz/vim-signify'
+Plug 'tpope/vim-sleuth'
+Plug 'AndrewRadev/sideways.vim'
+Plug 'tpope/vim-speeddating'
+Plug 'ervandew/supertab'
+Plug 'tpope/vim-surround'
+Plug 'scrooloose/syntastic'
+Plug 'SirVer/ultisnips'
+Plug 'mbbill/undotree'
+Plug 'tpope/vim-unimpaired'
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+
+" Lang-specific
+Plug 'ElmCast/elm-vim', { 'for': 'elm' }
+Plug 'pangloss/vim-javascript', { 'for': ['coffee', 'javascript', 'jsx', 'typescript'] }
+Plug 'burnettk/vim-angular', { 'for': 'javascript' }
+Plug 'thomd/vim-jasmine', { 'for': 'javascript' }
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+Plug 'othree/html5.vim', { 'for': 'html' }
+Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'jsx'] }
+Plug 'heavenshell/vim-jsdoc', { 'for': ['javascript', 'typescript'] }
+Plug 'elzr/vim-json', { 'for': 'json' }
+Plug 'mxw/vim-jsx', { 'for': 'jsx' }
+Plug 'moll/vim-node', { 'for': 'javascript' }
+Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
+Plug 'marijnh/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'less', 'scss'] }
+Plug 'groenewege/vim-less', { 'for': 'less' }
+Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
+Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
+Plug 'klen/python-mode', { 'for': 'python' }
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'wavded/vim-stylus', { 'for': 'stylus' }
+Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }
+
+call plug#end()
+
+" vim: set sw=2 ts=2 sts=2 et tw=78 nospell:

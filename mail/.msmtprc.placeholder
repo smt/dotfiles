@@ -1,0 +1,16 @@
+defaults
+auth on
+tls on
+logfile ~/.msmtp.log
+
+account ACCOUNT_NAME
+host SMTP_HOST
+port 587
+protocol smtp
+from YOUR@EMAIL.COM
+user YOUR@EMAIL.COM
+password
+passwordeval "gpg --use-agent --quiet --for-your-eyes-only --no-tty --decrypt ~/.offlineimappass.gpg"
+tls_trust_file ~/.mutt/Equifax_Secure_CA.cert
+
+account default : ACCOUNT_NAME

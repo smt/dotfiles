@@ -2,7 +2,7 @@
 #
 # Example panel for LemonBoy's bar
 
-. panel_colors
+. "$XDG_CONFIG_HOME/bspwm/panel/panel_colors"
 
 num_mon=$(bspc query -M | wc -l)
 

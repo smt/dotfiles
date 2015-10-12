@@ -1,0 +1,444 @@
+# Paths {{{
+
+set alias_file       = ~/.mutt/alias         # where to store aliases
+set header_cache     = ~/.mutt/cache/headers # where to store headers
+set message_cachedir = ~/.mutt/cache/bodies  # where to store bodies
+set certificate_file = ~/.mutt/certificates  # where to store certs
+set mailcap_path     = ~/.mutt/mailcap       # entries for filetypes
+set tmpdir           = ~/.mutt/temp          # where to keep temp files
+set signature        = ~/.mutt/sig           # my signature file
+
+# }}}
+# Editor {{{
+
+## Use Vim to compose email, with a few default options.
+set editor = "vim -c 'normal! }' -c 'redraw'"
+
+# }}}
+# Contacts {{{
+
+## Use the OS X address book
+set query_command = "contacts -Sf '%eTOKEN%n' '%s' | sed -e 's/TOKEN/\t/g'"
+bind editor <Tab> complete-query
+bind editor ^T    complete
+
+# }}}
+# Basic Options {{{
+
+set folder = ~/.mail/stephen-stephentudor.com # mailbox location
+
+set wait_key = no        # shut up, mutt
+set mbox_type = Maildir  # mailbox type
+set timeout = 3          # idle time before scanning
+set mail_check = 0       # minimum time between scans
+unset move               # gmail does that
+set delete               # don't ask, just do
+unset confirmappend      # don't ask, just do!
+set quit                 # don't ask, just do!!
+unset mark_old           # read/new is good enough for me
+set beep_new             # bell on new mails
+set pipe_decode          # strip headers and eval mimes when piping
+set thorough_search      # strip headers and eval mimes before searching
+
+# }}}
+# Sidebar Patch {{{
+
+## set up the sidebar, default visible
+set sidebar_width		= 30
+set sidebar_visible		= no
+set sidebar_sort 		= yes
+# set sidebar_shortpath 	= yes
+
+## color of folders with new mail
+#color sidebar black black
+#color sidebar_new cyan black
+
+## ctrl-n, ctrl-p to select next, prev folder
+## ctrl-o to open selected folder
+bind index,pager <down>   sidebar-next
+bind index,pager <up>     sidebar-prev
+bind index,pager <right>  sidebar-open
+
+## I don't need these. just for documentation purposes. See below.
+## sidebar-scroll-up
+## sidebar-scroll-down
+
+#
+## toggle toolbar visibility, use 'b'
+macro index b '<enter-command>toggle sidebar_visible<enter><refresh>'
+macro pager b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
+# 
+# }}}
+# Status Bar {{{
+
+set status_chars  = " *%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+# }}}
+# Index View Options {{{
+
+set date_format = "%m/%d"
+set index_format = "[%Z]  %D  %-20.20F  %s"
+set sort = threads                         # like gmail
+set sort_aux = reverse-last-date-received  # like gmail
+set uncollapse_jump                        # don't collapse on an unread message
+set sort_re                                # thread based on regex
+set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+set folder_format = "%2C %t %N %8s %f"
+
+# }}}
+# Pager View Options {{{
+
+set pager_index_lines = 10 # number of index lines to show
+set pager_context = 3      # number of context lines to show
+set pager_stop             # don't go to next message automatically
+set menu_scroll            # scroll in menus
+set tilde                  # show tildes like in vim
+unset markers              # no ugly plus signs
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+alternative_order text/plain text/enriched text/html
+
+# set display_filter = "clean_mail" # clean up shitty mail
+
+# }}}
+# Compose View Options {{{
+
+set realname = "Stephen Tudor"       # who am i?
+set envelope_from                    # which from?
+set sig_dashes                       # dashes before sig
+set edit_headers                     # show headers when composing
+set fast_reply                       # skip to compose when replying
+set askcc                            # ask for CC:
+set fcc_attach                       # save attachments with the body
+unset mime_forward                   # forward attachments as part of body
+set forward_format = "Fwd: %s"       # format of subject when forwarding
+set forward_decode                   # decode when forwarding
+set attribution = "On %d, %n wrote:" # format of quoting header
+set reply_to                         # reply to Reply to: field
+set reverse_name                     # reply as whomever it was to
+set include                          # include message in replies
+set forward_quote                    # include message in forwards
+
+# }}}
+# Attachment View Options {{{
+
+set attach_format = "[%D %t] %2n [%-7.7m/%10.10M] %.40d %> [%s] "
+
+# }}}
+# Headers {{{
+
+ignore *                                # ignore all headers
+unignore from: to: cc: date: subject:   # show only these
+unhdr_order *
+hdr_order from: to: cc: date: subject:  # and in this order
+
+# }}}
+# stephen@stephentudor.com {{{
+
+# Default inbox.
+set spoolfile = "+INBOX"
+
+# Alternate email addresses.
+alternates smt@smt.io
+
+# Mailboxes to show in the sidebar.
+mailboxes +INBOX \
+          +archive \
+          +flagged \
+          +sent \
+          +drafts \
+          +temporary/search \
+
+# Other special folders.
+set mbox      = "+archive"
+set postponed = "+drafts"
+
+# Sending email.
+set from     = "stephen@stephentudor.com"
+set sendmail = "/usr/local/bin/msmtp -a stephentudor"
+set sendmail_wait = 0 # no please don't silently fail, email is important
+unset record
+
+# }}}
+# GPG {{{
+
+set pgp_use_gpg_agent=yes
+
+set pgp_sign_as="0x33727816BCE561F3"
+set pgp_timeout=60
+set pgp_autosign=yes
+set pgp_replyencrypt=no
+set pgp_replysign=no
+set crypt_replysignencrypted=yes
+set crypt_verify_sig=yes
+
+#set pgp_decode_command="gpg --use-agent --no-verbose --batch --output - %f"
+set pgp_verify_command="gpg --no-verbose --batch --output - --verify %s %f"
+set pgp_decrypt_command="gpg --use-agent --no-verbose --batch --output - %f"
+set pgp_sign_command="gpg --no-verbose --batch --output - --use-agent --armor --detach-sign --textmode %?a?-u %a? %f"
+set pgp_clearsign_command="gpg --no-verbose --batch --output - --use-agent --armor --textmode --clearsign %?a?-u %a? %f"
+set pgp_encrypt_only_command="pgpewrap gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust --encrypt-to 0x6F98CA545DFC4BD5 -- -r %r -- %f"
+set pgp_encrypt_sign_command="pgpewrap gpg --use-agent --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust --encrypt-to 0x6F98CA545DFC4BD5 -- -r %r -- %f"
+set pgp_import_command="gpg --no-verbose --import -v %f"
+set pgp_export_command="gpg --no-verbose --export --armor %r"
+set pgp_verify_key_command="gpg --no-verbose --batch --fingerprint --check-sigs %r"
+set pgp_list_pubring_command="gpg --no-verbose --batch --with-colons --list-keys %r"
+set pgp_list_secring_command="gpg --no-verbose --batch --with-colons --list-secret-keys %r"
+
+my_hdr X-PGP-Key: http://www.stephentudor.com/pubkey.txt
+
+# # -*-muttrc-*-
+# #
+# # Command formats for gpg.
+# #
+# # This version uses gpg-2comp from
+# #   http://70t.de/download/gpg-2comp.tar.gz
+# #
+# # $Id$
+# #
+# # %p    The empty string when no passphrase is needed,
+# #       the string "PGPPASSFD=0" if one is needed.
+# #
+# #       This is mostly used in conditional % sequences.
+# #
+# # %f    Most PGP commands operate on a single file or a file
+# #       containing a message.  %f expands to this file's name.
+# #
+# # %s    When verifying signatures, there is another temporary file
+# #       containing the detached signature.  %s expands to this
+# #       file's name.
+# #
+# # %a    In "signing" contexts, this expands to the value of the
+# #       configuration variable $pgp_sign_as.  You probably need to
+# #       use this within a conditional % sequence.
+# #
+# # %r    In many contexts, mutt passes key IDs to pgp.  %r expands to
+# #       a list of key IDs.
+#
+# # Note that we explicitly set the comment armor header since GnuPG, when used
+# # in some localiaztion environments, generates 8bit data in that header, thereby
+# # breaking PGP/MIME.
+#
+# # decode application/pgp
+# set pgp_decode_command="gpg --status-fd=2 %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f"
+#
+# # verify a pgp/mime signature
+# set pgp_verify_command="gpg --status-fd=2 --no-verbose --quiet --batch --output - --verify %s %f"
+#
+# # decrypt a pgp/mime attachment
+# set pgp_decrypt_command="gpg --status-fd=2 %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f"
+#
+# # create a pgp/mime signed attachment
+# # set pgp_sign_command="gpg-2comp --comment '' --no-verbose --batch --output - %?p?--passphrase-fd 0? --armor --detach-sign --textmode %?a?-u %a? %f"
+# set pgp_sign_command="gpg --no-verbose --batch --quiet --output - %?p?--passphrase-fd 0? --armor --detach-sign --textmode %?a?-u %a? %f"
+#
+# # create a application/pgp signed (old-style) message
+# # set pgp_clearsign_command="gpg-2comp --comment '' --no-verbose --batch --output - %?p?--passphrase-fd 0? --armor --textmode --clearsign %?a?-u %a? %f"
+# set pgp_clearsign_command="gpg --no-verbose --batch --quiet --output - %?p?--passphrase-fd 0? --armor --textmode --clearsign %?a?-u %a? %f"
+#
+# # create a pgp/mime encrypted attachment
+# # set pgp_encrypt_only_command="pgpewrap gpg-2comp -v --batch --output - --encrypt --textmode --armor --always-trust -- -r %r -- %f"
+# set pgp_encrypt_only_command="pgpewrap gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust -- -r %r -- %f"
+#
+# # create a pgp/mime encrypted and signed attachment
+# # set pgp_encrypt_sign_command="pgpewrap gpg-2comp %?p?--passphrase-fd 0? -v --batch --output - --encrypt --sign %?a?-u %a? --armor --always-trust -- -r %r -- %f"
+# set pgp_encrypt_sign_command="pgpewrap gpg %?p?--passphrase-fd 0? --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust -- -r %r -- %f"
+#
+# # import a key into the public key ring
+# set pgp_import_command="gpg --no-verbose --import %f"
+#
+# # export a key from the public key ring
+# set pgp_export_command="gpg --no-verbose --export --armor %r"
+#
+# # verify a key
+# set pgp_verify_key_command="gpg --verbose --batch --fingerprint --check-sigs %r"
+#
+# # read in the public key ring
+# set pgp_list_pubring_command="gpg --no-verbose --batch --quiet --with-colons --list-keys %r"
+#
+# # read in the secret key ring
+# set pgp_list_secring_command="gpg --no-verbose --batch --quiet --with-colons --list-secret-keys %r"
+#
+# # fetch keys
+# # set pgp_getkeys_command="pkspxycwrap %r"
+#
+# # pattern for good signature - may need to be adapted to locale!
+#
+# # set pgp_good_sign="^gpgv?: Good signature from "
+#
+# # OK, here's a version which uses gnupg's message catalog:
+# # set pgp_good_sign="`gettext -d gnupg -s 'Good signature from "' | tr -d '"'`"
+#
+# # This version uses --status-fd messages
+# set pgp_good_sign="^\\[GNUPG:\\] GOODSIG"
+
+# }}}
+# Key Bindings {{{
+
+# Index {{{
+
+bind index \#       noop
+bind index R        group-reply
+bind index <tab>    sync-mailbox
+bind index k        previous-entry
+bind index j        next-entry
+bind index gg       first-entry
+bind index G        last-entry
+bind index p        recall-message
+bind index <space>  collapse-thread
+bind index N        search-opposite
+macro index s "<pipe-message>cat > ~/Desktop/"  "save message as"
+
+## Mark all as read
+macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
+
+## Sync email
+macro index O "<shell-escape>offlineimap<enter>"           "run offlineimap to sync all mail"
+macro index o "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox"
+
+## Saner copy/move dialogs
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+
+## Quickly change mailboxes
+macro index c "<change-folder>?<toggle-mailboxes>"     "change folder"
+macro index \' "<change-folder>+INBOX<enter>"   "go to INBOX"
+macro index \" "<change-folder>+archive<enter>" "go to archive"
+
+## Search with notmuch
+macro index S "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py -G ~/.mail/search<enter><change-folder-readonly>+search<enter>" "search mail (using notmuch)"
+
+## Unlimit (show [a]ll)
+macro index a "<limit>all\n" "show all messages (undo limit)"
+
+# }}}
+# Pager {{{
+
+bind pager \# noop
+bind pager k  previous-line
+bind pager j  next-line
+bind pager gg top
+bind pager G  bottom
+
+bind pager R  group-reply
+bind pager N  search-opposite
+
+macro pager \Cu "|urlview<enter>" "call urlview to open links"
+macro pager s "<pipe-message>cat > ~/Desktop/"  "save message as"
+
+## Quickly change mailboxes
+macro pager \' "<exit><change-folder>+INBOX<enter>"   "go to INBOX"
+macro pager \" "<exit><change-folder>+archive<enter>" "go to archive"
+
+# }}}
+# Compose {{{
+
+# bind compose p postpone-message
+
+# }}}
+# Attachment {{{
+
+## View, please!
+bind attach <return> view-mailcap
+
+# }}}
+# "Open in Vim" {{{
+
+macro index,pager V "|vim -c 'setlocal ft=mail' -c 'setlocal buftype=nofile' -<enter>"              "open in vim"
+macro index,pager M "|mvim -c 'setlocal ft=mail' -c 'setlocal buftype=nofile' - >/dev/null<enter>"  "open in macvim"
+
+# }}}
+# Color Theme {{{
+
+## kindly inspired from
+## http://nongeekshandbook.blogspot.ie/2009/03/mutt-color-configuration.html
+
+## Colors for items in the index
+color index yellow default ~N
+color index brightred default ~O
+color index brightyellow default ~F
+color index default green ~T
+color index brightred default ~D
+mono index bold ~N
+mono index bold ~F
+mono index bold ~T
+mono index bold ~D
+
+## Highlights inside the body of a message.
+
+## URLs
+color body brightgreen default "(http|ftp|news|telnet|finger)://[^ \"\t\r\n]*"
+color body brightgreen default "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+mono body bold "(http|ftp|news|telnet|finger)://[^ \"\t\r\n]*"
+mono body bold "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+
+## Email addresses.
+color body brightgreen default "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+
+## Header
+color header green default "^from:"
+color header green default "^to:"
+color header green default "^cc:"
+color header green default "^date:"
+color header yellow default "^newsgroups:"
+color header yellow default "^reply-to:"
+color header brightcyan default "^subject:"
+color header red default "^x-spam-rule:"
+color header green default "^x-mailer:"
+color header yellow default "^message-id:"
+color header yellow default "^Organization:"
+color header yellow default "^Organisation:"
+color header yellow default "^User-Agent:"
+color header yellow default "^message-id: .*pine"
+color header yellow default "^X-Fnord:"
+color header yellow default "^X-WebTV-Stationery:"
+
+color header red default "^x-spam-rule:"
+color header green default "^x-mailer:"
+color header yellow default "^message-id:"
+color header yellow default "^Organization:"
+color header yellow default "^Organisation:"
+color header yellow default "^User-Agent:"
+color header yellow default "^message-id: .*pine"
+color header yellow default "^X-Fnord:"
+color header yellow default "^X-WebTV-Stationery:"
+color header yellow default "^X-Message-Flag:"
+color header yellow default "^X-Spam-Status:"
+color header yellow default "^X-SpamProbe:"
+color header red default "^X-SpamProbe: SPAM"
+
+## Coloring quoted text - coloring the first 7 levels:
+color quoted cyan default
+color quoted1 yellow default
+color quoted2 red default
+color quoted3 green default
+color quoted4 cyan default
+color quoted5 yellow default
+color quoted6 red default
+color quoted7 green default
+
+## Default color definitions
+#color hdrdefault white green
+color signature brightmagenta default
+color indicator brightyellow black
+color attachment default green
+color error red default
+color message white default
+color search brightwhite magenta
+color status cyan black
+color tree brightblue default
+color normal white default
+color tilde green default
+color bold brightyellow default
+#color underline magenta default
+color markers brightcyan default
+
+## Color definitions when on a mono screen
+mono bold bold
+mono underline underline
+mono indicator reverse
+
+# }}}
+# Local Settings {{{
+    source `FILE=$HOME/.mutt-local; if [ ! -s "$FILE" ]; then FILE=/dev/null;fi;echo "$FILE"`
+# }}}

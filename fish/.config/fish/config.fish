@@ -131,9 +131,23 @@ end
 function mute
     command vol 0 $argv
 end
-function n
-    command newsbeuter $argv
+# function n
+#     command newsbeuter $argv
+# end
+
+set TF_ALIAS fuck
+function wat -d 'Correct your previous console command'
+    set -l exit_code $status
+    set -l eval_script (mktemp 2>/dev/null ; or mktemp -t 'thefuck')
+    set -l fucked_up_command $history[1]
+    thefuck $fucked_up_command > $eval_script
+    . $eval_script
+    rm $eval_script
+    if test $exit_code -ne 0
+        history --delete $fucked_up_command
+    end
 end
+
 function serve_this
     command python -m SimpleHTTPServer 8100 $argv
 end
@@ -360,7 +374,7 @@ function httpdump
 end
 # /network ---------------------------------------------------------------- }}}
 
-# # python/django ----------------------------------------------------------- {{{
+# python/django ----------------------------------------------------------- {{{
 # set -x PYTHONSTARTUP "$HOME/.pythonrc.py"
 # # set -x PYTHONPATH "$HOME/src/ansible/lib
 ##  set -x ANSIBLE_LIBRARY "$HOME/src/ansible/library
@@ -410,7 +424,13 @@ end
 # function pyr
 #     command pyenv rehash $argv
 # end
-# # /python/django ---------------------------------------------------------- }}}
+
+# pyenv
+status --is-interactive; and . (pyenv init -|psub)
+
+# virtualfish (virtualenv wrapper) provides `vf` command
+eval (python -m virtualfish)
+# /python/django ---------------------------------------------------------- }}}
 
 # ruby/rails -------------------------------------------------------------- {{{
 # function b

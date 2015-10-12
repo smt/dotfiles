@@ -99,10 +99,10 @@ if has('autocmd')
           \ | setlocal nocindent
 
     " vim-javascript conceal settings.
-    au FileType {java,type}script let g:javascript_conceal_function = "λ"
-          \ | let g:javascript_conceal_this = "@"
-          \ | let g:javascript_conceal_return = "<"
-          \ | let g:javascript_conceal_prototype = "#"
+    " au FileType {java,type}script let g:javascript_conceal_function = "λ"
+    "       \ | let g:javascript_conceal_this = "@"
+    "       \ | let g:javascript_conceal_return = "<"
+    "       \ | let g:javascript_conceal_prototype = "#"
 
     " " Map the conceal characters to their expanded forms.
     " au FileType {java,type}script inoremap <silent> @ <C-r>=syntax_expand#expand("@", "this")<CR>
@@ -147,12 +147,14 @@ if has('autocmd')
   augroup type_python
     " PEP8 compliance (set 1 tab = 4 chars explicitly, even if set
     " earlier, as it is important)
-    au FileType python setlocal et ts=4 sts=4 sw=4
-          \ | setlocal textwidth=78
-          \ | match ErrorMsg '\%>120v.\+'
+    " au FileType python setlocal et ts=4 sts=4 sw=4
+    "       \ | setlocal textwidth=78
+    "       \ | match ErrorMsg '\%>120v.\+'
 
     " But disable autowrapping as it is super annoying
-    au FileType python setlocal formatoptions-=t
+    " au FileType python setlocal formatoptions-=t
+    au!
+    au FileType python let g:pymode_lint = 1
   augroup END
 
   augroup type_rst
@@ -204,9 +206,9 @@ if has('autocmd')
           \   call pencil#init({'wrap': 'hard', 'textwidth': 72})
           \ | call litecorrect#init()
           \ | setlocal spell spl=en_us et sw=2 ts=2 noai
-    au Filetype mail         call pencil#init({'wrap': 'hard', 'textwidth': 60})
-          \ | call litecorrect#init()
-          \ | setlocal spell spl=en_us et sw=2 ts=2 noai nonu nornu
+    " au Filetype mail         call pencil#init({'wrap': 'hard', 'textwidth': 60})
+    "       \ | call litecorrect#init()
+    "       \ | setlocal spell spl=en_us et sw=2 ts=2 noai nonu nornu
     au Filetype {ht,x}ml     call pencil#init({'wrap': 'soft'})
           \ | call litecorrect#init()
           \ | setlocal spell spl=en_us et sw=2 ts=2

@@ -42,7 +42,6 @@ imap <F1> <Esc>
 " noremap
 noremap j gj
 noremap k gk
-nnoremap - -
 
 " inoremap
 inoremap jk <Esc>
@@ -54,12 +53,13 @@ inoremap <right> <nop>
 "inoremap <C-U> <C-G>u<C-U>
 
 " nnoremap
+nnoremap - -
 nnoremap Y y$
 nnoremap <silent> <Leader><Space> :FZF!<CR>
 nnoremap <silent> <Leader><CR> :FZFBuffers<CR>
 nnoremap <silent> <Leader>C :FZFColors<CR>
 nnoremap <silent> <Leader>s :LAg<Space>
-nnoremap <Leader>G :Goyo<CR>
+nnoremap <silent> <Leader>G :Goyo<CR>
 nnoremap <silent> <Leader>gs :Gstatus<CR>
 nnoremap <silent> <Leader>gd :Gdiff<CR>
 nnoremap <silent> <Leader>gc :Gcommit<CR>
@@ -71,15 +71,19 @@ nnoremap <silent> <Leader>gw :Gwrite<CR>
 nnoremap <silent> <Leader>ge :Gedit<CR>
 nnoremap <silent> <Leader>gi :Git add -p %<CR>
 nnoremap <silent> <Leader>gg :QuickfixsignsToggle<CR>
-nnoremap <Leader>tf :call g:FixTabStops()<CR>
-nnoremap <Leader>gu :GundoToggle<CR>
-nnoremap <S-Left> :SidewaysLeft<cr>
-nnoremap <S-Right> :SidewaysRight<cr>
+nnoremap <silent> <Leader>gu :GundoToggle<CR>
+nnoremap <silent> <Leader>nt :NERDTreeToggle
+nnoremap <silent> <Leader>tf :call g:FixTabStops()<CR>
+nnoremap <silent> <S-Left> :SidewaysLeft<cr>
+nnoremap <silent> <S-Right> :SidewaysRight<cr>
 " nnoremap <C-Up> ddkP
 " nnoremap <C-Down> ddp
 nnoremap gV `[v`]
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 nnoremap <space> za
+" Remove the Windows ^M - when the encodings gets messed up
+nnoremap <Leader>mm mmHmt:%s/<C-V><CR>//ge<CR>'tzt'm
+nnoremap <silent> <Leader>ww :call StripTrailingWhitespace()<CR>
 
 " vnoremap
 vnoremap < <gv

@@ -225,15 +225,27 @@ if has('autocmd')
     au User GoyoLeave nested call <SID>goyo_leave()
   augroup END
 
-  " augroup bundle_neosnippet
-  "   au!
-  "   au BufNewFile *.snip{pets,} setlocal filetype=neosnippet
-  "   au FileType neosnippet setlocal noet ts=4 sts=4 sw=4
-  " augroup END
-
   augroup bundle_surround
+    au!
     " FileType-dependent mapping of "-" (ASCII 45) as a replacement string
     au FileType php let b:surround_45 = "<?php \r ?>"
+  augroup END
+
+  augroup bundle_ycm
+    au!
+    au FileType c,cpp                 autocmd InsertEnter call LoadSnippetsAndCompletion() | au! bundle_ycm
+    au FileType clj,cljs,lisp         autocmd InsertEnter call LoadSnippetsAndCompletion() | au! bundle_ycm
+    au FileType {c,le,sc}ss,stylus    autocmd InsertEnter call LoadSnippetsAndCompletion() | au! bundle_ycm
+    au FileType go                    autocmd InsertEnter call LoadSnippetsAndCompletion() | au! bundle_ycm
+    au FileType {ht,x}ml,jade         autocmd InsertEnter call LoadSnippetsAndCompletion() | au! bundle_ycm
+    au FileType java                  autocmd InsertEnter call LoadSnippetsAndCompletion() | au! bundle_ycm
+    au FileType {java,type}script     autocmd InsertEnter call LoadSnippetsAndCompletion() | au! bundle_ycm
+    au FileType json                  autocmd InsertEnter call LoadSnippetsAndCompletion() | au! bundle_ycm
+    au FileType php,twig              autocmd InsertEnter call LoadSnippetsAndCompletion() | au! bundle_ycm
+    au FileType python                autocmd InsertEnter call LoadSnippetsAndCompletion() | au! bundle_ycm
+    au FileType ruby                  autocmd InsertEnter call LoadSnippetsAndCompletion() | au! bundle_ycm
+    au FileType vim                   autocmd InsertEnter call LoadSnippetsAndCompletion() | au! bundle_ycm
+    au FileType yaml                  autocmd InsertEnter call LoadSnippetsAndCompletion() | au! bundle_ycm
   augroup END
 
 endif

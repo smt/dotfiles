@@ -14,6 +14,13 @@ function! BuildYCM(info)
   endif
 endfunction
 
+" Auto-install plug.vim
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
+
 call plug#begin('~/.vim/plugged')
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
@@ -78,15 +85,15 @@ Plug 'tpope/vim-rsi'
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-sleuth'
 Plug 'AndrewRadev/sideways.vim'
-Plug 'honza/vim-snippets'
+Plug 'honza/vim-snippets', { 'on': [] }
 Plug 'tpope/vim-speeddating'
-Plug 'ervandew/supertab'
+Plug 'ervandew/supertab', { 'on': [] }
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/syntastic'
-Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips', { 'on': [] }
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-unimpaired'
-Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+Plug 'Valloric/YouCompleteMe', {'on': [], 'do': function('BuildYCM') }
 
 " Lang-specific
 Plug 'ElmCast/elm-vim', { 'for': 'elm' }

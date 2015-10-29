@@ -70,6 +70,7 @@ Plug 'sjl/gundo.vim'
 Plug 'tpope/vim-haystack'
 Plug 'cohama/lexima.vim'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-projectionist'
 Plug 'tomtom/quickfixsigns_vim'
 Plug 'tpope/vim-ragtag'
@@ -77,6 +78,7 @@ Plug 'tpope/vim-rsi'
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-sleuth'
 Plug 'AndrewRadev/sideways.vim'
+Plug 'honza/vim-snippets'
 Plug 'tpope/vim-speeddating'
 Plug 'ervandew/supertab'
 Plug 'tpope/vim-surround'
@@ -87,6 +89,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
 " Lang-specific
+Plug 'ElmCast/elm-vim', { 'for': 'elm' }
 Plug 'pangloss/vim-javascript', { 'for': ['coffee', 'javascript', 'jsx', 'typescript'] }
 Plug 'burnettk/vim-angular', { 'for': 'javascript' }
 Plug 'thomd/vim-jasmine', { 'for': 'javascript' }
@@ -105,6 +108,7 @@ Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
+Plug 'klen/python-mode', { 'for': 'python' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }

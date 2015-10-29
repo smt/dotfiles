@@ -52,7 +52,7 @@ switch (uname)
         set -x MAIL $HOME/Mail
         # set -x PKG_CONFIG_PATH /opt/X11/lib/pkgconfig
         set -x SHELL /usr/local/bin/fish
-        set -x JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre
+        # set -x JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre
         set -x PAGER less
         # set -x CA_CERTIFICATE /usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
 
@@ -63,6 +63,16 @@ switch (uname)
             sudo softwareupdate -i -a
             brew update
             brew upgrade
+        end
+        function flushdns
+            dscacheutil -flushcache
+            sudo killall -HUP mDNSResponder
+        end
+        function ip
+            command ipconfig getifaddr $argv
+        end
+        function ips
+            command ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/; print $argv'
         end
         function cb
             tr -d '\n' | pbcopy
@@ -101,10 +111,11 @@ set -x LS_COLORS "di=36;40:ln=35;40:so=31;1;44:pi=0;1;44:ex=1;31;40:bd=0;1;44:cd
 set -x ANSIBLE_NOCOWS 1
 set -x RBENV_ROOT $HOME/.rbenv
 set -x NVM_DIR $HOME/.nvm
+set -x TF_ALIAS fuck
+
 function nvm
     bass source ~/.nvm/nvm.sh ';' nvm $argv
 end
-
 function reload
     . $fish_path
 end
@@ -131,11 +142,9 @@ end
 function mute
     command vol 0 $argv
 end
-# function n
-#     command newsbeuter $argv
-# end
-
-set TF_ALIAS fuck
+function nb
+    command newsbeuter $argv
+end
 function wat -d 'Correct your previous console command'
     set -l exit_code $status
     set -l eval_script (mktemp 2>/dev/null ; or mktemp -t 'thefuck')
@@ -147,7 +156,6 @@ function wat -d 'Correct your previous console command'
         history --delete $fucked_up_command
     end
 end
-
 function serve_this
     command python -m SimpleHTTPServer 8100 $argv
 end
@@ -353,18 +361,8 @@ end
 # /javascript/node.js ----------------------------------------------------- }}}
 
 # network ----------------------------------------------------------------- {{{
-function flushdns
-    dscacheutil -flushcache
-    sudo killall -HUP mDNSResponder
-end
 function extip
     command dig +short myip.opendns.com @resolver1.opendns.com
-end
-# function ip
-#     command ipconfig getifaddr $argv
-# end
-function ips
-    command ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/; print $argv'
 end
 function sniff
     command sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'

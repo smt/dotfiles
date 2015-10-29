@@ -72,15 +72,15 @@ nnoremap <silent> <Leader>ge :Gedit<CR>
 nnoremap <silent> <Leader>gi :Git add -p %<CR>
 nnoremap <silent> <Leader>gg :QuickfixsignsToggle<CR>
 nnoremap <silent> <Leader>gu :GundoToggle<CR>
-nnoremap <silent> <Leader>nt :NERDTreeToggle
+nnoremap <silent> <Leader>nt :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>tf :call g:FixTabStops()<CR>
-nnoremap <silent> <S-Left> :SidewaysLeft<cr>
-nnoremap <silent> <S-Right> :SidewaysRight<cr>
+nnoremap <silent> <S-Left> :SidewaysLeft<CR>
+nnoremap <silent> <S-Right> :SidewaysRight<CR>
 " nnoremap <C-Up> ddkP
 " nnoremap <C-Down> ddp
 nnoremap gV `[v`]
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-nnoremap <space> za
+nnoremap <Space> za
 " Remove the Windows ^M - when the encodings gets messed up
 nnoremap <Leader>mm mmHmt:%s/<C-V><CR>//ge<CR>'tzt'm
 nnoremap <silent> <Leader>ww :call StripTrailingWhitespace()<CR>

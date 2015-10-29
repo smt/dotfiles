@@ -121,4 +121,4 @@ $ANSIBLE_DIRECTORY/bin/ansible-playbook -e "username=$(whoami)" -vvv -i $ANSIBLE
 
 # Link the casks.
 echo "Info   | Configure   | link-casks"
-~/.bin/link-casks
+~/bin/link-casks

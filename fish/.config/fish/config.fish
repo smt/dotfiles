@@ -18,7 +18,7 @@ switch (uname)
         set LOCAL_PATH $GOPATH/bin $LOCAL_PATH
         set LOCAL_PATH $HOME/.fzf/bin $LOCAL_PATH
         set LOCAL_PATH $HOME/.cabal/bin $LOCAL_PATH
-        set LOCAL_PATH $HOME/.bin $LOCAL_PATH
+        set LOCAL_PATH $HOME/bin $LOCAL_PATH
         set -x PATH $LOCAL_PATH $BASE_PATH
         # Initialize z
         set -x Z_SCRIPT_PATH $BREW_PREFIX/etc/profile.d/z.sh
@@ -27,7 +27,7 @@ switch (uname)
         set LOCAL_PATH $GOPATH/bin
         set LOCAL_PATH $HOME/.fzf/bin $LOCAL_PATH
         set LOCAL_PATH $HOME/.cabal/bin $LOCAL_PATH
-        set LOCAL_PATH $HOME/.bin $LOCALPATH
+        set LOCAL_PATH $HOME/bin $LOCALPATH
         set -x PATH $LOCAL_PATH $BASE_PATH
 end
 # /PATH ------------------------------------------------------------------- }}}

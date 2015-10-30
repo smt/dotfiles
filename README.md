@@ -8,6 +8,14 @@ Please ensure you've installed `stow` on your system.
 brew install stow
 ```
 
+```bash
+sudo pacman -S stow
+```
+
+```bash
+sudo apt-get install stow
+```
+
 ## Install
 
 To install just these dotfiles (or your custom fork):

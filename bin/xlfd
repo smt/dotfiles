@@ -1,0 +1,278 @@
+#! /bin/sh
+
+# @(#) $Id: xlfd,v 1.4 96/03/16 01:03:24 lee Exp Locker: lee $
+
+foundry='*'
+family='*'
+weight='*'
+slant='*'
+setwidth='*'
+addedstyle='*'
+pixelsz='*'
+pointsize='*'
+resx='*'
+resy='*'
+space='*'
+averagewidth='*'
+registry='*'
+encoding='*'
+
+defaultaction=xlsfonts
+
+CMDNAME=`basename $0`
+export CMDNAME
+
+options=
+prunt=no
+set -- ${@+"$@"} # -end-of-options
+
+# I have used a sequence of echo commands instead of a here document
+# to avoid problems with some shells making lots of little flies in
+# /tmp to hold the here documents, and either taking a long time to do it,
+# or forgetting to remove them...
+e()
+{
+    echo "$CMDNAME: $1" 1>&2
+}
+
+ShortUsage() # argument is exit status
+{
+    e "usage: $CMDNAME [-help|-usage] [options] [commands]"
+    e "options are -foundry X; -family X; -weight X; -slant X; -setwidth X;"
+    e "  -addedstyle X; -pixelsz N; -pointsize N; -resx N; -resy N; -res"
+    e "  -space x; -averagewidth N; -registry R; -encoding x; -charset R-X;"
+    e "  -bg C; -fg C; -title T; -xrm x -option '-xxx yyy' -class X; -name X"
+    e "commands are help, print, echo, xlsfonts, xfd, xfontsel, xterm, tx, mx"
+
+    exit $1
+}
+
+SetFromFontName()
+{
+    eval `echo "$1" | awk -F- '
+
+    (NF > 1) {
+	printf "foundry=\"%s\";\n", $2
+    }
+
+    (NF > 2) {
+	printf "family=\"%s\";\n", $3
+    }
+
+    (NF > 3) {
+	printf "weight=\"%s\";\n", $4
+    }
+
+    (NF > 4) {
+	printf "slant=\"%s\";\n", $5
+    }
+
+    (NF > 5) {
+	printf "setwidth=\"%s\";\n", $6
+    }
+
+    (NF > 6) {
+	printf "addedstyle=\"%s\";\n", $7
+    }
+
+    (NF > 7) {
+	printf "pixelsz=\"%s\";\n", $8
+    }
+
+    (NF > 8) {
+	printf "pointsize=\"%s\";\n", $9
+    }
+
+    (NF > 9) {
+	printf "resx=\"%s\";\n", $10
+    }
+
+    (NF > 10) {
+	printf "resy=\"%s\";\n", $11
+    }
+
+    (NF > 11) {
+	printf "space=\"%s\";\n", $12
+    }
+
+    (NF > 12) {
+	printf "averagewidth=\"%s\";\n", $13
+    }
+
+    (NF > 13) {
+	printf "registry=\"%s\";\n", $14
+    }
+
+    (NF > 14) {
+	printf "encoding=\"%s\";\n", $15
+    }
+    '`
+}
+
+while [ $# -gt 0 ]
+do
+    pattern="-$foundry-$family-$weight-$slant-$setwidth-$addedstyle-$pixelsz-$pointsize-$resx-$resy-$space-$averagewidth-$registry-$encoding"
+
+    case "$1" in
+
+    -fn|-font|-prefix|-fontprefix)
+	# initialise everything from the given font name
+	SetFromFontName "$2"
+	shift;
+	;;
+    -foundry) foundry="$2"; shift ;;
+    -family) family="$2"; shift ;;
+    -weight) weight="$2"; shift ;;
+    -slant) slant="$2"; shift ;;
+    -setwidth) setwidth="$2"; shift ;;
+    -addedstyle) addedstyle="$2"; shift ;;
+    -pixelsz|-pixelsize) pixelsz="$2"; shift ;;
+    -pointsize|-size) pointsize="$2"; shift ;;
+    -resx|-xres|-dpix|-dpix) resx="$2"; shift ;;
+    -resy|-yres|-dpiy|-dpiy) resy="$2"; shift ;;
+    -res|-dpi) resx="$2"; resy="$2"; shift ;;
+    -space) space="$2"; shift ;;
+    -averagewidth) averagewidth="$2"; shift ;;
+    -registry) registry="$2"; shift ;;
+    -encoding) encoding="$2"; shift ;;
+    -charset)
+	case "$2" in
+	*-*-*)
+	    echo "$CMDNAME: invalid charset \"$2\", too many hyphens;" 1>&2
+	    echo "$CMDNAME: use -charset registry-encoding, e.g. iso8859-3" 1>&2
+	    exit 1
+	    ;;
+	?*-*?)
+	    registry=`expr "$2" : '^\([^-]*\)-.*$'`
+	    encoding=`expr "$2" : '^[^-]*-\(.*\)$'`
+	    shift
+	    ;;
+	*)
+	    echo "$CMDNAME: invalid charset \"$2\", lacks hyphen;" 1>&2
+	    echo "$CMDNAME: use -charset registry-encoding, e.g. iso8859-1" 1>&2
+	    exit 1
+	    ;;
+	esac
+	;;
+    -scaled) # pseudo-option to force only scaled fonts
+	if test "$pixelsz" = '*'
+	then
+	    pixelsz=0;
+	fi
+	if test "$pointsize" = '*'
+	then
+	    pointsize=0;
+	fi
+	if test "$resx" = '*'
+	then
+	    resx=0;
+	fi
+	if test "$resy" = '*'
+	then
+	    resy=0;
+	fi
+	if test "$averagewidth" = '*'
+	then
+	    averagewidth=0;
+	fi
+	;;
+
+    -u)
+	# -u to xfontsel makes it unsorted, which can be much faster
+	options="-u '$options'";
+	;;
+    -bg|-fg|-class|-name|-title|-geom*)
+	options="$options $1 '$2'"; shift
+	;;
+    -xrm) options="$options -xrm '$2'"; shift ;;
+    -option) options="$options '$2'"; shift ;;
+
+    -end-of-options)
+	if [ $prunt = no ]
+	then
+	    $defaultaction $options -fn "$pattern"
+	fi
+	;;
+
+    xfontsel)
+	shift;
+	xfontsel $options -pattern "$pattern" ${@+"$@"}
+	prunt=yes
+	;;
+    xlsfonts|xfd|tx|mx|xterm)
+	cmd="$1"
+	shift;
+	$cmd $options -fn "$pattern" ${@+"$@"}
+	prunt=yes
+	;;
+    echo)
+	echo $options "$pattern"
+	prunt=yes
+	;;
+    print)
+	echo "$pattern"
+	prunt=yes
+	;;
+    usage|-usage)
+	ShortUsage 0
+	;;
+    help|-help)
+	cat 1>&2 << bad_boy
+    $0: X11 logical font description (XLFD) manipulation
+    usage: `basename $0` [options] command [...]
+    Commands are:
+	help -- prints this summary; -usage prints a shorter version.
+	print -- print the corresponding XLFD pattern
+	echo -- like print, but includes program options such as -bg.
+	xlsfonts, xfd, xfontsel -- runs the coresponding program
+
+    Options to specify Font Properties:
+	foundry xxx	(e.g. bitstream)
+	family xxx	(e.g. charter)
+	weight xxx	(e.g. bold, medium)
+	slant xxx	(r i or o for roman/italic/oblique)
+	setwidth xxx	(normal, condensed, etc.)
+	addedstyle xxx	(serif, sans, '' for none)
+	pixelsz N	(normally leave this as *) [also: pixelsize]
+	pointsize N	(font size in units of 1/727.2 of an inch, e.g. 120)
+	resx N		(x dots per inch, horizontal screen resolution)
+	resy N		(y dots per inch, vertical screen resolution)
+	res		(sets both x and y res, e.g. -res 100)
+	space xxx	(m = monospaced, p = proportional, c = cell)
+	averagewidth N	(average character width in pixels)
+	registry rrr	(usually iso8859 or adobe)
+	encoding xxx	(usually 1 or 2 (for iso8859) or fontspecific)
+	charset rrr-xxx	(sets both registry and encoding, e.g. iso8859-1)
+
+    Program Options:
+	-bg xxx; -fg xxx; -title xxx; -xrm xxx -option '-xxx yyy' 
+	-geom[etry] xxx
+	-class name; -name name
+
+    The font pattern right now is:
+	$pattern
+bad_boy
+	exit 0
+	;;
+    *)
+	echo "$CMDNAME: unknown option $1; see -usage or -help" 1>&2
+	exit 1
+	;;
+    esac
+
+    if [ $prunt = yes ]
+    then
+	exit 0
+    fi
+
+    shift
+done
+
+if [ $prunt = no ]
+then
+    pattern="-$foundry-$family-$weight-$slant-$setwidth-$addedstyle-$pixelsz-$pointsize-$resx-$resy-$space-$averagewidth-$registry-$encoding"
+    $defaultaction $options -fn "$pattern"
+fi
+
+
+

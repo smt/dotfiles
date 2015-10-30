@@ -1,0 +1,19 @@
+! seoul256 (dark) theme adapted for URxvt
+#define bg   #3a3a3a
+#define fg   #d0d0d0
+#define blk  #4e4e4e
+#define bblk #626262
+#define red  #d68787
+#define bred #d75f87
+#define grn  #5f865f
+#define bgrn #87af87
+#define ylw  #d8af5f
+#define bylw #ffd787
+#define blu  #85add4
+#define bblu #add4fb
+#define mag  #d7afaf
+#define bmag #ffafaf
+#define cyn  #87afaf
+#define bcyn #87d7d7
+#define wht  #d0d0d0
+#define bwht #e4e4e4

@@ -1,0 +1,30 @@
+#!/bin/bash
+
+topics="ansible
+atom
+bin
+bspwm
+conky
+emacs
+fish
+git
+irc
+js
+ledger
+mail
+mongodb
+newsbeuter
+ranger
+ruby
+sxhkd
+tmux
+todo
+utils
+vim
+X"
+
+for i in "$topics"
+do
+    echo "Stowing $i..."
+    stow -t "$HOME" "$i"
+done

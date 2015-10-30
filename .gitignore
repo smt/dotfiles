@@ -5,6 +5,9 @@ fish/.config/fish/fish_history
 fish/.config/fish/fish_read_history
 fish/.config/fish/fishd*
 fish/.config/fish/fishrc
+fish/.config/omf/hosts
+fish/.config/omf/platforms
+fish/.config/omf/users
 irc/.weechat/irc.conf
 irc/.weechat/logs
 mail/.mutt/cache

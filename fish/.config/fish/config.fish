@@ -142,25 +142,6 @@ end
 function mute
     command vol 0 $argv
 end
-<<<<<<< HEAD:topics/fish/config.fish
-# function n
-#     command newsbeuter $argv
-# end
-
-set TF_ALIAS fuck
-function wat -d 'Correct your previous console command'
-    set -l exit_code $status
-    set -l eval_script (mktemp 2>/dev/null ; or mktemp -t 'thefuck')
-    set -l fucked_up_command $history[1]
-    thefuck $fucked_up_command > $eval_script
-    . $eval_script
-    rm $eval_script
-    if test $exit_code -ne 0
-        history --delete $fucked_up_command
-    end
-end
-
-=======
 function nb
     command newsbeuter $argv
 end
@@ -175,7 +156,6 @@ function wat -d 'Correct your previous console command'
         history --delete $fucked_up_command
     end
 end
->>>>>>> stow:fish/.config/fish/config.fish
 function serve_this
     command python -m SimpleHTTPServer 8100 $argv
 end

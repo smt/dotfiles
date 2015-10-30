@@ -85,11 +85,7 @@ Plug 'tpope/vim-rsi'
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-sleuth'
 Plug 'AndrewRadev/sideways.vim'
-<<<<<<< HEAD:topics/vim/vimrc.bundles
-Plug 'honza/vim-snippets'
-=======
 Plug 'honza/vim-snippets', { 'on': [] }
->>>>>>> stow:vim/.vimrc.bundles
 Plug 'tpope/vim-speeddating'
 Plug 'ervandew/supertab', { 'on': [] }
 Plug 'tpope/vim-surround'

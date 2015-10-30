@@ -37998,9 +37998,9 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>929 110 445 239 0 0 1440 877 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>535 660 924 485 0 0 1920 1200 </string>
+	<string>535 639 924 485 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 9 1673 1018 0 0 1680 1027 </string>
+	<string>4 11 1915 1166 0 0 1920 1200 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>0 15 1673 1012 0 0 1680 1027 </string>
 	<key>New Bookmarks</key>
@@ -40827,7 +40827,7 @@
 	<key>NoSyncTimeOfLastPromo</key>
 	<real>453699841.08375502</real>
 	<key>NoSyncTimeOfLastPromoDownload</key>
-	<real>466105256.39902502</real>
+	<real>467740399.46957302</real>
 	<key>OnlyWhenMoreTabs</key>
 	<false/>
 	<key>OpenArrangementAtStartup</key>
@@ -40898,7 +40898,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-10-13T01:54:06Z</date>
+	<date>2015-10-29T16:30:06Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Secure Input</key>

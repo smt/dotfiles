@@ -74,7 +74,6 @@ Plug 'tpope/vim-eunuch'
 Plug 'Wolfy87/vim-syntax-expand'
 Plug 'tpope/vim-fugitive'
 Plug 'mattn/gist-vim'
-Plug 'sjl/gundo.vim'
 Plug 'gregsexton/gitv', { 'on': 'Gitv' }
 Plug 'tpope/vim-haystack'
 Plug 'cohama/lexima.vim'

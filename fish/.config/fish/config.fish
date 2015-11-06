@@ -106,6 +106,7 @@ set -x TERM screen-256color-bce
 set -x EDITOR vim
 set -x VISUAL vim
 set -x FZF_TMUX 0
+set -x FZF_DEFAULT_COMMAND "ag -g ''"
 set -x LSCOLORS gxfxbEaEBxxEhEhBaDaCaD
 set -x LS_COLORS "di=36;40:ln=35;40:so=31;1;44:pi=0;1;44:ex=1;31;40:bd=0;1;44:cd=37;1;44:su=37;1;41:sg=0;1;43:tw=0;1;42:ow=0;1;43:"
 set -x ANSIBLE_NOCOWS 1

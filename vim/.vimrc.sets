@@ -48,8 +48,12 @@ let g:jsdoc_tag_synonyms = { 'param': 'arg' }
 let g:lightline = {
   \ 'colorscheme': 'gruvbox',
   \ 'active': {
-  \   'left': [ [ 'mode', 'paste' ], [ 'fugitive' ], [ 'filename' ] ],
+  \   'left': [ [ 'mode', 'paste' ], [ 'fugitive' ], [ 'relativepath' ] ],
   \   'right': [ [ 'syntastic', 'column' ], ['percent'], [ 'filetype' ] ]
+  \ },
+  \ 'inactive': {
+  \   'left': [ [ 'relativepath' ] ],
+  \   'right': [ [ 'filetype' ] ]
   \ },
   \ 'component_function': {
   \   'fugitive': 'LightLineFugitive',

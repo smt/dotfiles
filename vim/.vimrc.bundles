@@ -34,6 +34,7 @@ Plug 'embear/vim-localvimrc'
 Plug 'eiginn/netrw'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-obsession'
 Plug 'reedes/vim-wheel'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }

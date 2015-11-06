@@ -1,3 +1,4 @@
+tags
 *.pyc
 *.local
 fish/.config/fish/completions

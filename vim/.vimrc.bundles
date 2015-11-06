@@ -38,6 +38,7 @@ Plug 'tpope/vim-obsession'
 Plug 'reedes/vim-wheel'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
 
 " Styling

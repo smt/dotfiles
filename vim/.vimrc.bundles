@@ -40,7 +40,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'junegunn/vim-easy-align'
 
 " Styling
-Plug 'bling/vim-airline'
+Plug 'itchyny/lightline.vim'
 Plug 'reedes/vim-colors-pencil'
 Plug 'noahfrederick/vim-hemisu'
 Plug 'junegunn/seoul256.vim'
@@ -85,15 +85,15 @@ Plug 'tpope/vim-rsi'
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-sleuth'
 Plug 'AndrewRadev/sideways.vim'
-Plug 'honza/vim-snippets', { 'on': [] }
+Plug 'honza/vim-snippets'
 Plug 'tpope/vim-speeddating'
-Plug 'ervandew/supertab', { 'on': [] }
+Plug 'ervandew/supertab'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/syntastic'
-Plug 'SirVer/ultisnips', { 'on': [] }
+Plug 'SirVer/ultisnips'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-unimpaired'
-Plug 'Valloric/YouCompleteMe', {'on': [], 'do': function('BuildYCM') }
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
 " Lang-specific
 Plug 'ElmCast/elm-vim', { 'for': 'elm' }
@@ -116,6 +116,7 @@ Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 Plug 'klen/python-mode', { 'for': 'python' }
+Plug 'JarrodCTaylor/vim-python-test-runner', { 'for': 'python' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }

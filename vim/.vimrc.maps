@@ -23,10 +23,10 @@ map zl zL
 map zh zH
 "map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
 map <F1> <Esc>
-map <up> <C-W>k<C-W>_
-map <down> <C-W>j<C-W>_
-map <left> <C-W>h<C-W>_
-map <right> <C-W>l<C-W>_
+map <Up> <C-W>k<C-W>_
+map <Down> <C-W>j<C-W>_
+map <Left> <C-W>h<C-W>_
+map <Right> <C-W>l<C-W>_
 map  <Esc>[; <C-Semicolon>
 map! <Esc>[; <C-Semicolon>
 
@@ -45,10 +45,10 @@ noremap k gk
 
 " inoremap
 inoremap jk <Esc>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
+inoremap <Up> <nop>
+inoremap <Down> <nop>
+inoremap <Left> <nop>
+inoremap <Right> <nop>
 " Conflicts with Pencil:
 "inoremap <C-U> <C-G>u<C-U>
 
@@ -89,10 +89,10 @@ nnoremap <silent> <Leader>ww :call StripTrailingWhitespace()<CR>
 vnoremap < <gv
 vnoremap > >gv
 vnoremap . :normal .<CR>
-vnoremap <up> <nop>
-vnoremap <down> <nop>
-vnoremap <right> <nop>
-vnoremap <left> <nop>
+vnoremap <Up> <nop>
+vnoremap <Down> <nop>
+vnoremap <Right> <nop>
+vnoremap <Left> <nop>
 vnoremap <Space> zf
 
 " cnoremap
@@ -121,10 +121,12 @@ nmap <silent> <Leader>/ :nohlsearch<CR>
 nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 nmap <Leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
 nmap _ <Plug>VinegarUp
+nmap ga <Plug>(EasyAlign)
 
 " smap
 
 " xmap
+xmap ga <Plug>(EasyAlign)
 
 " Commands
 command! -nargs=1 Locate call fzf#run({

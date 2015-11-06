@@ -31,10 +31,6 @@ let g:netrw_altv=1              " open files on right
 let g:netrw_preview=1           " open previews vertically
 let g:netrw_use_errorwindow=0   " suppress error window
 
-" Airline
-let g:airline_theme = 'tomorrow'
-let g:airline_powerline_fonts=1
-
 " Emmet
 let g:user_emmet_install_global = 0
 
@@ -47,6 +43,43 @@ let g:jsdoc_allow_input_prompt = 1
 let g:jsdoc_allow_shorthand = 1
 let g:jsdoc_return_description = 0
 let g:jsdoc_tag_synonyms = { 'param': 'arg' }
+
+" Lightline
+let g:lightline = {
+  \ 'colorscheme': 'gruvbox',
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ], [ 'fugitive' ], [ 'filename' ] ],
+  \   'right': [ [ 'syntastic', 'column' ], ['percent'], [ 'filetype' ] ]
+  \ },
+  \ 'component_function': {
+  \   'fugitive': 'LightLineFugitive',
+  \   'filename': 'LightLineFilename'
+  \ }
+  \ }
+
+function! LightLineModified()
+  return &ft =~ 'help\|vimfiler' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! LightLineReadonly()
+  return &ft !~? 'help\|vimfiler' && &readonly ? 'RO' : ''
+endfunction
+
+function! LightLineFilename()
+  return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
+        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \  &ft == 'unite' ? unite#get_status_string() :
+        \  &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
+endfunction
+
+function! LightLineFugitive()
+  if &ft !~? 'vimfiler' && exists('*fugitive#head')
+    return fugitive#head()
+  endif
+  return ''
+endfunction
 
 " Pandoc
 let g:pandoc#filetypes#handled = ["pandoc", "markdown", "rst", "textile", "extra"]
@@ -223,6 +256,13 @@ if !WINDOWS() || &shell =~# 'fish$'
   set shell=/bin/bash
 endif
 
+" gruvbox
+let g:gruvbox_italic = 1
+let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_contrast_light = 'hard'
+let g:gruvbox_italicize_comments = 0
+let g:gruvbox_vert_split = 'bg0'
+
 if has('gui_running')
   set guioptions-=T
   set lines=40
@@ -231,13 +271,13 @@ if has('gui_running')
   set transparency=0
   syntax enable
   set background=dark
-  colorscheme seoul256
+  colorscheme gruvbox
 else
   let g:indent_guides_enable_on_vim_startup = 0
   set t_Co=256
   syntax enable
   set background=dark
-  colorscheme seoul256
+  colorscheme gruvbox
 endif
 
 if WINDOWS()

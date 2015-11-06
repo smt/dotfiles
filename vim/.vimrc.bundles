@@ -38,7 +38,7 @@ Plug 'tpope/vim-obsession'
 Plug 'reedes/vim-wheel'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
-Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
 
 " Styling
 Plug 'itchyny/lightline.vim'
@@ -55,9 +55,9 @@ Plug 'tpope/vim-abolish'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-journal'
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-after'
-Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-pandoc', { 'for': ['pandoc'] }
+Plug 'vim-pandoc/vim-pandoc-after', { 'for': ['pandoc'] }
+Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': ['pandoc'] }
 Plug 'reedes/vim-lexical'
 Plug 'reedes/vim-litecorrect'
 Plug 'reedes/vim-textobj-sentence'
@@ -67,32 +67,33 @@ Plug 'reedes/vim-thematic'
 " Development Tools
 Plug 'rking/ag.vim'
 Plug 'PeterRincker/vim-argumentative'
-Plug 'tpope/vim-commentary'
-Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
+Plug 'mattn/emmet-vim', { 'for': ['html'] }
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'Wolfy87/vim-syntax-expand'
 Plug 'tpope/vim-fugitive'
 Plug 'mattn/gist-vim'
 Plug 'sjl/gundo.vim'
+Plug 'gregsexton/gitv', { 'on': 'Gitv' }
 Plug 'tpope/vim-haystack'
 Plug 'cohama/lexima.vim'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-projectionist'
 Plug 'tomtom/quickfixsigns_vim'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-rsi'
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-sleuth'
-Plug 'AndrewRadev/sideways.vim'
+Plug 'AndrewRadev/sideways.vim', { 'on': ['SidewaysLeft', 'SidewaysRight'] }
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-speeddating'
 Plug 'ervandew/supertab'
 Plug 'tpope/vim-surround'
-Plug 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic', { 'on': 'SyntasticCheck' }
 Plug 'SirVer/ultisnips'
-Plug 'mbbill/undotree'
+Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'tpope/vim-unimpaired'
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 

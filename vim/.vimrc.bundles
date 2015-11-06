@@ -43,11 +43,11 @@ Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
 " Styling
 Plug 'itchyny/lightline.vim'
 Plug 'reedes/vim-colors-pencil'
-Plug 'noahfrederick/vim-hemisu'
+" Plug 'noahfrederick/vim-hemisu'
 Plug 'junegunn/seoul256.vim'
-Plug 'romainl/Apprentice'
+" Plug 'romainl/Apprentice'
 Plug 'morhetz/gruvbox'
-Plug 'w0ng/vim-hybrid'
+" Plug 'w0ng/vim-hybrid'
 
 " Writing/Authoring Tools
 Plug 'reedes/vim-pencil'
@@ -66,7 +66,6 @@ Plug 'reedes/vim-thematic'
 
 " Development Tools
 Plug 'rking/ag.vim'
-Plug 'PeterRincker/vim-argumentative'
 Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
 Plug 'mattn/emmet-vim', { 'for': ['html'] }
 Plug 'tpope/vim-endwise'
@@ -91,12 +90,20 @@ Plug 'tpope/vim-speeddating'
 Plug 'ervandew/supertab'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/syntastic', { 'on': 'SyntasticCheck' }
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'SirVer/ultisnips'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'tpope/vim-unimpaired'
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
 " Lang-specific
+if v:version >= 703
+  Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+  Plug 'kovisoft/paredit', { 'for': 'clojure' }
+  Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+  Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
+  Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+endif
 Plug 'ElmCast/elm-vim', { 'for': 'elm' }
 Plug 'pangloss/vim-javascript', { 'for': ['coffee', 'javascript', 'jsx', 'typescript'] }
 Plug 'burnettk/vim-angular', { 'for': 'javascript' }
@@ -112,14 +119,14 @@ Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 Plug 'marijnh/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'less', 'scss'] }
-Plug 'groenewege/vim-less', { 'for': 'less' }
+" Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 Plug 'fatih/vim-go', { 'for': 'go' }
-Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
+" Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 Plug 'klen/python-mode', { 'for': 'python' }
 Plug 'JarrodCTaylor/vim-python-test-runner', { 'for': 'python' }
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-Plug 'wavded/vim-stylus', { 'for': 'stylus' }
+" Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+" Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }
 
 call plug#end()

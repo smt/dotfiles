@@ -16,23 +16,13 @@ scriptencoding utf-8
 highlight clear SignColumn      " SignColumn should match background
 highlight clear LineNr          " Current line number row will have same background color in relative mode
 
+" Emmet
+let g:user_emmet_install_global = 0
+
 " Indent Guides
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
-
-" Netrw & Vinegar
-let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+'
-let g:netrw_hide=1              " hide hidden files
-let g:netrw_dirhistmax=100      " keep more history
-let g:netrw_altfile=1           " last edited file '#'
-let g:netrw_liststyle=0         " thin
-let g:netrw_altv=1              " open files on right
-let g:netrw_preview=1           " open previews vertically
-let g:netrw_use_errorwindow=0   " suppress error window
-
-" Emmet
-let g:user_emmet_install_global = 0
 
 " JavaScript Libraries Syntax
 " (use none by default, rely .lvimrc settings to enable lib support)
@@ -85,11 +75,42 @@ function! LightLineFugitive()
   return ''
 endfunction
 
+" Limelight
+let g:limelight_default_coefficient = 0.5
+
+" Local vimrc loading
+let g:localvimrc_sandbox=0
+let g:localvimrc_ask=0
+
+" Netrw & Vinegar
+let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+'
+let g:netrw_hide=1              " hide hidden files
+let g:netrw_dirhistmax=100      " keep more history
+let g:netrw_altfile=1           " last edited file '#'
+let g:netrw_liststyle=0         " thin
+let g:netrw_altv=1              " open files on right
+let g:netrw_preview=1           " open previews vertically
+let g:netrw_use_errorwindow=0   " suppress error window
+
 " Pandoc
 let g:pandoc#filetypes#handled = ["pandoc", "markdown", "rst", "textile", "extra"]
 let g:pandoc#modules#disabled = ["spell"]
 let g:pandoc#formatting#textwidth = 78
 let g:pandoc#command#custom_open = "MyPandocOpen"
+
+" Pencil / Writing Controls
+let g:pencil#wrapModeDefault = 'soft'
+let g:pencil#textwidth = 74
+let g:pencil#joinspaces = 0
+let g:pencil#cursorwrap = 1
+let g:pencil#conceallevel = 3
+let g:pencil#concealcursor = 'c'
+let g:airline_section_x = '%{PencilMode()}'
+let g:pencil#softDetectSample = 20
+let g:pencil#softDetectThreshold = 130
+
+" SuperTab
+let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
@@ -103,21 +124,6 @@ let g:syntastic_html_tidy_exec = 'tidy5'
 " Tern
 let g:tern_map_keys = 1
 let g:tern_show_argument_hints = 'on_hold'
-
-" Pencil / Writing Controls
-let g:pencil#wrapModeDefault = 'soft'
-let g:pencil#textwidth = 74
-let g:pencil#joinspaces = 0
-let g:pencil#cursorwrap = 1
-let g:pencil#conceallevel = 3
-let g:pencil#concealcursor = 'c'
-let g:airline_section_x = '%{PencilMode()}'
-let g:pencil#softDetectSample = 20
-let g:pencil#softDetectThreshold = 130
-
-" Local vimrc loading
-let g:localvimrc_sandbox=0
-let g:localvimrc_ask=0
 
 " UltiSnips
 let g:snips_author = 'Stephen Tudor'
@@ -135,12 +141,6 @@ let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:ycm_server_keep_logfiles = 1
-
-" SuperTab
-let g:SuperTabDefaultCompletionType = '<C-n>'
-
-" Limelight
-let g:limelight_default_coefficient = 0.5
 
 " sets
 " Use :help 'option' to see the documentation for the given option.
@@ -237,15 +237,15 @@ endif
 
 if has('statusline')
   set laststatus=2
-  set statusline=%<%f\                     " Filename
-  set statusline+=%w%h%m%r%{PencilMode()}\ " Options
-  set statusline+=%{fugitive#statusline()} " Git Hotness
-  set statusline+=\ [%{&ff}/%Y]            " Filetype
-  set statusline+=\ [%{getcwd()}]          " Current dir
-  set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
+  " set statusline=%<%f\                     " Filename
+  " set statusline+=%w%h%m%r%{PencilMode()}\ " Options
+  " set statusline+=%{fugitive#statusline()} " Git Hotness
+  " set statusline+=\ [%{&ff}/%Y]            " Filetype
+  " set statusline+=\ [%{getcwd()}]          " Current dir
+  " set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+  " set statusline+=%#warningmsg#
+  " set statusline+=%{SyntasticStatuslineFlag()}
+  " set statusline+=%*
 endif
 
 if has('clipboard')
@@ -261,11 +261,8 @@ if !WINDOWS() || &shell =~# 'fish$'
 endif
 
 " gruvbox
-let g:gruvbox_italic = 1
-let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_contrast_light = 'hard'
-let g:gruvbox_italicize_comments = 0
-let g:gruvbox_vert_split = 'bg0'
+let g:gruvbox_contrast_dark = 'medium'
+let g:gruvbox_contrast_light = 'medium'
 
 if has('gui_running')
   set guioptions-=T

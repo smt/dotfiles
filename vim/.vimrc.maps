@@ -126,7 +126,7 @@ nmap <Leader>f9 :set foldlevel=9<CR>
 nmap <silent> <Leader>/ :nohlsearch<CR>
 nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 nmap <Leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
-nmap _ <Plug>VinegarUp
+nmap - <Plug>VinegarUp
 nmap ga <Plug>(EasyAlign)
 nmap <Leader><Tab> <Plug>(fzf-maps-n)
 

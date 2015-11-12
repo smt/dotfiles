@@ -38000,7 +38000,7 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>929 110 445 239 0 0 1440 877 </string>
+	<string>1377 148 445 105 0 0 1920 1200 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>535 697 606 456 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
@@ -38539,7 +38539,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>FantasqueSansMono-Regular 14</string>
+			<string>FantasqueSansMono-Regular 16</string>
 			<key>Open Toolbelt</key>
 			<true/>
 			<key>Option Key Sends</key>
@@ -40916,7 +40916,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-11-07T07:07:43Z</date>
+	<date>2015-11-10T13:00:10Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Secure Input</key>

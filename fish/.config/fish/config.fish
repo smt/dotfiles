@@ -114,9 +114,9 @@ set -x RBENV_ROOT $HOME/.rbenv
 set -x NVM_DIR $HOME/.nvm
 set -x TF_ALIAS fuck
 
-function nvm
-    bass source ~/.nvm/nvm.sh ';' nvm $argv
-end
+# function nvm
+#     fenv source ~/.nvm/nvm.sh \; nvm $argv
+# end
 function reload
     . $fish_path
 end
@@ -525,3 +525,5 @@ if test -s $HOME/.fishrc.local
     source $HOME/.fishrc.local
 end
 # /Local Configuration ---------------------------------------------------- }}}
+
+test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish

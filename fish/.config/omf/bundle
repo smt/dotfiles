@@ -1,12 +1,14 @@
 package copy
 package direnv
 package extract
+package foreign-env
 package gi
 package https://github.com/oh-my-fish/plugin-archlinux
 package https://github.com/oh-my-fish/plugin-functional
 package https://github.com/oh-my-fish/plugin-proxy
 package limap
 package local-config
+package nvm
 package osx
 package python
 package thefuck

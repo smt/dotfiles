@@ -201,10 +201,10 @@ function! MyPandocOpen(file)
   return 'open -a "Marked 2"'. a:file
 endfunction
 
-function! LoadSnippetsAndCompletion()
-  call plug#load('supertab', 'ultisnips', 'vim-snippets', 'YouCompleteMe')
-  call youcompleteme#Enable()
-endfunction
+" function! LoadSnippetsAndCompletion()
+"   call plug#load('supertab', 'ultisnips', 'vim-snippets', 'YouCompleteMe')
+"   call youcompleteme#Enable()
+" endfunction
 
 function! s:goyo_enter()
   silent !tmux set status off

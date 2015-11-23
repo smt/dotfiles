@@ -13,36 +13,14 @@ if has('autocmd')
 
   augroup func_listchars
     au!
-    au FileType c,cpp                 setlocal list
-    au FileType clj,cljs,lisp         setlocal list
-    au FileType {c,le,sc}ss,stylus    setlocal list
-    au FileType go                    setlocal list
-    au FileType {ht,pht,x}ml,jade     setlocal list
-    au FileType java                  setlocal list
-    au FileType {java,type}script     setlocal list
-    au FileType json                  setlocal list
-    au FileType pandoc                setlocal list
-    au FileType php,twig              setlocal list
-    au FileType ruby                  setlocal list
-    au FileType vim                   setlocal list
-    au FileType yaml                  setlocal list
+    au FileType c,cpp,clj,cljs,lisp,{c,le,sc}ss,stylus,go,{ht,x}ml,jade,java,{java,type}script,json,php,twig,python,ruby,vim,yaml
+          \ setlocal list
   augroup END
 
   augroup func_whitespace
     au!
-    au FileType c,cpp                 autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-    au FileType clj,cljs,lisp         autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-    au FileType {c,le,sc}ss,stylus    autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-    au FileType go                    autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-    au FileType {ht,x}ml,jade         autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-    au FileType java                  autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-    au FileType {java,type}script     autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-    au FileType json                  autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-    au FileType php,twig              autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-    au FileType python                autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-    au FileType ruby                  autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-    au FileType vim                   autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-    au FileType yaml                  autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+    au FileType c,cpp,clj,cljs,lisp,{c,le,sc}ss,stylus,go,{ht,x}ml,jade,java,{java,type}script,json,php,twig,python,ruby,vim,yaml
+          \ autocmd BufWritePre <buffer> call StripTrailingWhitespace()
   augroup END
 
   augroup func_omnicompletion
@@ -61,7 +39,8 @@ if has('autocmd')
 
   augroup type_css
     au!
-    au FileType {c,le,sc}ss,stylus setlocal et ts=2 sts=2 sw=2
+    au FileType {c,le,sc}ss setlocal et ts=4 sts=4 sw=4
+    au FileType stylus setlocal et ts=2 sts=2 sw=2
     au FileType {c,le,sc}ss,stylus setlocal foldmethod=marker foldmarker={,}
     au FileType scss setlocal iskeyword+=-
   augroup END
@@ -70,6 +49,7 @@ if has('autocmd')
     au!
     au BufRead,BufNewFile *.phtml setlocal filetype=html.php
     au BufRead,BufNewFile *.jsp setlocal filetype=html.jsp
+    au FileType jinja setlocal filetype=html.jinja
     au FileType html setlocal et ts=4 sts=4 sw=4
     " Auto-tidy selection
     au FileType html vnoremap <leader>x :!tidy -q -i --show-errors 0 --show-body-only 1 --wrap 0<cr><cr>
@@ -110,10 +90,10 @@ if has('autocmd')
     "       \ | inoremap <silent> < <C-r>=syntax_expand#expand_head("<", "return")<CR>
 
     " Toggling True/False
-    au filetype {java,type}script nnoremap <silent> <C-t> mmviw:s/true\\|false/\={'true':'false','false':'true'}[submatch(0)]/<CR>`m:nohlsearch<CR>
+    au FileType {java,type}script nnoremap <silent> <C-t> mmviw:s/true\\|false/\={'true':'false','false':'true'}[submatch(0)]/<CR>`m:nohlsearch<CR>
 
     " Enable insertion of "debugger" statement in JS files
-    au filetype {java,type}script nnoremap <leader>b Odebugger;<esc>
+    au FileType {java,type}script nnoremap <leader>b Odebugger;<esc>
   augroup END
 
   augroup type_json
@@ -141,7 +121,7 @@ if has('autocmd')
 
   augroup type_pandoc
     au!
-    au BufRead,BufNewFile *.{ft} setlocal filetype=pandoc
+    au BufRead,BufNewFile *.{ft,md,markdown} setlocal filetype=pandoc
     au FileType pandoc setlocal et ts=4 sts=4 sw=4
   augroup END
 
@@ -151,6 +131,7 @@ if has('autocmd')
   augroup END
 
   augroup type_python
+    au!
     " PEP8 compliance (set 1 tab = 4 chars explicitly, even if set
     " earlier, as it is important)
     " au FileType python setlocal et ts=4 sts=4 sw=4
@@ -159,7 +140,6 @@ if has('autocmd')
 
     " But disable autowrapping as it is super annoying
     " au FileType python setlocal formatoptions-=t
-    au!
     au FileType python let g:pymode_lint = 1
   augroup END
 
@@ -208,14 +188,14 @@ if has('autocmd')
           \ | call litecorrect#init()
           \ | setlocal spell spl=en_us fdl=4 noru nonu nornu
           \ | setlocal fdo+=search
-    au Filetype git,gitsendemail,*commit*,*COMMIT*
+    au FileType git,gitsendemail,*commit*,*COMMIT*
           \   call pencil#init({'wrap': 'hard', 'textwidth': 72})
           \ | call litecorrect#init()
           \ | setlocal spell spl=en_us et sw=2 ts=2 noai
-    " au Filetype mail         call pencil#init({'wrap': 'hard', 'textwidth': 60})
+    " au FileType mail         call pencil#init({'wrap': 'hard', 'textwidth': 60})
     "       \ | call litecorrect#init()
     "       \ | setlocal spell spl=en_us et sw=2 ts=2 noai nonu nornu
-    au Filetype {ht,x}ml     call pencil#init({'wrap': 'soft'})
+    au FileType {ht,x}ml     call pencil#init({'wrap': 'soft'})
           \ | call litecorrect#init()
           \ | setlocal spell spl=en_us et sw=2 ts=2
   augroup END
@@ -237,23 +217,12 @@ if has('autocmd')
     au FileType php let b:surround_45 = "<?php \r ?>"
   augroup END
 
-  augroup bundle_ycm
-    au!
-    au FileType c,cpp                 autocmd InsertEnter call LoadSnippetsAndCompletion() | au! bundle_ycm
-    au FileType clj,cljs,lisp         autocmd InsertEnter call LoadSnippetsAndCompletion() | au! bundle_ycm
-    au FileType {c,le,sc}ss,stylus    autocmd InsertEnter call LoadSnippetsAndCompletion() | au! bundle_ycm
-    au FileType go                    autocmd InsertEnter call LoadSnippetsAndCompletion() | au! bundle_ycm
-    au FileType {ht,x}ml,jade         autocmd InsertEnter call LoadSnippetsAndCompletion() | au! bundle_ycm
-    au FileType java                  autocmd InsertEnter call LoadSnippetsAndCompletion() | au! bundle_ycm
-    au FileType {java,type}script     autocmd InsertEnter call LoadSnippetsAndCompletion() | au! bundle_ycm
-    au FileType json                  autocmd InsertEnter call LoadSnippetsAndCompletion() | au! bundle_ycm
-    au FileType php,twig              autocmd InsertEnter call LoadSnippetsAndCompletion() | au! bundle_ycm
-    au FileType python                autocmd InsertEnter call LoadSnippetsAndCompletion() | au! bundle_ycm
-    au FileType ruby                  autocmd InsertEnter call LoadSnippetsAndCompletion() | au! bundle_ycm
-    au FileType vim                   autocmd InsertEnter call LoadSnippetsAndCompletion() | au! bundle_ycm
-    au FileType yaml                  autocmd InsertEnter call LoadSnippetsAndCompletion() | au! bundle_ycm
-  augroup END
-
+  " augroup bundle_ycm
+  "   au!
+  "   au FileType c,cpp,clj,cljs,lisp,{c,le,sc}ss,stylus,go,{ht,x}ml,jade,java,{java,type}script,json,php,twig,python,ruby,vim,yaml
+  "         \ au InsertEnter call LoadSnippetsAndCompletion()
+  "         \ | au! bundle_ycm
+  " augroup END
 endif
 
 " vim: set sw=2 ts=2 sts=2 et tw=78 nospell:

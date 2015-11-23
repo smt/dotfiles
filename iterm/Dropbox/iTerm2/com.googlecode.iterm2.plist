@@ -38004,9 +38004,11 @@
 	<key>NSWindow Frame Preferences</key>
 	<string>535 697 606 456 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>4 235 1676 934 0 0 1920 1177 </string>
+	<string>4 11 1914 1166 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>4 215 1676 934 0 0 1920 1177 </string>
+	<string>4 96 1914 1081 0 0 1920 1177 </string>
+	<key>NSWindow Frame iTerm Window 2</key>
+	<string>6 96 1914 1081 0 0 1920 1177 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -38178,7 +38180,7 @@
 			<key>Background Image Location</key>
 			<string></string>
 			<key>Blend</key>
-			<real>0.30000001192092896</real>
+			<real>0.050000000000000003</real>
 			<key>Blink Allowed</key>
 			<true/>
 			<key>Blinking Cursor</key>
@@ -38541,7 +38543,7 @@
 			<key>Normal Font</key>
 			<string>FantasqueSansMono-Regular 16</string>
 			<key>Open Toolbelt</key>
-			<true/>
+			<false/>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Prevent Opening in a Tab</key>
@@ -38717,7 +38719,7 @@
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
-			<integer>12</integer>
+			<integer>0</integer>
 			<key>Working Directory</key>
 			<string></string>
 		</dict>
@@ -40849,8 +40851,10 @@
 	<key>OnlyWhenMoreTabs</key>
 	<false/>
 	<key>OpenArrangementAtStartup</key>
-	<false/>
+	<true/>
 	<key>OpenBookmark</key>
+	<false/>
+	<key>OpenNoWindowsAtStartup</key>
 	<false/>
 	<key>OpenTmuxWindowsIn</key>
 	<integer>1</integer>
@@ -40858,6 +40862,8 @@
 	<false/>
 	<key>PasteFromClipboard</key>
 	<false/>
+	<key>PasteTabToStringTabStopSize</key>
+	<integer>4</integer>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -40916,7 +40922,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-11-10T13:00:10Z</date>
+	<date>2015-11-12T19:48:56Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Secure Input</key>
@@ -40928,7 +40934,7 @@
 	<key>ShowPaneTitles</key>
 	<false/>
 	<key>SmartPlacement</key>
-	<false/>
+	<true/>
 	<key>SplitPaneDimmingAmount</key>
 	<real>0.20096154510974884</real>
 	<key>SwitchTabModifier</key>
@@ -40938,14 +40944,13 @@
 	<key>TabStyle</key>
 	<integer>1</integer>
 	<key>TabViewType</key>
-	<integer>1</integer>
+	<integer>0</integer>
 	<key>ThreeFingerEmulates</key>
 	<false/>
 	<key>TmuxDashboardLimit</key>
 	<integer>10</integer>
 	<key>ToolbeltTools</key>
 	<array>
-		<string>Jobs</string>
 		<string>Notes</string>
 		<string>Paste History</string>
 	</array>
@@ -40958,7 +40963,7 @@
 	<key>UseCompactLabel</key>
 	<true/>
 	<key>UseLionStyleFullscreen</key>
-	<false/>
+	<true/>
 	<key>WebKitDefaultFontSize</key>
 	<integer>11</integer>
 	<key>WebKitStandardFont</key>
@@ -40971,11 +40976,19 @@
 				<key>Desired Columns</key>
 				<integer>238</integer>
 				<key>Desired Rows</key>
-				<integer>58</integer>
+				<integer>62</integer>
+				<key>Has Toolbelt</key>
+				<false/>
 				<key>Height</key>
-				<real>1018</real>
+				<real>1166</real>
 				<key>Hide After Opening</key>
 				<false/>
+				<key>Hiding Toolbelt Should Resize Window</key>
+				<false/>
+				<key>Is Hotkey Window</key>
+				<false/>
+				<key>Saved Window Type</key>
+				<integer>0</integer>
 				<key>Screen</key>
 				<integer>0</integer>
 				<key>Selected Tab Index</key>
@@ -40989,7 +41002,7 @@
 							<array>
 								<dict>
 									<key>Is Active</key>
-									<true/>
+									<integer>1</integer>
 									<key>Session</key>
 									<dict>
 										<key>Bookmark</key>
@@ -41162,9 +41175,9 @@
 											<key>Background Image Location</key>
 											<string></string>
 											<key>Blend</key>
-											<real>0.30000001192092896</real>
+											<real>0.050000000000000003</real>
 											<key>Blink Allowed</key>
-											<false/>
+											<true/>
 											<key>Blinking Cursor</key>
 											<false/>
 											<key>Blur</key>
@@ -41174,11 +41187,11 @@
 											<key>Bold Color</key>
 											<dict>
 												<key>Blue Component</key>
-												<real>0.81568628549575806</real>
+												<real>0.89411765336990356</real>
 												<key>Green Component</key>
-												<real>0.81568628549575806</real>
+												<real>0.89411765336990356</real>
 												<key>Red Component</key>
-												<real>0.81568628549575806</real>
+												<real>0.89411765336990356</real>
 											</dict>
 											<key>Character Encoding</key>
 											<integer>4</integer>
@@ -41200,11 +41213,11 @@
 											<key>Cursor Text Color</key>
 											<dict>
 												<key>Blue Component</key>
-												<real>0.08235294371843338</real>
+												<real>0.22745098173618317</real>
 												<key>Green Component</key>
-												<real>0.08235294371843338</real>
+												<real>0.22745098173618317</real>
 												<key>Red Component</key>
-												<real>0.08235294371843338</real>
+												<real>0.22745098173618317</real>
 											</dict>
 											<key>Cursor Type</key>
 											<integer>2</integer>
@@ -41232,7 +41245,7 @@
 												<real>0.92156863212585449</real>
 											</dict>
 											<key>Guid</key>
-											<string>FE5B2F5D-71F4-4F49-82A2-788480C8EA4D</string>
+											<string>88EAEAC7-0F84-4A5C-9661-3DBB1B9C4B4D</string>
 											<key>Hide After Opening</key>
 											<false/>
 											<key>Horizontal Spacing</key>
@@ -41305,6 +41318,13 @@
 													<integer>11</integer>
 													<key>Text</key>
 													<string>0x7f</string>
+												</dict>
+												<key>0x3b-0x40000</key>
+												<dict>
+													<key>Action</key>
+													<integer>10</integer>
+													<key>Text</key>
+													<string>[;</string>
 												</dict>
 												<key>0xf700-0x220000</key>
 												<dict>
@@ -41510,21 +41530,25 @@
 											<key>Mouse Reporting</key>
 											<true/>
 											<key>Name</key>
-											<string>smt</string>
+											<string>gruvbox-dark</string>
 											<key>Non Ascii Font</key>
-											<string>DejaVuSansMonoForPowerline 12</string>
+											<string>FantasqueSansMono-Bold 14</string>
 											<key>Non-ASCII Anti Aliased</key>
 											<true/>
 											<key>Normal Font</key>
-											<string>DejaVuSansMonoForPowerline 13</string>
+											<string>FantasqueSansMono-Regular 16</string>
+											<key>Open Toolbelt</key>
+											<false/>
 											<key>Option Key Sends</key>
 											<integer>2</integer>
+											<key>Prevent Opening in a Tab</key>
+											<true/>
 											<key>Prompt Before Closing 2</key>
 											<integer>0</integer>
 											<key>Right Option Key Sends</key>
 											<integer>2</integer>
 											<key>Rows</key>
-											<integer>58</integer>
+											<integer>62</integer>
 											<key>Screen</key>
 											<integer>-1</integer>
 											<key>Scrollback Lines</key>
@@ -41545,11 +41569,11 @@
 											<key>Selection Color</key>
 											<dict>
 												<key>Blue Component</key>
-												<real>0.18823529779911041</real>
+												<real>0.37254902720451355</real>
 												<key>Green Component</key>
-												<real>0.18823529779911041</real>
+												<real>0.37254902720451355</real>
 												<key>Red Component</key>
-												<real>0.18823529779911041</real>
+												<real>0.0</real>
 											</dict>
 											<key>Semantic History</key>
 											<dict>
@@ -41679,10 +41703,14 @@
 											<true/>
 											<key>Use Canonical Parser</key>
 											<false/>
+											<key>Use HFS Plus Mapping</key>
+											<true/>
 											<key>Use Italic Font</key>
+											<true/>
+											<key>Use Non-ASCII Font</key>
 											<false/>
 											<key>Vertical Spacing</key>
-											<real>0.99931377172470093</real>
+											<real>1</real>
 											<key>Visual Bell</key>
 											<true/>
 											<key>Window Type</key>
@@ -41690,21 +41718,104 @@
 											<key>Working Directory</key>
 											<string></string>
 										</dict>
+										<key>Bookmark Name</key>
+										<string>gruvbox-dark</string>
 										<key>Columns</key>
-										<integer>208</integer>
+										<integer>238</integer>
+										<key>Commands</key>
+										<array>
+											<string>cd src</string>
+											<string>l</string>
+											<string>cd</string>
+											<string>cd src</string>
+										</array>
+										<key>Directories</key>
+										<array>
+											<string>/Users/tudors1</string>
+											<string>/Users/tudors1</string>
+											<string>/Users/tudors1/src</string>
+											<string>/Users/tudors1/src</string>
+											<string>/Users/tudors1</string>
+											<string>/Users/tudors1/src</string>
+										</array>
+										<key>Environment</key>
+										<dict>
+											<key>PWD</key>
+											<string>/Users/tudors1</string>
+										</dict>
+										<key>Hosts</key>
+										<array>
+											<dict>
+												<key>Host name</key>
+												<string>UOI-AN-Stephen-Tudor.local</string>
+												<key>User name</key>
+												<string>tudors1</string>
+											</dict>
+											<dict>
+												<key>Host name</key>
+												<string>UOI-AN-Stephen-Tudor.local</string>
+												<key>User name</key>
+												<string>tudors1</string>
+											</dict>
+											<dict>
+												<key>Host name</key>
+												<string>UOI-AN-Stephen-Tudor.local</string>
+												<key>User name</key>
+												<string>tudors1</string>
+											</dict>
+											<dict>
+												<key>Host name</key>
+												<string>UOI-AN-Stephen-Tudor.local</string>
+												<key>User name</key>
+												<string>tudors1</string>
+											</dict>
+											<dict>
+												<key>Host name</key>
+												<string>UOI-AN-Stephen-Tudor.local</string>
+												<key>User name</key>
+												<string>tudors1</string>
+											</dict>
+											<dict>
+												<key>Host name</key>
+												<string>UOI-AN-Stephen-Tudor.local</string>
+												<key>User name</key>
+												<string>tudors1</string>
+											</dict>
+										</array>
+										<key>Is UTF-8</key>
+										<true/>
+										<key>Program</key>
+										<dict>
+											<key>Type</key>
+											<string>Shell Launcher</string>
+										</dict>
 										<key>Rows</key>
-										<integer>62</integer>
+										<integer>67</integer>
+										<key>Server PID</key>
+										<integer>63760</integer>
+										<key>Session Default Name</key>
+										<string>gruvbox-dark</string>
+										<key>Session GUID</key>
+										<string>03FF2BC1-44BD-489D-9DB2-1C8951590DC8</string>
+										<key>Session Name</key>
+										<string>fish  /Users/tudors1/src</string>
+										<key>Session Window Title</key>
+										<string>fish  /Users/tudors1/src</string>
+										<key>Shell Integration Ever Used</key>
+										<true/>
+										<key>Substitutions</key>
+										<dict/>
 										<key>Working Directory</key>
-										<string>/Users/studor</string>
+										<string>/Users/tudors1/src</string>
 									</dict>
 									<key>View Type</key>
 									<string>SessionView</string>
 									<key>frame</key>
 									<dict>
 										<key>height</key>
-										<real>996</real>
+										<real>1143</real>
 										<key>width</key>
-										<real>1674</real>
+										<real>1914</real>
 										<key>x</key>
 										<real>0.0</real>
 										<key>y</key>
@@ -41717,9 +41828,9 @@
 							<key>frame</key>
 							<dict>
 								<key>height</key>
-								<real>996</real>
+								<real>1143</real>
 								<key>width</key>
-								<real>1674</real>
+								<real>1914</real>
 								<key>x</key>
 								<real>0.0</real>
 								<key>y</key>
@@ -41731,15 +41842,15 @@
 					</dict>
 				</array>
 				<key>TerminalGuid</key>
-				<string>pty-E0A3F03F-8014-47D8-87DC-654877EDEA27</string>
+				<string>pty-9312E567-81D0-4FC0-B461-7095ACD60ACE</string>
 				<key>Width</key>
-				<real>1674</real>
+				<real>1914</real>
 				<key>Window Type</key>
 				<integer>0</integer>
 				<key>X Origin</key>
-				<real>0.0</real>
+				<real>4</real>
 				<key>Y Origin</key>
-				<real>10</real>
+				<real>11</real>
 			</dict>
 		</array>
 	</dict>
@@ -41755,5 +41866,7 @@
 	<false/>
 	<key>iTerm Version</key>
 	<string>2.9.20151001</string>
+	<key>kCommandHistoryHasEverBeenUsed</key>
+	<true/>
 </dict>
 </plist>

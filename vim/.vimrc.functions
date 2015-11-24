@@ -201,10 +201,51 @@ function! MyPandocOpen(file)
   return 'open -a "Marked 2"'. a:file
 endfunction
 
-" function! LoadSnippetsAndCompletion()
-"   call plug#load('supertab', 'ultisnips', 'vim-snippets', 'YouCompleteMe')
-"   call youcompleteme#Enable()
-" endfunction
+function! LightLineModified()
+  return &ft =~ 'help\|vimfiler' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! LightLineReadonly()
+  return &ft !~? 'help\|vimfiler' && &readonly ? 'RO' : ''
+endfunction
+
+function! LightLineFilename()
+  let fname = expand('%:t')
+  let rel_fname = expand('%')
+  return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
+        \ fname == '__Tagbar__' ? g:lightline.fname :
+        \ fname =~ 'undotree\|diffpanel\|NERD_tree' ? '' :
+        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \  &ft == 'unite' ? unite#get_status_string() :
+        \  &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ '' != rel_fname ? rel_fname : '[No Name]') .
+        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
+endfunction
+
+function! LightLineMode()
+  let fname = expand('%:t')
+  return fname == '__Tagbar__' ? 'Tagbar' :
+        \ fname =~ 'undotree' ? 'UndoTree' :
+        \ fname =~ 'diffpanel' ? 'UndoTree Preview' :
+        \ fname =~ 'NERD_tree' ? 'NERDTree' :
+        \ &ft == 'unite' ? 'Unite' :
+        \ &ft == 'vimfiler' ? 'VimFiler' :
+        \ &ft == 'vimshell' ? 'VimShell' :
+        \ winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+
+function! LightLineFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction
+
+function! LightLineFugitive()
+  if expand('%:t') !~? 'Tagbar\|undotree\|diffpanel\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
+    let mark = ''  " edit here for cool mark
+    let _ = fugitive#head()
+    return strlen(_) ? mark._ : ''
+  endif
+  return ''
+endfunction
 
 function! s:goyo_enter()
   silent !tmux set status off

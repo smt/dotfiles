@@ -19,6 +19,16 @@ highlight clear LineNr          " Current line number row will have same backgro
 " Emmet
 let g:user_emmet_install_global = 0
 
+" golang
+" format with goimports instead of gofmt
+let g:go_fmt_command = "goimports"
+" turn highlighting on
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
 " Indent Guides
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
@@ -38,42 +48,20 @@ let g:jsdoc_tag_synonyms = { 'param': 'arg' }
 let g:lightline = {
   \ 'colorscheme': 'gruvbox',
   \ 'active': {
-  \   'left': [ [ 'mode', 'paste' ], [ 'fugitive' ], [ 'relativepath' ] ],
-  \   'right': [ [ 'syntastic', 'column' ], ['percent'], [ 'filetype' ] ]
+  \   'left': [ [ 'mode', 'paste' ], [ 'fugitive' ], [ 'filename' ] ],
+  \   'right': [ ['column'], [ 'percent' ], [ 'filetype' ] ]
   \ },
   \ 'inactive': {
-  \   'left': [ [ 'relativepath' ] ],
+  \   'left': [ [ 'filename' ] ],
   \   'right': [ [ 'filetype' ] ]
   \ },
   \ 'component_function': {
+  \   'mode': 'LightLineMode',
   \   'fugitive': 'LightLineFugitive',
-  \   'filename': 'LightLineFilename'
+  \   'filename': 'LightLineFilename',
+  \   'filetype': 'LightLineFiletype'
   \ }
   \ }
-
-function! LightLineModified()
-  return &ft =~ 'help\|vimfiler' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-endfunction
-
-function! LightLineReadonly()
-  return &ft !~? 'help\|vimfiler' && &readonly ? 'RO' : ''
-endfunction
-
-function! LightLineFilename()
-  return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
-        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \  &ft == 'unite' ? unite#get_status_string() :
-        \  &ft == 'vimshell' ? vimshell#get_status_string() :
-        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
-        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
-endfunction
-
-function! LightLineFugitive()
-  if &ft !~? 'vimfiler' && exists('*fugitive#head')
-    return fugitive#head()
-  endif
-  return ''
-endfunction
 
 " Limelight
 let g:limelight_default_coefficient = 0.5
@@ -81,6 +69,49 @@ let g:limelight_default_coefficient = 0.5
 " Local vimrc loading
 let g:localvimrc_sandbox=0
 let g:localvimrc_ask=0
+
+" Neomake
+" let g:neomake_verbose = 3
+" let g:neomake_logfile = '/tmp/error.log'
+let g:neomake_open_list = 2
+let g:neomake_go_errcheck_maker = {
+      \ 'errorformat':
+      \   '%f:%l:%c: %m,' .
+      \   '%-G%.%#'
+      \ }
+let g:neomake_go_enabled_makers = ['go', 'golint', 'errcheck']
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_javascript_eslint_exe = '/usr/local/bin/eslint'
+let g:neomake_json_enabled_makers = ['jsonlint']
+let g:neomake_python_enabled_makers = ['flake8', 'pylint']
+let g:neomake_warning_sign = {
+      \ 'text': 'W',
+      \ 'texthl': 'WarningMsg',
+      \ }
+let g:neomake_error_sign = {
+      \ 'text': 'E',
+      \ 'texthl': 'ErrorMsg',
+      \ }
+
+" NERDTree
+let NERDTreeIgnore = [
+      \ 'bower_components',
+      \ 'node_modules',
+      \ '\.pyc$',
+      \ '__pycache__',
+      \ 'venv',
+      \ ]
+let g:NERDTreeIndicatorMapCustom = {
+      \ "Modified"  : "✹",
+      \ "Staged"    : "✚",
+      \ "Untracked" : "✭",
+      \ "Renamed"   : "➜",
+      \ "Unmerged"  : "═",
+      \ "Deleted"   : "✖",
+      \ "Dirty"     : "✗",
+      \ "Clean"     : "✔︎",
+      \ "Unknown"   : "?"
+      \ }
 
 " Netrw & Vinegar
 let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+'
@@ -111,15 +142,6 @@ let g:pencil#softDetectThreshold = 130
 
 " SuperTab
 let g:SuperTabDefaultCompletionType = '<C-n>'
-
-" Syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_python_checkers=['flake8', 'pylint']
-let g:syntastic_html_tidy_exec = 'tidy5'
 
 " Tern
 let g:tern_map_keys = 1

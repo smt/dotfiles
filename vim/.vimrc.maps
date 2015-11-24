@@ -66,6 +66,8 @@ nnoremap <silent> <Leader>M :Maps<CR>
 nnoremap <silent> <Leader>H :Helptags<CR>
 nnoremap <silent> <Leader>s :Ag<Space>
 nnoremap <silent> <Leader>G :Goyo<CR>
+nnoremap <silent> <Leader>q :Sayonara<CR>
+nnoremap <silent> <Leader>Q :Sayonara!<CR>
 nnoremap <silent> <Leader>gs :Gstatus<CR>
 nnoremap <silent> <Leader>gd :Gdiff<CR>
 nnoremap <silent> <Leader>gc :Gcommit<CR>

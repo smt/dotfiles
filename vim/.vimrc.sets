@@ -73,7 +73,7 @@ let g:localvimrc_ask=0
 " Neomake
 " let g:neomake_verbose = 3
 " let g:neomake_logfile = '/tmp/error.log'
-let g:neomake_open_list = 2
+let g:neomake_open_list = 0
 let g:neomake_go_errcheck_maker = {
       \ 'errorformat':
       \   '%f:%l:%c: %m,' .

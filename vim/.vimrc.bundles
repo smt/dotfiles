@@ -34,7 +34,6 @@ endif
 " GENERAL
 "-----------------------------------------------------------------------------
 
-
 Plug 'tpope/vim-eunuch', { 'on': ['Chmod', 'Find', 'Mkdir', 'Move', 'Remove',
       \ 'Rename', 'SudoEdit', 'SudoWrite', 'Unlink', 'Wall'] }                  " Vim sugar for UNIX shell commands (:h eunuch)
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }

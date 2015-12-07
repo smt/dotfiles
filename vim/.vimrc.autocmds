@@ -75,23 +75,9 @@ if has('autocmd')
     au!
     au FileType {java,type}script setlocal et ts=2 sts=2 sw=2
           \ | au BufWritePost,BufReadPost *.js{,x} Neomake
-          \ | call JavaScriptFold()
-          \ | setlocal foldenable
-          \ | setlocal nocindent
-
-    " vim-javascript conceal settings.
-    " au FileType {java,type}script let g:javascript_conceal_function = "λ"
-    "       \ | let g:javascript_conceal_this = "@"
-    "       \ | let g:javascript_conceal_return = "<"
-    "       \ | let g:javascript_conceal_prototype = "#"
-
-    " " Map the conceal characters to their expanded forms.
-    " au FileType {java,type}script inoremap <silent> @ <C-r>=syntax_expand#expand("@", "this")<CR>
-    "       \ | inoremap <silent> # <C-r>=syntax_expand#expand("#", "prototype")<CR>
-    "       \ | inoremap <silent> < <C-r>=syntax_expand#expand_head("<", "return")<CR>
-
-    " Toggling True/False
-    au FileType {java,type}script nnoremap <silent> <C-t> mmviw:s/true\\|false/\={'true':'false','false':'true'}[submatch(0)]/<CR>`m:nohlsearch<CR>
+          " \ | call JavaScriptFold()
+          " \ | setlocal foldenable
+          " \ | setlocal nocindent
 
     " Enable insertion of "debugger" statement in JS files
     au FileType {java,type}script nnoremap <leader>b Odebugger;<esc>

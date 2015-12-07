@@ -52,14 +52,14 @@ Plug 'tpope/vim-repeat'                                                         
 Plug 'mhinz/vim-sayonara', { 'on': ['Sayonara'] }                               " Sane buffer closing (:h sayonara)
 Plug 'tmux-plugins/vim-tmux-focus-events'                                       " Enable tmux focus event hooks
 Plug 'christoomey/vim-tmux-navigator'                                           " Navigate Vim windows like tmux windows
-Plug 'Shougo/vimproc.vim' | Plug 'Shougo/unite.vim', { 'on': ['Unite'] }        " User interface creator (:h unite)
-Plug 'Shougo/unite.vim' | Plug 'Shougo/vimfiler.vim', { 'on': ['VimFiler'] }    " Cool file browser (:h vimfiler)
+Plug 'Shougo/vimproc.vim' | Plug 'Shougo/unite.vim' | Plug 'Shougo/vimfiler.vim' " Cool file browser (:h vimfiler)
 Plug 'tpope/vim-vinegar', { 'on': ['<Plug>(VinegarUp)'] }                       " Netrw enhancements (:h vinegar)
 Plug 'reedes/vim-wheel'                                                         " Screen-anchored cursor movement (:h wheel)
 
 " STYLING
 "-----------------------------------------------------------------------------
 
+Plug 'ryanoasis/vim-devicons'                                                   " FileType icon glyph support, via patched fonts
 Plug 'morhetz/gruvbox'                                                          " '70s throwback colorscheme (light and dark)
 Plug 'itchyny/lightline.vim'                                                    " A lightweight status bar
 Plug 'junegunn/seoul256.vim'                                                    " Colorscheme based on the Seoul color palette (light and dark)

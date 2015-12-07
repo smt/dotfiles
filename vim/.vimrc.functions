@@ -275,6 +275,19 @@ function! s:goyo_leave()
   Limelight!
 endfunction
 
+function! SelectHTML()
+  let n = 1
+  while n < 50 && n <= line("$")
+    " check for jinja
+    " if getline(n) =~ '{{.*}}\|{%-\?\s*\(end.*\|extends\|block\|macro\|set\|if\|for\|include\|trans\)\>'
+    if getline(n) =~ '{%-\?\s*\(end.*\|extends\|block\|macro\|set\|if\|for\|include\|trans\)\>'
+      set ft=jinja
+      return
+    endif
+    let n = n + 1
+  endwhile
+endfunction
+
 if has("user_commands")
   command! -bang -nargs=* -complete=file E e<bang> <args>
   command! -bang -nargs=* -complete=file W w<bang> <args>

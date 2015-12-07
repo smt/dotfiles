@@ -83,6 +83,12 @@ if has('autocmd')
     au FileType {java,type}script nnoremap <leader>b Odebugger;<esc>
   augroup END
 
+  augroup type_jinja
+    au!
+    autocmd BufNewFile,BufRead *.html,*.htm,*.nunjucks,*.nunjs call SelectHTML()
+    autocmd BufNewFile,BufRead *.jinja2,*.j2,*.jinja set ft=jinja
+  augroup END
+
   augroup type_json
     au!
     au FileType json setlocal et ts=2 sts=2 sw=2
@@ -182,9 +188,9 @@ if has('autocmd')
     " au FileType mail         call pencil#init({'wrap': 'hard', 'textwidth': 60})
     "       \ | call litecorrect#init()
     "       \ | setlocal spell spl=en_us et sw=2 ts=2 noai nonu nornu
-    au FileType {ht,x}ml     call pencil#init({'wrap': 'soft'})
-          \ | call litecorrect#init()
-          \ | setlocal spell spl=en_us et sw=2 ts=2
+    " au FileType {ht,x}ml     call pencil#init({'wrap': 'soft'})
+    "       \ | call litecorrect#init()
+    "       \ | setlocal spell spl=en_us et sw=2 ts=2
   augroup END
 
   augroup bundle_emmet

@@ -16,6 +16,29 @@ scriptencoding utf-8
 highlight clear SignColumn      " SignColumn should match background
 highlight clear LineNr          " Current line number row will have same background color in relative mode
 
+" Ags
+let g:ags_agargs = {
+      \ '--break'             : [ '', '' ],
+      \ '--color'             : [ '', '' ],
+      \ '--color-line-number' : [ '"1;30"', '' ],
+      \ '--color-match'       : [ '"32;40"', '' ],
+      \ '--color-path'        : [ '"1;31"', '' ],
+      \ '--column'            : [ '', '' ],
+      \ '--context'           : [ 'g:ags_agcontext', '-C' ],
+      \ '--filename'          : [ '', '' ],
+      \ '--group'             : [ '', '' ],
+      \ '--heading'           : [ '', '-H' ],
+      \ '--hidden'            : [ '', '' ],
+      \ '--max-count'         : [ 'g:ags_agmaxcount', '-m' ],
+      \ '--numbers'           : [ '', '' ]
+      \ }
+
+" DevIcons
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['go'] = ''
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+
 " Emmet
 let g:user_emmet_install_global = 0
 
@@ -113,7 +136,6 @@ let g:NERDTreeIndicatorMapCustom = {
       \ "Clean"     : "✔︎",
       \ "Unknown"   : "?"
       \ }
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
 call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
 call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
 call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')

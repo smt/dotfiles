@@ -33,20 +33,36 @@ Plug 'junegunn/fzf.vim', { 'on': ['Ag', 'Buffers', 'Colors', 'Commands',
       \ 'Lines', 'BLines', 'Locate', 'Maps', 'Marks', 'Snippets', 'Tags',
       \ 'BTags', 'Windows'] }                                                   " Fuzzy finder
 Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }    " Align stuff interactively
+Plug 'junegunn/vim-peekaboo'                                                    " See the contents of registers
 Plug 'embear/vim-localvimrc'                                                    " Support for .lvimrc files (:h localvimrc)
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle'] }                        " File navigation (:h nerdtree)
 Plug 'eiginn/netrw'                                                             " Plugin-ified netrw (:h netrw)
-Plug 'tpope/vim-obsession', { 'on': ['Obsession'] }                             " Session management (:h obsession)
 Plug 'tpope/vim-repeat'                                                         " Repeat tpope plugin commands with . (:h repeat)
 Plug 'mhinz/vim-sayonara', { 'on': ['Sayonara'] }                               " Sane buffer closing (:h sayonara)
 Plug 'tmux-plugins/vim-tmux-focus-events'                                       " Enable tmux focus event hooks
 Plug 'christoomey/vim-tmux-navigator'                                           " Navigate Vim windows like tmux windows
 Plug 'tpope/vim-vinegar', { 'on': ['<Plug>(VinegarUp)'] }                       " Netrw enhancements (:h vinegar)
 Plug 'reedes/vim-wheel'                                                         " Screen-anchored cursor movement (:h wheel)
+Plug 'kana/vim-textobj-user' | Plug 'thinca/vim-textobj-between'
+Plug 'kana/vim-textobj-user' | Plug 'Julian/vim-textobj-brace'
+Plug 'kana/vim-textobj-user' | Plug 'glts/vim-textobj-comment'
+Plug 'kana/vim-textobj-user' | Plug 'kana/vim-textobj-datetime'
+Plug 'kana/vim-textobj-user' | Plug 'kana/vim-textobj-entire'
+Plug 'kana/vim-textobj-user' | Plug 'kana/vim-textobj-function'
+Plug 'kana/vim-textobj-user' | Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-user' | Plug 'kana/vim-textobj-lastpat'
+Plug 'kana/vim-textobj-user' | Plug 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-user' | Plug 'sgur/vim-textobj-parameter'
+Plug 'kana/vim-textobj-user' | Plug 'paulhybryant/vim-textobj-path'
+Plug 'kana/vim-textobj-user' | Plug 'kana/vim-textobj-syntax'
+Plug 'kana/vim-textobj-user' | Plug 'jceb/vim-textobj-uri'
+Plug 'kana/vim-textobj-user' | Plug 'Julian/vim-textobj-variable-segment'
+Plug 'kana/vim-textobj-user' | Plug 'whatyouhide/vim-textobj-xmlattr'
 
 " STYLING
 "-----------------------------------------------------------------------------
 
+Plug 'chriskempson/base16-vim'                                                  " More awesome colors through science
 Plug 'morhetz/gruvbox'                                                          " '70s throwback colorscheme (light and dark)
 Plug 'itchyny/lightline.vim'                                                    " A lightweight status bar
 Plug 'junegunn/seoul256.vim'                                                    " Colorscheme based on the Seoul color palette (light and dark)
@@ -57,34 +73,44 @@ Plug 'mhinz/vim-startify'                                                       
 
 Plug 'reedes/vim-pencil' | Plug 'reedes/vim-colors-pencil'                      " Wrapping and punctuation presets for writing (:h pencil)
 Plug 'tpope/vim-abolish', { 'on': ['Abolish', 'Subvert'] }                      " Pattern-based substitution and iabbrev enhancements (:h abolish)
-Plug 'junegunn/goyo.vim', { 'for': ['pandoc'] }                                 " Distraction-free writing mode (:h goyo) (:h limelight)
-Plug 'junegunn/limelight.vim', { 'for': ['pandoc'] }
-Plug 'vim-pandoc/vim-pandoc', { 'for': ['pandoc'] }                             " Universal text format for the now (:h pandoc)
-Plug 'vim-pandoc/vim-pandoc'
-      \ | Plug 'vim-pandoc/vim-pandoc-after', { 'for': ['pandoc'] }
-Plug 'vim-pandoc/vim-pandoc'
-      \ | Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': ['pandoc'] }
-Plug 'reedes/vim-lexical', { 'for': ['pandoc'] }                                " Thesaurus, dictionary, and spellchecking (:h lexical)
-Plug 'reedes/vim-litecorrect', { 'for': ['pandoc'] }                            " Lightweight autocorrection
+Plug 'junegunn/goyo.vim'                                                        " Distraction-free writing mode (:h goyo) (:h limelight)
+Plug 'junegunn/limelight.vim'
+Plug 'vim-pandoc/vim-pandoc'                                                    " Universal text format for the now (:h pandoc)
+Plug 'vim-pandoc/vim-pandoc' | Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-pandoc-after'                                              " vim-pandoc integration with third-party plugins
+Plug 'vim-pandoc/vim-criticmarkup'                                              " Annotation of edits, highlights and comments
+Plug 'vim-pandoc/vim-markdownfootnotes'                                         " Support for extended Markdown footnote insertion
+Plug 'reedes/vim-lexical'                                                       " Thesaurus, dictionary, and spellchecking (:h lexical)
+Plug 'reedes/vim-litecorrect'                                                   " Lightweight autocorrection
 Plug 'kana/vim-textobj-user'
       \ | Plug 'reedes/vim-textobj-quote', { 'for': ['pandoc'] }                " Text object extension for typographic quotes and sentences
 Plug 'kana/vim-textobj-user'
       \ | Plug 'reedes/vim-textobj-sentence', { 'for': ['pandoc'] }
 Plug 'reedes/vim-wordy', { 'for': ['pandoc'] }                                  " Brutally honest usage problem detector (:h wordy)
+Plug 'vitalk/vim-simple-todo', { 'for': ['pandoc'] }                            " Simple todo list mappings
+Plug 'junegunn/vim-emoji'                                                       " Emoji helpers
 
 " DEV TOOLS
 "-----------------------------------------------------------------------------
 
-Plug 'tpope/vim-fugitive', { 'on': ['Gblame', 'Gcommit', 'Gdiff', 'Gedit',
-      \ 'Git', 'Glog', 'Gread', 'Gstatus', 'Gwrite'] }                          " Git manager (:h fugitive)
+if has('nvim')
+  function! DoRemote(arg)
+    UpdateRemotePlugins
+  endfunction
+  Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+endif
+
+Plug 'powerman/vim-plugin-AnsiEsc'
+Plug 'tpope/vim-fugitive'                                                       " Git manager (:h fugitive)
 Plug 'gabesoft/vim-ags', { 'on': ['Ags'] }                                      " Silver searcher for Vim (:h ags)
 Plug 'tpope/vim-commentary'                                                     " Context-aware code comments (:h commentary)
 Plug 'editorconfig/editorconfig-vim'                                            " EditorConfig (:h editorconfig)
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'less', 'scss'] }              " Emmet (:h emmet)
 Plug 'mattn/gist-vim', { 'on': ['Gist'] }                                       " Gist creation (:h gist)
-Plug 'gregsexton/gitv', { 'on': ['Gitv'] }                                      " gitk clone for Vim (:h gitv)
+Plug 'junegunn/gv.vim'                                                          " Fast gitv alternative
 Plug 'cohama/lexima.vim'                                                        " Context-aware auto-closing pairs (:h lexima)
 Plug 'terryma/vim-multiple-cursors'                                             " Multiple cursors (:h multiple-cursors)
+Plug 'chrisbra/NrrwRgn'                                                         " Like Emacs' Narrow Region
 Plug 'benekastah/neomake'                                                       " Syntax checking (:h neomake)
 Plug 'scrooloose/nerdtree'
       \ | Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': ['NERDTreeToggle'] }
@@ -106,61 +132,45 @@ Plug 'tpope/vim-unimpaired'                                                     
 " FILETYPE-SPECIFIC
 "-----------------------------------------------------------------------------
 
-if v:version >= 703
-  " Clojure
-  Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-  Plug 'kovisoft/paredit', { 'for': 'clojure' }
-  Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
-  Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
-
-  " Ruby
-  Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-endif
-
 " Multiple
+Plug 'sheerun/vim-polyglot'
 Plug 'Chiel92/vim-autoformat', { 'for': ['css', 'go', 'html', 'javascript', 'scss', 'xml'] }
-Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'less', 'scss'] }
 
-" Coffee-Script
-Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+" Clojure
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'kovisoft/paredit', { 'for': 'clojure' }
+Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
+
+" Elixir
+Plug 'slashmili/alchemist.vim', { 'for': ['elixir', 'eelixir'] }
+Plug 'BjRo/vim-extest', { 'for': ['elixir', 'eelixir'] }
+Plug 'lucidstack/hex.vim', { 'for': ['elixir', 'eelixir'] }
+Plug 'mattreduce/vim-mix', { 'for': ['elixir', 'eelixir'] }
 
 " Elm
 Plug 'ElmCast/elm-vim', { 'for': 'elm' }
+Plug 'avh4/elm-format', { 'for': 'elm' }
 
-" Golang
-Plug 'fatih/vim-go', { 'for': 'go' }
-
-" HTML
-Plug 'othree/html5.vim', { 'for': 'html' }
-Plug 'othree/html5-syntax.vim', { 'for': 'html' }
-
-" Jade
-Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
+" Haskell
+Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
+Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
+Plug 'dag/vim2hs', { 'for': 'haskell' }
+Plug 'Twinside/vim-hoogle', { 'for': 'haskell' }
+Plug 'mpickering/hlint-refactor-vim', { 'for': 'haskell' }
 
 " JavaScript
 Plug 'marijnh/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
-Plug '1995eaton/vim-better-javascript-completion', { 'for': 'javascript' }
-Plug 'othree/yajs.vim', { 'for': ['javascript', 'jsx', 'typescript'] }
-Plug 'othree/es.next.syntax.vim', { 'for': ['javascript', 'jsx', 'typescript'] }
-Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'jsx'] }
 Plug 'moll/vim-node', { 'for': 'javascript' }
-Plug 'burnettk/vim-angular', { 'for': 'javascript' }
-Plug 'claco/jasmine.vim', { 'for': 'javascript' }
 Plug 'heavenshell/vim-jsdoc', { 'for': ['javascript', 'typescript'] }
-
-" JSON
-Plug 'elzr/vim-json', { 'for': 'json' }
-
-" JSX
-Plug 'mxw/vim-jsx', { 'for': 'jsx' }
 
 " Ledger
 Plug 'ledger/vim-ledger', { 'for': 'ledger' }
 
-" Less
-Plug 'groenewege/vim-less', { 'for': 'less' }
+" Purescript
+Plug 'raichoo/purescript-vim', { 'for': 'purescript' }
 
 " Python
+Plug 'tweekmonster/braceless.vim', { 'for': 'python' }
 Plug 'klen/python-mode', { 'for': 'python' }
 Plug 'python_match.vim', { 'for': 'python' }
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
@@ -168,23 +178,16 @@ Plug 'JarrodCTaylor/vim-python-test-runner', { 'for': 'python' }
 Plug 'joonty/vdebug', { 'for': 'python' }
 
 " Rust
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-
-" Scala
-Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
+Plug 'phildawes/racer', { 'for': 'rust' }
 
 " SCSS
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
-
-" Stylus
-Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 
 " tmux
 Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }
 
 " TypeScript
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
-Plug 'Shougo/vimproc.vim' | Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
+Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
 
 call plug#end()
 

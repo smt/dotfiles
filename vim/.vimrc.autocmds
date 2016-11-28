@@ -19,7 +19,7 @@ if has('autocmd')
 
   augroup func_whitespace
     au!
-    au FileType c,cpp,clj,cljs,lisp,{c,le,sc}ss,stylus,go,{ht,x}ml,jade,java,{java,type}script,json,php,twig,python,ruby,vim,yaml
+    au FileType c,cpp,clj,cljs,lisp,{c,le,sc}ss,stylus,go,{ht,x}ml,j2,jade,java,{java,type}script,json,php,twig,python,ruby,vim,yaml
           \ autocmd BufWritePre <buffer> call StripTrailingWhitespace()
   augroup END
 
@@ -49,7 +49,6 @@ if has('autocmd')
     au!
     au BufRead,BufNewFile *.phtml setlocal filetype=html.php
     au BufRead,BufNewFile *.jsp setlocal filetype=html.jsp
-    au FileType jinja setlocal filetype=html.jinja
     au FileType html setlocal et ts=4 sts=4 sw=4
     " Auto-tidy selection
     au FileType html vnoremap <leader>x :!tidy -q -i --show-errors 0 --show-body-only 1 --wrap 0<cr><cr>
@@ -58,12 +57,17 @@ if has('autocmd')
   augroup type_gitcommit
     au!
     au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
-          \ | call setpos('.', [0, 1, 1, 0])
   augroup END
 
   augroup type_go
     au!
     au FileType go setlocal et ts=4 sts=4 sw=4
+  augroup END
+
+  augroup type_haskell
+    au!
+    au FileType haskell setlocal et ts=2 sts=2 sw=2
+          \ | setlocal omnifunc=necoghc#omnifunc
   augroup END
 
   augroup type_java
@@ -74,19 +78,14 @@ if has('autocmd')
   augroup type_javascript
     au!
     au FileType {java,type}script setlocal et ts=2 sts=2 sw=2
-          \ | au BufWritePost,BufReadPost *.js{,x} Neomake
-          " \ | call JavaScriptFold()
-          " \ | setlocal foldenable
-          " \ | setlocal nocindent
-
-    " Enable insertion of "debugger" statement in JS files
-    au FileType {java,type}script nnoremap <leader>b Odebugger;<esc>
+          \ | nnoremap <leader>b Odebugger;<esc>
+    au BufWritePost,BufReadPost *.js{,x} Neomake
   augroup END
 
   augroup type_jinja
     au!
-    autocmd BufNewFile,BufRead *.html,*.htm,*.nunjucks,*.nunjs call SelectHTML()
-    autocmd BufNewFile,BufRead *.jinja2,*.j2,*.jinja set ft=jinja
+    autocmd BufNewFile,BufRead *.jinja{,2},*.j2 setlocal ft=jinja2
+          \ | setlocal commentstring={#%s#}
   augroup END
 
   augroup type_json
@@ -109,7 +108,7 @@ if has('autocmd')
   augroup type_mutt
     au!
     au BufRead,BufNewFile *mutt-* setlocal filetype=mail
-    au FileType mail set tw=72
+    au FileType mail setlocal tw=72
   augroup END
 
   augroup type_pandoc
@@ -133,14 +132,12 @@ if has('autocmd')
 
     " But disable autowrapping as it is super annoying
     " au FileType python setlocal formatoptions-=t
-    au FileType python let g:pymode_lint = 1
+    au FileType python BracelessEnable +indent +highlight
+    au BufWritePost,BufReadPost *.py Neomake
   augroup END
 
   augroup type_rst
     au FileType rst setlocal et ts=4 sts=4 sw=4
-          \ | setlocal textwidth=78
-          \ | setlocal formatoptions+=nqt
-          \ | match ErrorMsg '\%>74v.\+'
   augroup END
 
   augroup type_ruby
@@ -176,15 +173,16 @@ if has('autocmd')
 
   augroup bundle_pencil
     au!
-    au FileType pandoc call pencil#init()
+    au FileType pandoc
+          \   call pencil#init({'textwidth': 78})
           \ | call lexical#init()
           \ | call litecorrect#init()
           \ | setlocal spell spl=en_us fdl=4 noru nonu nornu
           \ | setlocal fdo+=search
-    au FileType git,gitsendemail,*commit*,*COMMIT*
-          \   call pencil#init({'wrap': 'hard', 'textwidth': 72})
-          \ | call litecorrect#init()
-          \ | setlocal spell spl=en_us et sw=2 ts=2 noai
+    " au FileType git,gitsendemail,*commit*,*COMMIT*
+    "       \   call pencil#init({'wrap': 'hard', 'textwidth': 72})
+    "       \ | call litecorrect#init()
+    "       \ | setlocal spell spl=en_us et sw=2 ts=2 noai
     " au FileType mail         call pencil#init({'wrap': 'hard', 'textwidth': 60})
     "       \ | call litecorrect#init()
     "       \ | setlocal spell spl=en_us et sw=2 ts=2 noai nonu nornu
@@ -211,5 +209,34 @@ if has('autocmd')
   augroup END
 
 endif
+
+
+function! s:goyo_enter()
+  silent !tmux set status off
+  set noshowmode
+  set noshowcmd
+  set scrolloff=999
+  let b:quitting = 0
+  let b:quitting_bang = 0
+  autocmd QuitPre <buffer> let b:quitting = 1
+  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+  Limelight
+endfunction
+
+function! s:goyo_leave()
+  silent !tmux set status on
+  set showmode
+  set showcmd
+  set scrolloff=5
+  " Quit Vim if this is the only remaining buffer
+  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+    if b:quitting_bang
+      qa!
+    else
+      qa
+    endif
+  endif
+  Limelight!
+endfunction
 
 " vim: set sw=2 ts=2 sts=2 et tw=78 nospell:

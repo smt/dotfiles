@@ -77,7 +77,7 @@ nnoremap <silent> <Leader>gw :Gwrite<CR>
 nnoremap <silent> <Leader>ge :Gedit<CR>
 nnoremap <silent> <Leader>gi :Git add -p %<CR>
 nnoremap <silent> <Leader>gg :QuickfixsignsToggle<CR>
-nnoremap <silent> <Leader>gu :UndotreeToggle<CR>
+nnoremap <silent> <Leader>ut :UndotreeToggle<CR>
 nnoremap <silent> <Leader>nt :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>tf :call g:FixTabStops()<CR>
 nnoremap <silent> <S-Left> :SidewaysLeft<CR>

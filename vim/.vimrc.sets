@@ -36,6 +36,12 @@ let g:ags_agargs = {
 " deoplete
 let g:deoplete#enable_at_startup = 1
 
+" " DevIcons
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['go'] = ''
+" let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+" let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+
 " Emmet
 let g:user_emmet_install_global = 0
 
@@ -48,6 +54,12 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+
+" Goyo
+let g:goyo_width = 81
+
+" Disable haskell-vim omnifunc
+let g:haskellmode_completion_ghc = 0
 
 " Indent Guides
 let g:indent_guides_start_level = 2
@@ -88,8 +100,8 @@ let g:lightline = {
 let g:limelight_default_coefficient = 0.5
 
 " Local vimrc loading
-let g:localvimrc_sandbox=0
-let g:localvimrc_ask=0
+let g:localvimrc_sandbox = 0
+let g:localvimrc_ask = 0
 
 " Neomake
 " let g:neomake_verbose = 3
@@ -102,7 +114,12 @@ let g:neomake_go_errcheck_maker = {
       \ }
 let g:neomake_go_enabled_makers = ['go', 'golint', 'errcheck']
 let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_javascript_eslint_exe = '/usr/local/bin/eslint'
+if !empty($N_PREFIX)
+  let s:node_prefix = $N_PREFIX
+else
+  let s:node_prefix = '/usr/local'
+endif
+let g:neomake_javascript_eslint_exe = s:node_prefix.'/bin/eslint'
 let g:neomake_json_enabled_makers = ['jsonlint']
 let g:neomake_python_enabled_makers = ['flake8', 'pylint']
 let g:neomake_warning_sign = {
@@ -164,10 +181,11 @@ let g:netrw_preview=1           " open previews vertically
 let g:netrw_use_errorwindow=0   " suppress error window
 
 " Pandoc
-let g:pandoc#filetypes#handled = ["pandoc", "markdown", "rst", "textile", "extra"]
-let g:pandoc#modules#disabled = ["spell"]
-let g:pandoc#formatting#textwidth = 78
-let g:pandoc#command#custom_open = "MyPandocOpen"
+let g:pandoc#filetypes#handled = ['extra', 'markdown', 'pandoc', 'rst', 'textile']
+let g:pandoc#modules#disabled = ['bibliographies', 'spell']
+let g:pandoc#formatting#mode = 'h'
+let g:pandoc#formatting#textwidth = 77
+let g:pandoc#command#custom_open = 'MyPandocOpen'
 
 " Pencil / Writing Controls
 let g:pencil#wrapModeDefault = 'soft'
@@ -180,6 +198,22 @@ let g:airline_section_x = '%{PencilMode()}'
 let g:pencil#softDetectSample = 20
 let g:pencil#softDetectThreshold = 130
 
+" Polyglot
+let g:polyglot_disabled = [
+      \ 'markdown',
+      \ 'tmux'
+      \ ]
+
+" Python-mode
+let g:pymode_rope = 0
+let g:pymode_lint = 0
+let g:pymode_options_max_line_length = 120
+let g:pymode_lint_options_pep8 = {
+      \ 'max_line_length': g:pymode_options_max_line_length
+      \ }
+
+" simple-todo
+let g:simple_todo_list_symbol = '-'
 
 " Tern
 let g:tern_map_keys = 1
@@ -324,16 +358,15 @@ if has('gui_running')
   set guifont=Meslo\ LG\ S\ for\ Powerline
   set encoding=utf-8
   set transparency=0
-  syntax enable
-  set background=dark
-  colorscheme gruvbox
 else
   let g:indent_guides_enable_on_vim_startup = 0
   set t_Co=256
-  syntax enable
-  set background=dark
-  colorscheme gruvbox
 endif
+
+syntax enable
+" let g:seoul256_background = 236
+set background=dark
+colorscheme gruvbox
 
 if WINDOWS()
   set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after

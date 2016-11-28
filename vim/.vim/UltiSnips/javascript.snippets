@@ -5,6 +5,16 @@ def module_name(name=None):
     name = name or 'ModuleName'
     s1 = re.sub('\.js(x?)$', '', name)
     return ''.join(x.title() for x in re.sub('([A-Z])', r'_\1', s1).split('_'))
+
+def format_module_name(path, title_case=False):
+    lastPart = path.split('/')[-1]
+    if lastPart == 'lodash':
+        return '_'
+    elif lastPart == 'jquery':
+        return '$'
+    else:
+        name = re.sub(r'[_\-]', '', lastPart)
+        return name.title() if title_case else name
 endglobal
 
 snippet fn "function" i
@@ -41,16 +51,12 @@ endsnippet
 # https://gist.github.com/lencioni/230b8e61ae6d08898aac
 snippet re "require" b
 var `!p
-def formatVariableName(path):
-    lastPart = path.split('/')[-1]
-    if lastPart == 'underscore':
-        return '_'
-    elif lastPart == 'jquery':
-        return '$'
-    else:
-        return re.sub(r'[_\-]', '', lastPart.title())
-snip.rv = formatVariableName(t[1])
+snip.rv = format_module_name(t[1], title_case=True)
 ` = require('${1}');$0
+endsnippet
+
+snippet im "import" b
+import ${2:`!p snip.rv = format_module_name(t[1])`} from '${1}';$0
 endsnippet
 
 snippet cb "callback based API"

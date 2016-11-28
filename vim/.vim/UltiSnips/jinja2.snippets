@@ -1,0 +1,19 @@
+# Being able to quickly remove the whole 'else' block seems faster to me than
+# choosing between 'for' and 'for/else' snippets from the menu.
+snippet for "for/else" b
+{% for ${1:item} in ${2:sequence} %}
+	$3${4:
+{% else %}
+	$5}
+{% endfor %}
+endsnippet
+
+snippet if "if/elif/else" b
+{% if ${1:expr} %}
+	$2${3:
+{% elif %}
+	$4}${5:
+{% else %}
+	$6}
+{% endif %}
+endsnippet

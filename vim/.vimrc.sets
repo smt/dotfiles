@@ -193,6 +193,7 @@ let g:tern_show_argument_hints = 'on_hold'
 " UltiSnips
 let g:snips_author = 'Stephen Tudor'
 let g:snips_author_email = 'smt@smt.io'
+let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
 let g:UltiSnipsSnippetDirectories = ['UltiSnips']
 " better key bindings for UltiSnipsExpandTrigger
 " (http://stackoverflow.com/questions/14896327/ultisnips-and-youcompleteme/22253548#22253548)

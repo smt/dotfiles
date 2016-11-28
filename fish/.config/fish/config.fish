@@ -13,11 +13,13 @@ switch (uname)
         set -x GOPATH /usr/local/var/go
         set LOCAL_PATH /usr/texbin
         # set LOCAL_PATH /usr/X11/bin $LOCAL_PATH
-        set LOCAL_PATH /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/bin $LOCAL_PATH
-        set LOCAL_PATH $BREW_PREFIX/Cellar/go/1.5/libexec/bin $LOCAL_PATH
+        set LOCAL_PATH /Library/Java/Home/bin $LOCAL_PATH
+        set LOCAL_PATH $BREW_PREFIX/Cellar/go/1.6.2/libexec/bin $LOCAL_PATH
         set LOCAL_PATH $GOPATH/bin $LOCAL_PATH
         set LOCAL_PATH $HOME/.fzf/bin $LOCAL_PATH
-        set LOCAL_PATH $HOME/.cabal/bin $LOCAL_PATH
+        set LOCAL_PATH $HOME/.n/bin $LOCAL_PATH
+        set LOCAL_PATH $HOME/src/blackbox/bin $LOCAL_PATH
+        set LOCAL_PATH $HOME/.local/bin $LOCAL_PATH
         set LOCAL_PATH $HOME/bin $LOCAL_PATH
         set -x PATH $LOCAL_PATH $BASE_PATH
         # Initialize z
@@ -26,7 +28,7 @@ switch (uname)
         set -x GOPATH /var/go
         set LOCAL_PATH $GOPATH/bin
         set LOCAL_PATH $HOME/.fzf/bin $LOCAL_PATH
-        set LOCAL_PATH $HOME/.cabal/bin $LOCAL_PATH
+        set LOCAL_PATH $HOME/.local/bin $LOCAL_PATH
         set LOCAL_PATH $HOME/bin $LOCALPATH
         set -x PATH $LOCAL_PATH $BASE_PATH
 end
@@ -166,6 +168,9 @@ end
 # /Global Options and Aliases --------------------------------------------- }}}
 
 # ag ---------------------------------------------------------------------- {{{
+function agj2
+    command ag -G '.*\.j2$' $argv
+end
 function agjs
     command ag -G '.*\.js$' $argv
 end
@@ -180,6 +185,9 @@ function agyml
 end
 function agrb
     command ag -G '.*\.rb$' $argv
+end
+function agsass
+    command ag -G '.*\.s[ac]ss$' $argv
 end
 # /ag --------------------------------------------------------------------- }}}
 
@@ -425,10 +433,10 @@ end
 # end
 
 # pyenv
-status --is-interactive; and . (pyenv init -|psub)
+# status --is-interactive; and . (pyenv init -|psub)
 
 # virtualfish (virtualenv wrapper) provides `vf` command
-eval (python -m virtualfish)
+# eval (python -m virtualfish)
 # /python/django ---------------------------------------------------------- }}}
 
 # ruby/rails -------------------------------------------------------------- {{{

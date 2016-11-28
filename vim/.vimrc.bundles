@@ -4,16 +4,6 @@
 
 filetype off
 
-function! BuildYCM(info)
-  " info is a dictionary with 3 fields
-  " - name:   name of the plugin
-  " - status: 'installed', 'updated', or 'unchanged'
-  " - force:  set on PlugInstall! or PlugUpdate!
-  if a:info.status == 'installed' || a:info.force
-    !./install.sh
-  endif
-endfunction
-
 " Auto-install plug.vim
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -34,6 +24,7 @@ endif
 " GENERAL
 "-----------------------------------------------------------------------------
 
+Plug 'Shougo/vimproc.vim'
 Plug 'tpope/vim-eunuch', { 'on': ['Chmod', 'Find', 'Mkdir', 'Move', 'Remove',
       \ 'Rename', 'SudoEdit', 'SudoWrite', 'Unlink', 'Wall'] }                  " Vim sugar for UNIX shell commands (:h eunuch)
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
@@ -41,8 +32,6 @@ Plug 'junegunn/fzf.vim', { 'on': ['Ag', 'Buffers', 'Colors', 'Commands',
       \ 'Commits', 'BCommits', 'Files', 'GitFiles', 'Helptags', 'History',
       \ 'Lines', 'BLines', 'Locate', 'Maps', 'Marks', 'Snippets', 'Tags',
       \ 'BTags', 'Windows'] }                                                   " Fuzzy finder
-" Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }                                     " Utility lib
 Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }    " Align stuff interactively
 Plug 'embear/vim-localvimrc'                                                    " Support for .lvimrc files (:h localvimrc)
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle'] }                        " File navigation (:h nerdtree)
@@ -52,15 +41,12 @@ Plug 'tpope/vim-repeat'                                                         
 Plug 'mhinz/vim-sayonara', { 'on': ['Sayonara'] }                               " Sane buffer closing (:h sayonara)
 Plug 'tmux-plugins/vim-tmux-focus-events'                                       " Enable tmux focus event hooks
 Plug 'christoomey/vim-tmux-navigator'                                           " Navigate Vim windows like tmux windows
-Plug 'Shougo/vimproc.vim' | Plug 'Shougo/unite.vim', { 'on': ['Unite'] }        " User interface creator (:h unite)
-Plug 'Shougo/vimproc.vim' | Plug 'Shougo/unite.vim' | Plug 'Shougo/vimfiler.vim', { 'on': ['VimFiler'] }    " Cool file browser (:h vimfiler)
 Plug 'tpope/vim-vinegar', { 'on': ['<Plug>(VinegarUp)'] }                       " Netrw enhancements (:h vinegar)
 Plug 'reedes/vim-wheel'                                                         " Screen-anchored cursor movement (:h wheel)
 
 " STYLING
 "-----------------------------------------------------------------------------
 
-Plug 'ryanoasis/vim-devicons'                                                   " FileType icon glyph support, via patched fonts
 Plug 'morhetz/gruvbox'                                                          " '70s throwback colorscheme (light and dark)
 Plug 'itchyny/lightline.vim'                                                    " A lightweight status bar
 Plug 'junegunn/seoul256.vim'                                                    " Colorscheme based on the Seoul color palette (light and dark)
@@ -114,10 +100,8 @@ Plug 'AndrewRadev/switch.vim', { 'on': ['Switch'] }                             
 Plug 'pelodelfuego/vim-swoop', { 'on': ['Swoop'] }                              " Helm-like interactive search/replace (:h swoop)
 Plug 'majutsushi/tagbar', { 'on': ['TagbarToggle'] }                            " Code object browser (:h tagbar)
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'                             " Snippets (:h ultisnips)
-Plug 'ervandew/supertab'                                                        " Smart tab completion (:h supertab)
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }                              " Interactive undo tree (:h undotree)
 Plug 'tpope/vim-unimpaired'                                                     " Pairs of handy bracket mappings (:h unimpaired)
-Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }                   " Code completion (:h youcompleteme)
 
 " FILETYPE-SPECIFIC
 "-----------------------------------------------------------------------------

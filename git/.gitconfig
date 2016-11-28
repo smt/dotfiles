@@ -9,7 +9,7 @@
 	autocrlf = input
 	whitespace = space-before-tab, trailing-space
 	excludesfile = ~/.gitignore_global
-	editor = vim
+	editor = nvim
 	safecrlf = false
 
 [color]
@@ -54,7 +54,7 @@
 	cmd = vim -f -c "Gdiff" "$MERGED"
 
 [mergetool "sourcetree"]
-	cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.0.5.2/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 
 [branch]
@@ -192,6 +192,7 @@
 	# what got pushed to master in the last hour
 	#  based on http://stackoverflow.com/questions/3357219/expose-the-date-a-commit-was-pushed-to-a-repository
 	justpushed = log origin/master@{\"1 hour ago\"}..origin/master --
+	justpusheddev = log origin/dev@{\"1 hour ago\"}..origin/dev --
 
 	# log everything with $1 string in the diff
 	timegrep = log -S
@@ -210,6 +211,9 @@
 
 	# show a log without the formating, occasionaly handy for c&p
 	rawlog = log --format=\"format:commit %H%nAuthor:%an%n%n%B%n\"
+
+	# branch status
+	bs = "!f() { git rev-parse --abbrev-ref HEAD ; }; g() { git log -g --pretty=oneline $(f); }; g"
 
 	# show a list of branches sorted by time of last commit
 	brage = "!f() { git for-each-ref --sort=committerdate refs/heads $1  --format=\"%(refname:short)\" ; }; g() { for C in $(f $1) ; do git show -s --pretty=format:\"%Cgreen%ci %Cblue%cr%Creset  $C\" \"$C\" -- ; done; }; g "

@@ -1,0 +1,61 @@
+#!/bin/bash
+
+ulimit -n 1024
+
+backup(){
+    local backup_name=$1
+    local source_dir=$2
+    local target_url=$3
+    local full_older_than=$4
+
+    local logging_options="--verbosity info" # default==notice, "verbosity [may] be one of[:] error, warning, notice, info, debug"
+    local backup_options="--name=${backup_name} --full-if-older-than=${full_older_than}"
+    local gpg_options="--encrypt-sign-key=${DUPLICITY_GPG_KEY}"
+    # local exclude_options="--exclude=/mnt --exclude=/proc --exclude=/tmp --exclude=**/.DS_Store --exclude=**/.cache/duplicity"
+    local exclude_options="--exclude=**/.DS_Store --exclude=**/.cache/duplicity"
+
+    local duplicity_backup_cmd="duplicity ${logging_options} ${backup_options} ${gpg_options} ${exclude_options} ${source_dir} ${target_url}"
+    local local_logfile_path="/tmp/duplicity.log"
+
+    for CMD in \
+        "${duplicity_backup_cmd}" \
+    ; do
+        if [[ -z "${CMD}" ]] ; then
+            continue
+        fi
+        echo "${CMD}" | tee -a "${local_logfile_path}"
+        eval "${CMD}" 2>&1 >> "${local_logfile_path}"
+    done
+}
+
+main(){
+    local target_url_base="file:///mnt/usb/backups"
+    local source_dir="/"
+    local duplicity_gpg_key="EAAAEA134B6CA27C"
+    local full_older_than="1M"
+    local os_type="$(uname)"
+    local hostname="$(hostname)"
+
+    if [[ $os_type == 'Darwin' ]] ; then
+        target_url_base="file:///Volumes/TOURO/backups"
+        source_dir="${HOME}"
+
+        if [[ "$(echo $hostname | grep -i uoi)" ]] ; then
+            # use fake UOI 'hostname' because of variable DNS resolution on
+            # different networks :\
+            hostname="uoi_laptop"
+        fi
+    else
+        exit 1
+    fi
+
+    DUPLICITY_GPG_KEY="${duplicity_gpg_key}" \
+        backup \
+        "${hostname}" \
+        "${source_dir}" \
+        "${target_url_base}/${hostname}" \
+        "${full_older_than}"
+}
+
+
+main
